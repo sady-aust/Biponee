@@ -144,12 +144,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\AdminManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DLL\AdminGetway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2018,6 +2021,7 @@
     <Content Include="Style\admin\vendors\tinymce\tinymce.jquery.min.js" />
     <Content Include="Style\admin\vendors\tinymce\tinymce.js" />
     <Content Include="Style\admin\vendors\tinymce\tinymce.min.js" />
+    <Content Include="Style\img\loading.gif" />
     <Content Include="Style\user\css\bootstrap.min.css" />
     <Content Include="Style\user\css\font-awesome.min.css" />
     <Content Include="Style\user\css\nouislider.min.css" />
@@ -2280,7 +2284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

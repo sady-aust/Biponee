@@ -1,1 +1,109 @@
 ﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+    <!-- Button trigger modal -->
+   
+    <!-- Modal -->
+    <div class="modal fade" id="adminLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                        <img src='~/Style/img/loading.gif' width="44" height="44" />
+                        <br>Loading..
+                    </div>
+
+                    <table>
+                        <tr>
+                            Email Id
+
+                        </tr>
+                        <tr>
+
+                            <input id="email" class="form-control" type="email" placeholder="Email Id" />
+
+                        </tr>
+                        <tr>
+                            Password
+
+                        </tr>
+                        <tr>
+
+                            <input id="password" class="form-control" type="password" placeholder="Password" />
+
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                   
+                    <button id="loginbtn" type="button" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#adminLogin').modal('show');
+        });
+
+        $(document).ready(function () {
+            $("#loginbtn").click(function () {
+                $("#waitpic").css("display", "block");
+                var email = $("#email").val();
+                var password = $("#password").val();
+
+
+                var jsonData = { Email: email, Password: password };
+                  $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getAdmin", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                      success: function (data) {
+
+                          if (data > 0) {
+                              $("#waitpic").css("display", "none");
+                              document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + data;
+                          }
+                          else {
+                              $("#waitpic").css("display", "none");
+                              alert("Admin Not Found");
+                              
+                          }
+                            //alert(data);
+                        }
+                    });
+                   // alert(name + " " + email);
+                return false;
+                });
+
+          
+
+            });
+
+
+       
+    </script>
+
+</body>
+</html>

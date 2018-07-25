@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Biponee.Models.AdminC
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,11 +42,11 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                <a class="navbar-brand brand-logo" href="../../index.html">
-                    <img src="../UserModule/logo/logo.png" alt="logo" />
+                <a class="navbar-brand brand-logo">
+                    <img src="~/Style/user/logo/logo.png" alt="logo" />
                 </a>
-                <a class="navbar-brand brand-logo-mini" href="../../index.html">
-                    <img src="../UserModule/logo/logo.png" alt="logo" />
+                <a class="navbar-brand brand-logo-mini">
+                    <img src="~/Style/user/logo/logo.png" alt="logo" />
                 </a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -184,32 +186,15 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">Hello, Richard V.Welsh !</span>
-                            <img class="img-xs rounded-circle" src="../../images/faces/face1.jpg" alt="Profile image">
+                            <span class="profile-text">@Model.FirstName</span>
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                            <a class="dropdown-item p-0">
-                                <div class="d-flex border-bottom">
-                                    <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
-                                    </div>
-                                    <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
-                                        <i class="mdi mdi-account-outline mr-0 text-gray"></i>
-                                    </div>
-                                    <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
-                                    </div>
-                                </div>
+
+                            <a class="dropdown-item mt-2" href="#" data-toggle="modal" data-target="#adminprofile">
+                                Profile
                             </a>
-                            <a class="dropdown-item mt-2">
-                                Manage Accounts
-                            </a>
-                            <a class="dropdown-item">
-                                Change Password
-                            </a>
-                            <a class="dropdown-item">
-                                Check Inbox
-                            </a>
+
                             <a class="dropdown-item">
                                 Sign Out
                             </a>
@@ -229,13 +214,11 @@
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
                             <div class="user-wrapper">
-                                <div class="profile-image">
-                                    <img src="../../images/faces/face1.jpg" alt="profile image">
-                                </div>
+
                                 <div class="text-wrapper">
-                                    <p class="profile-name">Richard V.Welsh</p>
+                                    <p class="profile-name">@Model.FirstName</p>
                                     <div>
-                                        <small class="designation text-muted">Manager</small>
+                                        <small class="designation text-muted">Admin</small>
                                         <span class="status-indicator online"></span>
                                     </div>
                                 </div>
@@ -247,31 +230,31 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.html">
+                        <a href="#" class="nav-link" id="dashboard">
                             <i class="menu-icon mdi mdi-television"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pages/forms/addproduct.html">
+                        <a href="#" id="addproducts" class="nav-link">
                             <i class="menu-icon mdi mdi-backup-restore"></i>
                             <span class="menu-title">Add Products</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pages/charts/chartjs.html">
+                        <a href="#" class="nav-link" id="chart">
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Charts</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pages/tables/orders.html">
-                            <i class="menu-icon mdi mdi-sticker"></i>
+                        <a href="#" class="nav-link" id="orders">
+                            <i class="menu-icon mdi mdi-table"></i>
                             <span class="menu-title">Orders</span>
                         </a>
                     </li>
+
 
                 </ul>
             </nav>
@@ -312,6 +295,8 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="../../vendors/js/vendor.bundle.base.js"></script>
@@ -340,6 +325,67 @@
     <!-- Custom js for this page-->
     <script src="~/Style/admin/js/dashboard.js"></script>
     <!-- End custom js for this page-->
+    <div class="modal fade" id="adminprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Admin Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                        <img src='~/Style/img/loading.gif' width="44" height="44" />
+                        <br>Loading..
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td>First Name </td>
+                            <td>@Model.FirstName</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Last Name </td>
+                            <td>@Model.LastName</td>
+
+                        </tr>
+                        <tr>
+                            <td>Email </td>
+                            <td>@Model.Email</td>
+
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                    <!--  <button id="loginbtn" type="button" class="btn btn-primary">Login</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+       $(document).ready(function () {
+            $("#dashboard").click(function () {
+                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.ID;
+            });
+
+            $("#addproducts").click(function () {
+                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.ID;
+            });
+           $("#chart").click(function () {
+               console.log("Clicked");
+                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.ID;
+            });
+            $("#orders").click(function () {
+                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.ID;
+            });
+
+        });
+    </script>
 </body>
 
 </html>
