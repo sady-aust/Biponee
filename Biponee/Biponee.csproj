@@ -145,14 +145,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AdminManager.cs" />
+    <Compile Include="BLL\ProductManager.cs" />
+    <Compile Include="BLL\SectionManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DLL\AdminGetway.cs" />
+    <Compile Include="DLL\ProductGetway.cs" />
+    <Compile Include="DLL\SectionGetway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminC.cs" />
+    <Compile Include="Models\AdminSectionC.cs" />
+    <Compile Include="Models\ProductC.cs" />
+    <Compile Include="Models\SectionC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2284,6 +2291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProductImage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

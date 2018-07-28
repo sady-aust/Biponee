@@ -1,5 +1,24 @@
-﻿
-@model Biponee.Models.AdminC
+﻿@using System.Collections.Generic;
+@model Biponee.Models.AdminSectionC
+@if (ViewBag.insertResult != null)
+{
+    if (ViewBag.insertResult == "1")
+    {
+        Response.Write("<script>alert('Product inserted successfully')</script>");
+    }
+    else if (ViewBag.insertResult == "0")
+    {
+        Response.Write("<script>alert('Product Not Inserted')</script>");
+    }
+    else if (ViewBag.insertResult == "2")
+    {
+        Response.Write("<script>alert('Please change the product Code')</script>");
+    }
+    else if (ViewBag.insertResult == "2")
+    {
+        Response.Write("<script>alert('Please fill up all the necessary field')</script>");
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -188,7 +207,7 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">@Model.FirstName</span>
+                            <span class="profile-text">@Model.Admin.FirstName</span>
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -218,7 +237,7 @@
                             <div class="user-wrapper">
 
                                 <div class="text-wrapper">
-                                    <p class="profile-name">@Model.FirstName</p>
+                                    <p class="profile-name">@Model.Admin.FirstName</p>
                                     <div>
                                         <small class="designation text-muted">Admin</small>
                                         <span class="status-indicator online"></span>
@@ -267,22 +286,90 @@
                 <!-- partial:../../partials/_footer.html -->
 
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#menu1">Add Product</a></li>
+                    <li class="active"><a data-toggle="tab" href="#menu1" class="active">Add Product</a></li>
                     <li><a data-toggle="tab" href="#menu2">Search Product</a></li>
-                    <li><a data-toggle="tab" href="#menu3">Delete Product</a></li>
-                    <li><a data-toggle="tab" href="#menu4">Update Product</a></li>
+
                 </ul>
 
                 <div class="tab-content">
-                    <div id="menu1" class="tab-pane fade in active">
-                        <h3>Add Product</h3>
-                        <p>Some content.</p>
+                    <div id="menu1" class="tab-pane fade in active show">
+                        <button style="margin-top:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addProductModal" id="addProduct">+ Add a new Product</button>
+                        <h3 style="margin-top:20px;">Your Products</h3>
+
+
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ProductId</th>
+                                    <th scope="col">ProductName</th>
+                                    <th scope="col">ProductCode</th>
+                                    <th scope="col">SectionName</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">ImageLink</th>
+                                    <th scope="col">L Count</th>
+                                    <th scope="col">M Count</th>
+                                    <th scope="col">Xl Count</th>
+                                    <th scope="col">XXl Count</th>
+                                </tr>
+                            </thead>
+
+
+                            @for (int i = Model.products.Count - 1; i >= 0; i--)
+                            {
+                                <tr>
+                                    <td>@Model.products[i].ProductId</td>
+                                    <td>@Model.products[i].ProductName</td>
+                                    <td>@Model.products[i].ProductCode</td>
+                                    @for (int j = -0; j < Model.products.Count; j++)
+                                    {
+                                        if (Model.Sections[j].SectionID == Model.products[i].SectionId)
+                                        {
+                                            <td>@Model.Sections[j].SectionName</td>
+                                            break;
+                                        }
+                                    }
+
+                                    <td>@Model.products[i].Price</td>
+                                    <td>@Model.products[i].Category</td>
+                                    <td>@Model.products[i].Description</td>
+                                    <td>@Model.products[i].ImageLink</td>
+                                    <td>@Model.products[i].LCount</td>
+                                    <td>@Model.products[i].MCount</td>
+                                    <td>@Model.products[i].XLCount</td>
+                                    <td>@Model.products[i].XXLCount</td>
+                                </tr>
+                            }
+                        </table>
                     </div>
                     <div id="menu2" class="tab-pane fade">
                         <h3>Search Product</h3>
-                        <p>Some content in menu 1.</p>
+                        <table >
+                            <tr >
+                                <td colspan="2">
+                                    <select id="searchSecId" name="SectionId" class="form-control">
+
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
+                                        {
+                                            <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                        }
+
+                                    </select>
+                                </td>
+                                <td colspan="6">
+                                    <input id="productCode" class="form-control" placeholder="ProductCode"/>
+                                </td>
+                                <td>
+                                    <button id="searchbtn" class="form-control btn-danger btn-danger">Search</button>
+                                </td>
+                            </tr>
+                        </table>
+                       
+                      <h4 style="text-align:center">Search Result</h4>
                     </div>
-                   
+
                 </div>
 
 
@@ -340,18 +427,18 @@
                     <table>
                         <tr>
                             <td>First Name </td>
-                            <td>@Model.FirstName</td>
+                            <td>@Model.Admin.FirstName</td>
 
                         </tr>
                         <tr>
 
                             <td>Last Name </td>
-                            <td>@Model.LastName</td>
+                            <td>@Model.Admin.LastName</td>
 
                         </tr>
                         <tr>
                             <td>Email </td>
-                            <td>@Model.Email</td>
+                            <td>@Model.Admin.Email</td>
 
                         </tr>
 
@@ -364,20 +451,162 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                            <img src='~/Style/img/loading.gif' width="44" height="44" />
+                            <br>Loading..
+                        </div>
+
+
+                        <table>
+                            <tr>
+                                <td colspan="2">Product Name</td>
+                                <td colspan="2">
+                                    <input id="ProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Product Code</td>
+                                <td colspan="2">
+                                    <input id="ProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Section Name</td>
+                                <td colspan="2">
+                                    <select id="SectionId" name="SectionId" class="form-control">
+
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
+                                        {
+                                            <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                        }
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Category</td>
+                                <td colspan="2">
+                                    <input id="Category" name="Category" type="text" class="form-control" placeholder="Category" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Price</td>
+                                <td colspan="2">
+                                    <input id="Price" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Description</td>
+                                <td colspan="2">
+                                    <textarea id="Description" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Image</td>
+                                <td colspan="2">
+                                    <input id="ImageLink" name="ImageLink" type="file" class="form-control" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Sizes(If Available) Count</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="LCount" name="LCount" type="number" class="form-control" placeholder="L" min="0" />
+                                </td>
+                                <td>
+                                    <input id="MCount" name="MCount" type="number" class="form-control" placeholder="M" min="0" />
+                                </td>
+                                <td>
+                                    <input id="XLCount" name="XLCount" type="number" class="form-control" placeholder="XL" min="0" />
+                                </td>
+                                <td>
+                                    <input id="XXLCount" name="XXLCount" type="number" class="form-control" placeholder="XXL" min="0" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+                        <input type="submit" class="btn btn-primary" value="Add" input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $(document).ready(function () {
             $("#dashboard").click(function () {
-                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
 
             $("#addproducts").click(function () {
-                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
             $("#chart").click(function () {
-                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
             $("#orders").click(function () {
-                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+            });
+
+         $(document).ready(function () {
+             $("#searchbtn").click(function () {
+               
+                 var email = $("#searchSecId").val();
+                var password = $("#password").val();
+
+
+                var jsonData = { Email: email, Password: password };
+                  $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getAdmin", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                      success: function (data) {
+
+                          if (data > 0) {
+                              
+                              document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + data;
+                          }
+                          else {
+                              $("#waitpic").css("display", "none");
+                              alert("Admin Not Found");
+                              
+                          }
+                            //alert(data);
+                        }
+                    });
+                   // alert(name + " " + email);
+                return false;
+                });
+
+          
+
             });
 
         });

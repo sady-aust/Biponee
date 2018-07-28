@@ -2,8 +2,10 @@
 using Biponee.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Biponee.Controllers
@@ -11,6 +13,11 @@ namespace Biponee.Controllers
     public class AdminController : Controller
     {
         AdminManager adminManager = new AdminManager();
+        SectionManager sectionManager = new SectionManager();
+        ProductManager productManager = new ProductManager();
+
+      
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -20,12 +27,68 @@ namespace Biponee.Controllers
         public ActionResult AdminPage(int id)
         {
             AdminC admin = adminManager.getAdminInfo(id);
+            Session["adminIndo"] = admin;
             return View(admin);
         }
         public ActionResult AddProduct(int id)
         {
             AdminC admin = adminManager.getAdminInfo(id);
-            return View(admin);
+            List<SectionC> sections = sectionManager.getAllSections();
+            Session["sectionInfo"] = sections;
+            List<ProductC> myProducts = productManager.getAllProduct();
+            return View(new AdminSectionC(admin,sections,myProducts));
+        }
+        [HttpPost]
+        public ActionResult AddProduct(ProductC product)
+        {
+            WebImage photo = null;
+            var newFileName = "";
+            var imagePath = "";
+            photo = WebImage.GetImageFromRequest();
+            if (product.ProductName != null && product.SectionId > 0 && product.ProductCode != null && product.Price != null && photo != null)
+            {
+                if (!productManager.isThisCodeAlreadyExist(product.ProductCode))
+                {
+                    photo.FileName = product.ProductCode + "img";
+                    newFileName = photo.FileName;
+                  
+
+                    imagePath = @"ProductImage\" + product.SectionId + @"\" + newFileName;
+
+                    photo.Save(@"~\" + imagePath);
+                    product.ImageLink = imagePath;
+
+                    Boolean res = productManager.insertProduct(product);
+                    if (res)
+                    {
+                       ViewBag.insertResult = "1";
+
+                        List<ProductC> myProducts = productManager.getAllProduct();
+                        return View(new AdminSectionC((AdminC)Session["adminIndo"],(List<SectionC>) Session["sectionInfo"], myProducts));
+                    }
+                    else
+                    {
+                        List<ProductC> myProducts = productManager.getAllProduct();
+                        ViewBag.insertResult = "0";
+                        return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
+                    }
+                }
+                else
+                {
+                   ViewBag.insertResult = "2";
+                    List<ProductC> myProducts = productManager.getAllProduct();
+                    return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
+                }
+            }
+            else
+            {
+               ViewBag.insertResult = "3";
+                List<ProductC> myProducts = productManager.getAllProduct();
+                return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
+            }
+           
+
+            
         }
         public ActionResult Orders(int id)
         {
@@ -49,6 +112,25 @@ namespace Biponee.Controllers
             }
             return Json(idNo, JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult saveProduct(ProductC product)
+        {
+            var sourcePath = product.ImageLink;
+            var targetpath = @"C:\Users\User\source\repos\Biponee\Biponee\ProductImage";
+            string destFile = System.IO.Path.Combine(targetpath, product.SectionId.ToString());
+
+
+            if (!System.IO.Directory.Exists(destFile))
+            {
+                System.IO.Directory.CreateDirectory(destFile);
+            }
+
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            System.IO.File.Copy(sourcePath, destFile, true);
+
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
     }
 }
