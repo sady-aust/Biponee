@@ -53,7 +53,7 @@ namespace Biponee.Controllers
                     newFileName = photo.FileName;
                   
 
-                    imagePath = @"ProductImage\" + product.SectionId + @"\" + newFileName;
+                    imagePath = @"Style\ProductImage\" + product.SectionId + @"\" + newFileName;
 
                     photo.Save(@"~\" + imagePath);
                     product.ImageLink = imagePath;
@@ -114,23 +114,16 @@ namespace Biponee.Controllers
 
         }
 
-        public JsonResult saveProduct(ProductC product)
+        public JsonResult getAllProduct(int SectionId)
         {
-            var sourcePath = product.ImageLink;
-            var targetpath = @"C:\Users\User\source\repos\Biponee\Biponee\ProductImage";
-            string destFile = System.IO.Path.Combine(targetpath, product.SectionId.ToString());
+            List<ProductC> list = productManager.getAllProductThisSection(SectionId);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
-
-            if (!System.IO.Directory.Exists(destFile))
-            {
-                System.IO.Directory.CreateDirectory(destFile);
-            }
-
-            // To copy a file to another location and 
-            // overwrite the destination file if it already exists.
-            System.IO.File.Copy(sourcePath, destFile, true);
-
-            return Json(1, JsonRequestBehavior.AllowGet);
+        public JsonResult  getProductOfThisCode(int SectionId, String Code)
+        {
+            List<ProductC> list = productManager.getProduct(SectionId, Code);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -298,7 +298,7 @@
 
 
 
-                        <table class="table">
+                        <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
                             <thead>
                                 <tr>
                                     <th scope="col">ProductId</th>
@@ -307,7 +307,7 @@
                                     <th scope="col">SectionName</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
-                                    <th scope="col">Description</th>
+                                   
                                     <th scope="col">ImageLink</th>
                                     <th scope="col">L Count</th>
                                     <th scope="col">M Count</th>
@@ -334,7 +334,7 @@
 
                                     <td>@Model.products[i].Price</td>
                                     <td>@Model.products[i].Category</td>
-                                    <td>@Model.products[i].Description</td>
+                                    
                                     <td>@Model.products[i].ImageLink</td>
                                     <td>@Model.products[i].LCount</td>
                                     <td>@Model.products[i].MCount</td>
@@ -346,8 +346,8 @@
                     </div>
                     <div id="menu2" class="tab-pane fade">
                         <h3>Search Product</h3>
-                        <table >
-                            <tr >
+                        <table>
+                            <tr>
                                 <td colspan="2">
                                     <select id="searchSecId" name="SectionId" class="form-control">
 
@@ -359,15 +359,36 @@
                                     </select>
                                 </td>
                                 <td colspan="6">
-                                    <input id="productCode" class="form-control" placeholder="ProductCode"/>
+                                    <input id="productCode" class="form-control" placeholder="ProductCode" />
                                 </td>
                                 <td>
                                     <button id="searchbtn" class="form-control btn-danger btn-danger">Search</button>
                                 </td>
                             </tr>
                         </table>
-                       
-                      <h4 style="text-align:center">Search Result</h4>
+
+                        <h4 style="text-align:center">Search Result</h4>
+                        <table class="table"style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ProductId</th>
+                                    <th scope="col">ProductName</th>
+                                    <th scope="col">ProductCode</th>
+                                    <th scope="col">SectionName</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                  
+                                    <th scope="col">ImageLink</th>
+                                    <th scope="col">L Count</th>
+                                    <th scope="col">M Count</th>
+                                    <th scope="col">Xl Count</th>
+                                    <th scope="col">XXl Count</th>
+                                    <th scope="col">Operation</th>
+                                </tr>
+
+                            </thead>
+                            <tbody id="searchResBody"></tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -560,54 +581,103 @@
     <script>
         $(document).ready(function () {
             $("#dashboard").click(function () {
-                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
 
             $("#addproducts").click(function () {
-                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
             $("#chart").click(function () {
-                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
             $("#orders").click(function () {
-                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
             });
 
-         $(document).ready(function () {
-             $("#searchbtn").click(function () {
-               
-                 var email = $("#searchSecId").val();
-                var password = $("#password").val();
+
+            $("#searchbtn").click(function () {
+
+                var secid = $("#searchSecId").val();
+                var productCode = $("#productCode").val();
 
 
-                var jsonData = { Email: email, Password: password };
-                  $.ajax({
+                if (productCode == "") {
+                    var jsonData = { SectionId: secid };
+                    $.ajax({
                         type: "POST",
-                        url: '@Url.Action("getAdmin", "Admin")',
+                        url: '@Url.Action("getAllProduct", "Admin")',
                         contentType: "application/json;charset=utf-8",
                         data: JSON.stringify(jsonData),
                         dataType: "json",
-                      success: function (data) {
+                        success: function (data) {
 
-                          if (data > 0) {
+                            $('#searchResBody').empty();
+
+
+                            for (var i = 0; i < data.length; i++) {
+                                var temp = '<tr><td>' + data[i].ProductId + '</td>';
+                                temp += '<td>' + data[i].ProductName + '</td>';
+                                temp += '<td>' + data[i].ProductCode + '</td>';
+                                temp += '<td>' + data[i].SectionId + '</td>';
+                                temp += '<td>' + data[i].Price + '</td>';
+                                temp += '<td>' + data[i].Category + '</td>';
                               
-                              document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + data;
-                          }
-                          else {
-                              $("#waitpic").css("display", "none");
-                              alert("Admin Not Found");
-                              
-                          }
-                            //alert(data);
+                                temp += '<td>' + data[i].ImageLink + '</td>';
+                                temp += '<td>' + data[i].LCount + '</td>';
+                                temp += '<td>' + data[i].MCount + '</td>';
+                                temp += '<td>' + data[i].XLCount + '</td>';
+                                temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
+
+                                $('#searchResBody').append(temp);
+
+                            }
                         }
                     });
-                   // alert(name + " " + email);
-                return false;
+                }
+                else {
+                    var jsonData = { SectionId: secid, Code: productCode };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getProductOfThisCode", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+
+                            $('#searchResBody').empty();
+
+
+                            for (var i = 0; i < data.length; i++) {
+                                var temp = '<tr><td>' + data[i].ProductId + '</td>';
+                                temp += '<td>' + data[i].ProductName + '</td>';
+                                temp += '<td>' + data[i].ProductCode + '</td>';
+                                temp += '<td>' + data[i].SectionId + '</td>';
+                                temp += '<td>' + data[i].Price + '</td>';
+                                temp += '<td>' + data[i].Category + '</td>';
+                               
+                                temp += '<td>' + data[i].ImageLink + '</td>';
+                                temp += '<td>' + data[i].LCount + '</td>';
+                                temp += '<td>' + data[i].MCount + '</td>';
+                                temp += '<td>' + data[i].XLCount + '</td>';
+                                temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
+
+                                $('#searchResBody').append(temp);
+
+                            }
+                        }
+                    });
+                }
+
+
+                 return false;
+
                 });
 
-          
 
-            });
+
+
 
         });
     </script>
