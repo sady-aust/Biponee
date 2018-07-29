@@ -34,13 +34,19 @@ namespace Biponee.Controllers
             return View();
         }
 
-        public ActionResult ProductPage()
+        public ActionResult ProductPage(int id)
         {
-            return View();
+            ProductC product = productManager.getProductByProductId(id);
+            List<SectionC> sections = sectionManager.getAllSections();
+            ViewBag.sections = sections;
+            return View(product);
         }
-        public ActionResult Products()
+        public ActionResult Products(int id)
         {
-            return View();
+            List<ProductC> productList = productManager.getAllProductThisSection(id);
+            List<SectionC> sections = sectionManager.getAllSections();
+            ViewBag.sections = sections;
+            return View(productList);
         }
 
         public JsonResult getAllProduct()

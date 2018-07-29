@@ -99,8 +99,9 @@
                     <!-- Search -->
                     <div class="header-search">
                         <form>
-                            <input class="input search-input" type="text" placeholder="Enter your keyword">
-                            <select class="input search-categories" onchange="showItems()">
+                           
+                            <select id="sectionId" class="input search-categories" onchange="showItems()">
+                                   <option value="0">Select</option>
                                 @{
                                     List<SectionC> sections = ViewBag.sections;
                                 }
@@ -674,7 +675,7 @@
                                     <div class="product-thumb">
 
 
-                                        <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                        <button onclick="goToProductPage('@Model[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                                         @{
 
                                             String imgLink = "/" + Model[i].ImageLink + ".jpeg";
@@ -743,7 +744,7 @@
                                 String imgLink = "/" + Model[i].ImageLink + ".jpeg";
                                 <div class="product product-single">
                                     <div class="product-thumb">
-                                        <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                        <button onclick="goToProductPage('@Model[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                                         <img src="@imgLink" alt="">
                                     </div>
                                     <div class="product-body">
@@ -809,7 +810,7 @@
                                 <div class="product-label">
                                     <span>New</span>
                                 </div>
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                <button onclick="goToProductPage('@Model[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                                 <img src="@imgLink">
                             </div>
                             <div class="product-body">
@@ -856,7 +857,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="product product-single">
                             <div class="product-thumb">
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                <button onclick="goToProductPage('@Model[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                                 <img src="@imgLink" alt="">
                             </div>
                             <div class="product-body">
@@ -1076,11 +1077,13 @@
         </div>
     </div>
     <script>
-            function showItems() {
-                console.log("Hello");
+        function showItems() {
+            document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
         }
 
-
+        function goToProductPage(id) {
+           document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
+        }
 
     </script>
 </body>

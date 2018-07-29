@@ -33,7 +33,7 @@ namespace Biponee.BLL
 
         public List<ProductC> getProduct(int secId, String productCode)
         {
-            return productGetway.getproduct(secId, productCode);
+            return productGetway.getProduct(secId, productCode);
         }
 
 
@@ -48,6 +48,12 @@ namespace Biponee.BLL
                 return true;
             }
             return false;
+        }
+
+        public ProductC getProductByProductId(int id)
+        {
+            List<ProductC> list = productGetway.getProduct(id);
+            return list[0];
         }
     }
 }
