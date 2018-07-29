@@ -2029,6 +2029,7 @@
     <Content Include="Style\admin\vendors\tinymce\tinymce.js" />
     <Content Include="Style\admin\vendors\tinymce\tinymce.min.js" />
     <Content Include="Style\img\loading.gif" />
+    <Content Include="Style\ProductImage\12\M-257-51960img.jpeg" />
     <Content Include="Style\user\css\bootstrap.min.css" />
     <Content Include="Style\user\css\font-awesome.min.css" />
     <Content Include="Style\user\css\nouislider.min.css" />
@@ -2292,7 +2293,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ProductImage\" />
-    <Folder Include="Style\ProductImage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

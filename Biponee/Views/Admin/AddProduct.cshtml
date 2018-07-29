@@ -307,12 +307,13 @@
                                     <th scope="col">SectionName</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
-                                   
+
                                     <th scope="col">ImageLink</th>
                                     <th scope="col">L Count</th>
                                     <th scope="col">M Count</th>
                                     <th scope="col">Xl Count</th>
                                     <th scope="col">XXl Count</th>
+                                    <th scope="col">Quantity</th>
                                 </tr>
                             </thead>
 
@@ -334,12 +335,13 @@
 
                                     <td>@Model.products[i].Price</td>
                                     <td>@Model.products[i].Category</td>
-                                    
+
                                     <td>@Model.products[i].ImageLink</td>
                                     <td>@Model.products[i].LCount</td>
                                     <td>@Model.products[i].MCount</td>
                                     <td>@Model.products[i].XLCount</td>
                                     <td>@Model.products[i].XXLCount</td>
+                                    <td>@Model.products[i].Quantity</td>
                                 </tr>
                             }
                         </table>
@@ -368,7 +370,7 @@
                         </table>
 
                         <h4 style="text-align:center">Search Result</h4>
-                        <table class="table"style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
+                        <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">ProductId</th>
@@ -377,12 +379,13 @@
                                     <th scope="col">SectionName</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
-                                  
+
                                     <th scope="col">ImageLink</th>
                                     <th scope="col">L Count</th>
                                     <th scope="col">M Count</th>
                                     <th scope="col">Xl Count</th>
                                     <th scope="col">XXl Count</th>
+                                    <th scope="col">Quantity</th>
                                     <th scope="col">Operation</th>
                                 </tr>
 
@@ -565,6 +568,12 @@
                                     <input id="XXLCount" name="XXLCount" type="number" class="form-control" placeholder="XXL" min="0" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Quantity(If dont have any size)</td>
+                                <td>
+                                    <input class="form-control" placeholder="Quantity" name="Quantity" id="Quantity" />
+                                </td>
+                            </tr>
 
                         </table>
                     </div>
@@ -621,12 +630,13 @@
                                 temp += '<td>' + data[i].SectionId + '</td>';
                                 temp += '<td>' + data[i].Price + '</td>';
                                 temp += '<td>' + data[i].Category + '</td>';
-                              
+
                                 temp += '<td>' + data[i].ImageLink + '</td>';
                                 temp += '<td>' + data[i].LCount + '</td>';
                                 temp += '<td>' + data[i].MCount + '</td>';
                                 temp += '<td>' + data[i].XLCount + '</td>';
                                 temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td>' + data[i].Quantity + '</td><';
                                 temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
 
                                 $('#searchResBody').append(temp);
@@ -655,12 +665,13 @@
                                 temp += '<td>' + data[i].SectionId + '</td>';
                                 temp += '<td>' + data[i].Price + '</td>';
                                 temp += '<td>' + data[i].Category + '</td>';
-                               
+
                                 temp += '<td>' + data[i].ImageLink + '</td>';
                                 temp += '<td>' + data[i].LCount + '</td>';
                                 temp += '<td>' + data[i].MCount + '</td>';
                                 temp += '<td>' + data[i].XLCount + '</td>';
                                 temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td>' + data[i].Quantity + '</td><';
                                 temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
 
                                 $('#searchResBody').append(temp);

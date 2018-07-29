@@ -15,7 +15,7 @@ namespace Biponee.DLL
         public int insertProduct(ProductC product)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "INSERT INTO products VALUES ('" + product.ProductName + "','" + product.ProductCode + "'," + product.SectionId + ",'" + product.Price + "','" + product.Category + "','" + product.Description + "','" + product.ImageLink + "','" + product.LCount + "','" + product.MCount + "','" + product.XLCount + "','" + product.XXLCount + "')";
+            String Query = "INSERT INTO products VALUES ('" + product.ProductName + "','" + product.ProductCode + "'," + product.SectionId + ",'" + product.Price + "','" + product.Category + "','" + product.Description + "','" + product.ImageLink + "','" + product.LCount + "','" + product.MCount + "','" + product.XLCount + "','" + product.XXLCount + "','" + product.Quantity + "')";
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
             int res = command.ExecuteNonQuery();
@@ -49,8 +49,9 @@ namespace Biponee.DLL
                 String mCount = reader["MCount"].ToString();
                 String xlCount = reader["XLCount"].ToString();
                 String xxlCount = reader["XXLCount"].ToString();
+                String quantiy = reader["Quantity"].ToString();
 
-                list.Add(new ProductC(id,name,code,secId,price,category,description,imgLink,lCount,mCount,xlCount, xxlCount));
+                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount, quantiy));
             }
 
             return list;
@@ -59,7 +60,7 @@ namespace Biponee.DLL
         public List<ProductC> getAllOfThisSection(int mysectionId)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "SELECT * FROM products WHERE SectionId = "+mysectionId;
+            String Query = "SELECT * FROM products WHERE SectionId = " + mysectionId;
 
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
@@ -81,17 +82,18 @@ namespace Biponee.DLL
                 String mCount = reader["MCount"].ToString();
                 String xlCount = reader["XLCount"].ToString();
                 String xxlCount = reader["XXLCount"].ToString();
+                String quantiy = reader["Quantity"].ToString();
 
-                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount));
+                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount, quantiy));
             }
 
             return list;
         }
 
-        public List<ProductC> getproduct(int mysectionId,String productCode)
+        public List<ProductC> getproduct(int mysectionId, String productCode)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "SELECT * FROM products WHERE SectionId = " + mysectionId+ " AND ProductCode ='"+ productCode+"'";
+            String Query = "SELECT * FROM products WHERE SectionId = " + mysectionId + " AND ProductCode ='" + productCode + "'";
 
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
@@ -113,8 +115,8 @@ namespace Biponee.DLL
                 String mCount = reader["MCount"].ToString();
                 String xlCount = reader["XLCount"].ToString();
                 String xxlCount = reader["XXLCount"].ToString();
-
-                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount));
+                String quantiy = reader["Quantity"].ToString();
+                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount, quantiy));
             }
 
             return list;
@@ -122,7 +124,7 @@ namespace Biponee.DLL
         public List<ProductC> getProductWithProductCode(String productCode)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "SELECT * FROM products WHERE ProductCode='"+ productCode + "'";
+            String Query = "SELECT * FROM products WHERE ProductCode='" + productCode + "'";
 
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
@@ -144,8 +146,8 @@ namespace Biponee.DLL
                 String mCount = reader["MCount"].ToString();
                 String xlCount = reader["XLCount"].ToString();
                 String xxlCount = reader["XXLCount"].ToString();
-
-                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount));
+                String quantiy = reader["Quantity"].ToString();
+                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount, quantiy));
             }
 
             return list;

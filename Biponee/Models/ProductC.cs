@@ -19,8 +19,9 @@ namespace Biponee.Models
         public String MCount { get; set; }
         public String XLCount { get; set; }
         public String XXLCount { get; set; }
+        public String Quantity { get; set; }
 
-        public ProductC(int productId, string productName, string productCode, int sectionId, string price, string category, string description, string imageLink, string lCount, string mCount, string xLCount, string xLLCount)
+        public ProductC(int productId, string productName, string productCode, int sectionId, string price, string category, string description, string imageLink, string lCount, string mCount, string xLCount, string xLLCount,String quantity)
         {
             ProductId = productId;
             ProductName = productName;
@@ -34,9 +35,10 @@ namespace Biponee.Models
             MCount = mCount;
             XLCount = xLCount;
             XXLCount = xLLCount;
+            Quantity = quantity;
         }
 
-        public ProductC(string productName, string productCode, int sectionId, string price, string category, string description, string imageLink, string lCount, string mCount, string xLCount, string xLLCount)
+        public ProductC(string productName, string productCode, int sectionId, string price, string category, string description, string imageLink, string lCount, string mCount, string xLCount, string xLLCount,String quantity)
         {
             ProductName = productName;
             ProductCode = productCode;
@@ -49,6 +51,7 @@ namespace Biponee.Models
             MCount = mCount;
             XLCount = xLCount;
             XXLCount = xLLCount;
+            Quantity = quantity;
         }
 
         public ProductC()

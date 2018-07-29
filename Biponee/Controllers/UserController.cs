@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Biponee.BLL;
+using Biponee.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,15 @@ namespace Biponee.Controllers
 {
     public class UserController : Controller
     {
+        ProductManager productManager = new ProductManager();
+        SectionManager sectionManager = new SectionManager();
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            List<ProductC> productList = productManager.getAllProduct();
+            List<SectionC> sections = sectionManager.getAllSections();
+            ViewBag.sections = sections;
+            return View(productList);
         }
 
         public ActionResult Cart()
@@ -34,6 +41,12 @@ namespace Biponee.Controllers
         public ActionResult Products()
         {
             return View();
+        }
+
+        public JsonResult getAllProduct()
+        {
+            List<ProductC> list = productManager.getAllProduct();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
 

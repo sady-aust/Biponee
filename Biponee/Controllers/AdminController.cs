@@ -53,9 +53,9 @@ namespace Biponee.Controllers
                     newFileName = photo.FileName;
                   
 
-                    imagePath = @"Style\ProductImage\" + product.SectionId + @"\" + newFileName;
+                    imagePath = @"Style/ProductImage/" + product.SectionId + @"/" + newFileName;
 
-                    photo.Save(@"~\" + imagePath);
+                    photo.Save(@"~/" + imagePath);
                     product.ImageLink = imagePath;
 
                     Boolean res = productManager.insertProduct(product);

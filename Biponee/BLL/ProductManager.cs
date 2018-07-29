@@ -28,10 +28,10 @@ namespace Biponee.BLL
 
         public List<ProductC> getAllProductThisSection(int id)
         {
-           return productGetway.getAllOfThisSection(id);
+            return productGetway.getAllOfThisSection(id);
         }
 
-        public List<ProductC> getProduct(int secId,String productCode)
+        public List<ProductC> getProduct(int secId, String productCode)
         {
             return productGetway.getproduct(secId, productCode);
         }
