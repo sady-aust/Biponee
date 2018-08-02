@@ -97,20 +97,20 @@
                     <!-- Search -->
                     <div class="header-search">
                         <form>
-                           
+
 
                             <select id="sectionId" class="input search-categories" onchange="showItems()">
                                 <option value="0">Select</option>
                                 @{
-        List<SectionC> sections = ViewBag.sections;
+                                    List<SectionC> sections = ViewBag.sections;
                                 }
                                 @foreach (SectionC sec in sections)
-    {
-                            <option value="@sec.SectionID">@sec.SectionName</option>
-}
+                                {
+                                    <option value="@sec.SectionID">@sec.SectionName</option>
+                                }
 
                             </select>
-                            
+
                         </form>
                     </div>
                     <!-- /Search -->

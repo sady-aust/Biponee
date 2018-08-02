@@ -1,5 +1,5 @@
 ﻿
-@model Biponee.Models.AdminC
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +7,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Free Bootstrap Admin Dashboard Template</title>
+    <title>Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="~/Style/admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.addons.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -23,6 +24,31 @@
 
 <body>
     <div class="container-scroller">
+        <script>
+            $(document).ready(function () {
+                $(window).on('load', function () {
+                    $('body').hide();
+                    if (localStorage['status'] == 'loggedin') {
+                       
+                        $("#profileName1").text(localStorage['FirstName']);
+                        $("#profileName2").text(localStorage['FirstName']);
+                        $("#firstName").text(localStorage['FirstName']);
+                        $('#lastName').text(localStorage['Email']);
+                        $('#email').text(localStorage['Email']);
+                        $('body').show();
+                        /*document.getElementById('firstName').innerHTML = localStorage['FirstName']; 
+                        document.getElementById('lastName').innerHTML = localStorage['LastName']; 
+                        document.getElementById('email').innerHTML = localStorage['Email']; 
+                        console.log(document.getElementById("profileName"));*/
+                    }
+                    else {
+                          document.location = '@Url.Action("Index", "Admin")';
+                    }
+                    
+                });
+            });
+
+        </script>
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
@@ -170,7 +196,7 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">@Model.FirstName</span>
+                            <span class="profile-text" id="profileName1"></span>
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -179,7 +205,7 @@
                                 Profile
                             </a>
 
-                            <a class="dropdown-item">
+                            <a href="#" id="signOutLink" class="dropdown-item">
                                 Sign Out
                             </a>
                         </div>
@@ -200,7 +226,7 @@
                             <div class="user-wrapper">
 
                                 <div class="text-wrapper">
-                                    <p class="profile-name">@Model.FirstName</p>
+                                    <p class="profile-name" id="profileName2"></p>
                                     <div>
                                         <small class="designation text-muted">Admin</small>
                                         <span class="status-indicator online"></span>
@@ -671,19 +697,19 @@
 
                     <table>
                         <tr>
-                           <td >First Name </td>
-                            <td>@Model.FirstName</td>
+                           <td colspan="2">First Name: </td>
+                            <td id="firstName"></td>
 
                         </tr>
                         <tr>
 
-                            <td>Last Name </td>
-                            <td>@Model.LastName</td>
+                            <td colspan="2">Last Name: </td>
+                            <td id="lastName"></td>
 
                         </tr>
                         <tr>
-                            <td>Email </td>
-                            <td>@Model.Email</td>
+                            <td colspan="2">Email: </td>
+                            <td id="email"></td>
 
                         </tr>
                         
@@ -714,19 +740,29 @@
     <!-- End custom js for this page-->
 
     <script>
+       
         $(document).ready(function () {
             $("#dashboard").click(function () {
-                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AdminPage", "Admin")';
             });
 
             $("#addproducts").click(function () {
-                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AddProduct", "Admin")';
             });
             $("#chart").click(function () {
-                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Charts", "Admin")';
             });
             $("#orders").click(function () {
-                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Orders", "Admin")';
+            });
+
+            $("#signOutLink").click(function () {
+                localStorage.setItem("adminId", null);
+                localStorage.setItem("Email", null);
+                localStorage.setItem("FirstName", null);
+                localStorage.setItem("LastName", null);
+                localStorage.setItem("status", 'signout');
+                document.location = '@Url.Action("Index", "Admin")';
             });
 
         });

@@ -25,5 +25,11 @@ namespace Biponee.Models
             this.products = products;
         }
 
+        public AdminSectionC(List<SectionC> sections, List<ProductC> products)
+        {
+            this.Sections = sections;
+            this.products = products;
+        }
+
     }
 }

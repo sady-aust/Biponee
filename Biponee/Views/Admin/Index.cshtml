@@ -81,9 +81,16 @@
                         dataType: "json",
                       success: function (data) {
 
-                          if (data > 0) {
+                          if (data !='false') {
                               $("#waitpic").css("display", "none");
-                              document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + data;
+                           
+                              localStorage.setItem("adminId", data.ID);
+                              localStorage.setItem("Email", data.Email);
+                              localStorage.setItem("FirstName", data.FirstName);
+                              localStorage.setItem("LastName", data.LastName);
+                              localStorage.setItem("status", 'loggedin');
+                              document.location = '@Url.Action("AdminPage", "Admin")';
+                             
                           }
                           else {
                               $("#waitpic").css("display", "none");

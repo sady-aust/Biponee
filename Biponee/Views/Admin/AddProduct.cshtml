@@ -60,6 +60,32 @@
 
 <body>
     <div class="container-scroller">
+        <script>
+            $(document).ready(function () {
+                $(window).on('load', function () {
+                    $('body').hide();
+                    if (localStorage['status'] == 'loggedin') {
+
+                        $("#profileName1").text(localStorage['FirstName']);
+                        $("#profileName2").text(localStorage['FirstName']);
+                        $("#firstName").text(localStorage['FirstName']);
+                        $('#lastName').text(localStorage['Email']);
+                        $('#email').text(localStorage['Email']);
+                        $('body').show();
+
+                        /*document.getElementById('firstName').innerHTML = localStorage['FirstName'];
+                        document.getElementById('lastName').innerHTML = localStorage['LastName'];
+                        document.getElementById('email').innerHTML = localStorage['Email'];
+                        console.log(document.getElementById("profileName"));*/
+                    }
+                    else {
+                          document.location = '@Url.Action("Index", "Admin")';
+                    }
+
+                });
+            });
+
+        </script>
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
@@ -207,7 +233,7 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">@Model.Admin.FirstName</span>
+                            <span class="profile-text" id="profileName1"></span>
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -216,7 +242,7 @@
                                 Profile
                             </a>
 
-                            <a class="dropdown-item">
+                            <a class="dropdown-item"href="#" id="signOutLink">
                                 Sign Out
                             </a>
                         </div>
@@ -237,7 +263,7 @@
                             <div class="user-wrapper">
 
                                 <div class="text-wrapper">
-                                    <p class="profile-name">@Model.Admin.FirstName</p>
+                                    <p class="profile-name" id="profileName2"></p>
                                     <div>
                                         <small class="designation text-muted">Admin</small>
                                         <span class="status-indicator online"></span>
@@ -319,31 +345,31 @@
 
 
                             @for (int i = Model.products.Count - 1; i >= 0; i--)
+                        {
+                            <tr>
+                                <td>@Model.products[i].ProductId</td>
+                                <td>@Model.products[i].ProductName</td>
+                                <td>@Model.products[i].ProductCode</td>
+                                @for (int j = -0; j < Model.products.Count; j++)
                             {
-                                <tr>
-                                    <td>@Model.products[i].ProductId</td>
-                                    <td>@Model.products[i].ProductName</td>
-                                    <td>@Model.products[i].ProductCode</td>
-                                    @for (int j = -0; j < Model.products.Count; j++)
-                                    {
-                                        if (Model.Sections[j].SectionID == Model.products[i].SectionId)
-                                        {
-                                            <td>@Model.Sections[j].SectionName</td>
-                                            break;
-                                        }
-                                    }
-
-                                    <td>@Model.products[i].Price</td>
-                                    <td>@Model.products[i].Category</td>
-
-                                    <td>@Model.products[i].ImageLink</td>
-                                    <td>@Model.products[i].LCount</td>
-                                    <td>@Model.products[i].MCount</td>
-                                    <td>@Model.products[i].XLCount</td>
-                                    <td>@Model.products[i].XXLCount</td>
-                                    <td>@Model.products[i].Quantity</td>
-                                </tr>
+                                if (Model.Sections[j].SectionID == Model.products[i].SectionId)
+                                {
+                                    <td>@Model.Sections[j].SectionName</td>
+                                break;
                             }
+                        }
+
+                                <td>@Model.products[i].Price</td>
+                                <td>@Model.products[i].Category</td>
+
+                                <td>@Model.products[i].ImageLink</td>
+                                <td>@Model.products[i].LCount</td>
+                                <td>@Model.products[i].MCount</td>
+                                <td>@Model.products[i].XLCount</td>
+                                <td>@Model.products[i].XXLCount</td>
+                                <td>@Model.products[i].Quantity</td>
+                            </tr>
+                    }
                         </table>
                     </div>
                     <div id="menu2" class="tab-pane fade">
@@ -354,9 +380,9 @@
                                     <select id="searchSecId" name="SectionId" class="form-control">
 
                                         @for (int i = 0; i < Model.Sections.Count; i++)
-                                        {
-                                            <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
-                                        }
+                                    {
+                                        <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                }
 
                                     </select>
                                 </td>
@@ -447,22 +473,21 @@
                         <img src='~/Style/img/loading.gif' width="44" height="44" />
                         <br>Loading..
                     </div>
-
                     <table>
                         <tr>
-                            <td>First Name </td>
-                            <td>@Model.Admin.FirstName</td>
+                            <td colspan="2">First Name: </td>
+                            <td id="firstName"></td>
 
                         </tr>
                         <tr>
 
-                            <td>Last Name </td>
-                            <td>@Model.Admin.LastName</td>
+                            <td colspan="2">Last Name: </td>
+                            <td id="lastName"></td>
 
                         </tr>
                         <tr>
-                            <td>Email </td>
-                            <td>@Model.Admin.Email</td>
+                            <td colspan="2">Email: </td>
+                            <td id="email"></td>
 
                         </tr>
 
@@ -589,18 +614,27 @@
 
     <script>
         $(document).ready(function () {
+            $("#signOutLink").click(function () {
+                localStorage.setItem("adminId", null);
+                localStorage.setItem("Email", null);
+                localStorage.setItem("FirstName", null);
+                localStorage.setItem("LastName", null);
+                localStorage.setItem("status", 'signout');
+                document.location = '@Url.Action("Index", "Admin")';
+            });
+
             $("#dashboard").click(function () {
-                document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("AdminPage", "Admin")';
             });
 
             $("#addproducts").click(function () {
-                document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("AddProduct", "Admin")';
             });
             $("#chart").click(function () {
-                document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("Charts", "Admin")' ;
             });
             $("#orders").click(function () {
-                document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.Admin.ID;
+                document.location = '@Url.Action("Orders", "Admin")';
             });
 
 

@@ -145,21 +145,27 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AdminManager.cs" />
+    <Compile Include="BLL\CartManger.cs" />
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\SectionManager.cs" />
+    <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DLL\AdminGetway.cs" />
+    <Compile Include="DLL\CartGetway.cs" />
     <Compile Include="DLL\ProductGetway.cs" />
     <Compile Include="DLL\SectionGetway.cs" />
+    <Compile Include="DLL\UserGetway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminC.cs" />
     <Compile Include="Models\AdminSectionC.cs" />
+    <Compile Include="Models\CartC.cs" />
     <Compile Include="Models\ProductC.cs" />
     <Compile Include="Models\SectionC.cs" />
+    <Compile Include="Models\UserC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +215,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loginscript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\userscript.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -2029,6 +2037,7 @@
     <Content Include="Style\admin\vendors\tinymce\tinymce.js" />
     <Content Include="Style\admin\vendors\tinymce\tinymce.min.js" />
     <Content Include="Style\img\loading.gif" />
+    <Content Include="Style\myscript.js" />
     <Content Include="Style\ProductImage\12\M-257-51960img.jpeg" />
     <Content Include="Style\user\css\bootstrap.min.css" />
     <Content Include="Style\user\css\font-awesome.min.css" />
@@ -2077,6 +2086,7 @@
     <Content Include="Style\user\js\nouislider.min.js" />
     <Content Include="Style\user\js\slick.min.js" />
     <Content Include="Style\user\logo\logo.png" />
+    <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2100,7 +2110,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Style\user\fonts\fontawesome-webfont.eot" />
     <Content Include="Style\user\fonts\fontawesome-webfont.ttf" />
     <Content Include="Style\user\fonts\fontawesome-webfont.woff" />

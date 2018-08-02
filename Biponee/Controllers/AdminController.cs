@@ -24,19 +24,19 @@ namespace Biponee.Controllers
             return View();
         }
 
-        public ActionResult AdminPage(int id)
+        public ActionResult AdminPage()
         {
-            AdminC admin = adminManager.getAdminInfo(id);
-            Session["adminIndo"] = admin;
-            return View(admin);
+
+            int id = Convert.ToInt32(Session["adminId"]);
+            return View();
         }
-        public ActionResult AddProduct(int id)
+        public ActionResult AddProduct()
         {
-            AdminC admin = adminManager.getAdminInfo(id);
+           
             List<SectionC> sections = sectionManager.getAllSections();
             Session["sectionInfo"] = sections;
             List<ProductC> myProducts = productManager.getAllProduct();
-            return View(new AdminSectionC(admin,sections,myProducts));
+            return View(new AdminSectionC(sections,myProducts));
         }
         [HttpPost]
         public ActionResult AddProduct(ProductC product)
@@ -108,9 +108,10 @@ namespace Biponee.Controllers
 
             if (idNo >0)
             {
-                return Json(idNo, JsonRequestBehavior.AllowGet);
+                AdminC loggingAdmin = adminManager.getAdminInfo(idNo);
+                return Json(loggingAdmin, JsonRequestBehavior.AllowGet);
             }
-            return Json(idNo, JsonRequestBehavior.AllowGet);
+            return Json("false", JsonRequestBehavior.AllowGet);
 
         }
 
