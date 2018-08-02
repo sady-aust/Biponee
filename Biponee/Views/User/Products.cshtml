@@ -123,14 +123,15 @@
                                 <div class="header-btns-icon">
                                     <i class="fa fa-user-o"></i>
                                 </div>
-                                <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+
+                                <strong class="text-uppercase" id="myAccount">My Account <i class="fa fa-caret-down"></i></strong>
                             </div>
-                            <a href="#" class="text-uppercase" data-toggle="modal" data-target="#loginModal">Login</a> / <a href="#" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                            <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a> <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
                             <ul class="custom-menu">
-                                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                                <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-unlock-alt"></i> Login</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#signupmodal"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+
+                                <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
+                                <li><a href="#" id="signOutLink" style="display:none">Sign Out</a></li>
+
                             </ul>
                         </li>
                         <!-- /Account -->
@@ -1028,15 +1029,81 @@
     <script src="js/main.js"></script>
 
     <script>
-        function showItems() {
-            document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
-        }
+         $(window).on('load', function () {
+                if (localStorage.getItem('status') == 'loggedIn') {
+                    console.log("Loggedin");
+                    document.getElementById("loginLink").setAttribute("style", "display: none;");
+                    document.getElementById("joinLink").setAttribute("style", "display: none;");
+                    document.getElementById("signOutLink").setAttribute("style", "display: block");
+                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
 
-        function goToProductPage(id) {
-           document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
-        }
+                }
+            });
 
+            $('#signOutLink').click(function () {
+                document.getElementById("loginLink").setAttribute("style", "display: block;");
+                document.getElementById("joinLink").setAttribute("style", "display: block;");
+                document.getElementById("signOutLink").setAttribute("style", "display: none");
+                document.getElementById("myProfileLink").setAttribute("style", "display: none");
+                document.getElementById("myAccount").innerHTML = "My Account" ;
+                localStorage.setItem('status', 'signout');
+                localStorage.setItem('userID', null);
+                localStorage.setItem('FirstName', null);
+               
+            });
+            $("#loginBtn").click(function () {
+              
 
+                var email = $("#loginEmail").val();
+                var password = $("#loginPassword").val();
+
+              
+                var jsonData = { Email: email, Password: password };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("userLogIn", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        console.log(data);
+                       
+                           if (data != null) {
+                              
+                               localStorage.setItem('status', 'loggedIn');
+                               localStorage.setItem('userID', data.Id);
+                               localStorage.setItem('FirstName', data.FirstName);
+                              
+
+                               if (localStorage.getItem('status') == 'loggedIn') {
+                                   document.getElementById("loginLink").setAttribute("style", "display: none;");
+                                   document.getElementById("joinLink").setAttribute("style", "display: none;");
+                                   document.getElementById("signOutLink").setAttribute("style", "display: block");
+                                   document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                                   document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+                                 
+                               }
+                               $("#loginModal").modal('hide');
+                           }
+                           else {
+                               alert("Email and password doesnot match");
+                           }
+                    }
+                });
+                // alert(name + " " + email);
+                return false;
+            });
+            function showItems() {
+                document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
+            }
+
+            function goToProductPage(id) {
+                document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
+            }
+
+       
 
     </script>
 

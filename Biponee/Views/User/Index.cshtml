@@ -129,7 +129,7 @@
 
                                     <strong class="text-uppercase" id="myAccount">My Account <i class="fa fa-caret-down"></i></strong>
                                 </div>
-                                <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal">Login</a> <a href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                                <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a> <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
                                 <ul class="custom-menu">
                                    
                                      <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
@@ -1115,7 +1115,7 @@
                 document.getElementById("joinLink").setAttribute("style", "display: block;");
                 document.getElementById("signOutLink").setAttribute("style", "display: none");
                 document.getElementById("myProfileLink").setAttribute("style", "display: none");
-                document.getElementById("myAccount").innerHTML = "My Account" + '<i class="fa fa - caret - down">';
+                document.getElementById("myAccount").innerHTML = "My Account" ;
                 localStorage.setItem('status', 'signout');
                 localStorage.setItem('userID', null);
                 localStorage.setItem('FirstName', null);
