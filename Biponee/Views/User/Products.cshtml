@@ -18,8 +18,9 @@
     <!-- Bootstrap -->
 
 
-
-    <link href="~/Style/user/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     <!-- Slick -->
@@ -46,6 +47,7 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
 </head>
 
 <body>
@@ -945,20 +947,20 @@
                                 <label>Email Id</label>
                             <tr>
                             <tr>
-                                <input class="form-control" />
+                                <input id="loginEmail" class="form-control" />
                             </tr>
 
                             <tr>
                                 <label>Password</label>
                             <tr>
                             <tr>
-                                <input class="form-control" type="password" />
+                                <input id="loginPassword" class="form-control" type="password" />
                             </tr>
                         </table>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Log In</button>
+                    <button id="loginBtn" style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Log In</button>
                 </div>
             </div>
         </div>
@@ -1021,12 +1023,12 @@
         </div>
     </div>
     <!-- jQuery Plugins -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/main.js"></script>
+
+
+    <script src="~/Style/user/js/jquery.min.js"></script>
+    <script src="~/Style/user/js/jquery.zoom.min.js"></script>
+    <script src="~/Style/user/js/main.js"></script>
+    <script src="~/Style/user/js/nouislider.min.js"></script>
 
     <script>
          $(window).on('load', function () {
@@ -1050,15 +1052,15 @@
                 localStorage.setItem('status', 'signout');
                 localStorage.setItem('userID', null);
                 localStorage.setItem('FirstName', null);
-               
+
             });
             $("#loginBtn").click(function () {
-              
 
+                console.log("Clicked");
                 var email = $("#loginEmail").val();
                 var password = $("#loginPassword").val();
 
-              
+
                 var jsonData = { Email: email, Password: password };
                 $.ajax({
                     type: "POST",
@@ -1069,13 +1071,13 @@
                     success: function (data) {
 
                         console.log(data);
-                       
+
                            if (data != null) {
-                              
+
                                localStorage.setItem('status', 'loggedIn');
                                localStorage.setItem('userID', data.Id);
                                localStorage.setItem('FirstName', data.FirstName);
-                              
+
 
                                if (localStorage.getItem('status') == 'loggedIn') {
                                    document.getElementById("loginLink").setAttribute("style", "display: none;");
@@ -1083,7 +1085,7 @@
                                    document.getElementById("signOutLink").setAttribute("style", "display: block");
                                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
                                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
-                                 
+
                                }
                                $("#loginModal").modal('hide');
                            }
@@ -1103,7 +1105,7 @@
                 document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
             }
 
-       
+
 
     </script>
 

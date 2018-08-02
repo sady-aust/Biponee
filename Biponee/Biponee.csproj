@@ -2085,6 +2085,7 @@
     <Content Include="Style\user\js\main.js" />
     <Content Include="Style\user\js\nouislider.min.js" />
     <Content Include="Style\user\js\slick.min.js" />
+    <Content Include="Style\user\js\user.js" />
     <Content Include="Style\user\logo\logo.png" />
     <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />
