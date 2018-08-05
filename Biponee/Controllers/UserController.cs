@@ -62,8 +62,16 @@ namespace Biponee.Controllers
                 return View(productList);
             }
         }
-       
-       
+        [HttpGet]
+        public ActionResult Products(String ProductName)
+        {
+
+            List<ProductC> productList = productManager.GetProducts(ProductName);
+            List<SectionC> sections = sectionManager.getAllSections();
+            ViewBag.sections = sections;
+            return View(productList);
+
+        }
 
         public JsonResult getAllProduct()
         {
@@ -112,6 +120,11 @@ namespace Biponee.Controllers
             }
         }
 
+        public JsonResult allProduct()
+        {
+            List<ProductC> productList = productManager.GetAllProduct();
+            return Json(productList, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

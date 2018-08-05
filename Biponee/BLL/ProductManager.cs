@@ -60,5 +60,10 @@ namespace Biponee.BLL
         {
             return productGetway.getAllProductOfthisCategory(secId, CategoryName);
         }
+
+        public List<ProductC> GetProducts(String name)
+        {
+            return productGetway.getProducts(name);
+        }
     }
 }

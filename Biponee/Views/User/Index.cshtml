@@ -44,10 +44,11 @@
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
     </head>
 
     <body>
@@ -98,23 +99,35 @@
                         <!-- /Logo -->
                         <!-- Search -->
                         <div class="header-search">
-                            <form>
+                         
 
-                                <select id="sectionId" class="input search-categories" onchange="showItems()">
-                                    <option value="0">Select</option>
-                                    @{
-                                    List
-                                    <SectionC>
-                                        sections = ViewBag.sections;
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <select style="width:100px;" id="sectionId" class="form-control" onchange="showItems()">
+                                                <option value="0">Select</option>
+                                                @{
+                                                List<SectionC> sections = ViewBag.sections;
+                                                }
+                                                @foreach (SectionC sec in sections)
+                                            {
+                                                <option value="@sec.SectionID">@sec.SectionName</option>
                                         }
-                                        @foreach(SectionC sec in sections)
-                                        {
-                                        <option value="@sec.SectionID">@sec.SectionName</option>
-                                        }
+                                            </select>
+                                        </td>
+                                        <td>
 
-                                </select>
+                                            <input style="width:300px;" id="myInputext" class="form-control"  type="text"  placeholder="Product Name">
 
-                            </form>
+                                        </td>
+                                        <td>
+                                            <button onclick="serachResult()" class="btn btn-primary">Search</button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            
                         </div>
                         <!-- /Search -->
                     </div>
@@ -129,23 +142,23 @@
 
                                     <strong class="text-uppercase" id="myAccount">My Account <i class="fa fa-caret-down"></i></strong>
                                 </div>
-                               <table>
-                                   <tr>
-                                       <td>
-                                           <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a>
-                                       </td>
-                                       <td> | </td>
-                                       <td>
-                                           <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
-                                       </td>
-                                   </tr>
-                               </table>
-                          
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a>
+                                        </td>
+                                        <td> | </td>
+                                        <td>
+                                            <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                                        </td>
+                                    </tr>
+                                </table>
+
                                 <ul class="custom-menu">
-                                   
-                                     <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
+
+                                    <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
                                     <li><a href="#" id="signOutLink" style="display:none">Sign Out</a></li>
-                                   
+
                                 </ul>
                             </li>
 
@@ -231,21 +244,21 @@
 
                                                     set = new HashSet<String>
                                                         ();
-                                                        for (int i = 0; i < Model.Count; i++)
-                                                        {
-                                                        if (Model[i].SectionId == 2)
-                                                        {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
+                                                    if (Model[i].SectionId == 2)
+                                                    {
                                                         set.Add(Model[i].Category);
-                                                        }
-                                                        }
+                                                    }
+                                                }
 
-                                                        foreach (String p in set)
-                                                        {
+                                                foreach (String p in set)
+                                                {
 
-                                                        <li><a href="#"> @p</a></li>
-                                                        }
+                                                    <li><a href="#"> @p</a></li>
+                                            }
 
-                                                        }
+                                                }
 
 
 
@@ -283,21 +296,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 1)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                      <li><a href="#" onclick="searchByCategory(1,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(1,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
 
 
@@ -336,21 +349,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 3)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                      <li><a href="#" onclick="searchByCategory(3,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(3,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -383,21 +396,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 4)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                      <li><a href="#" onclick="searchByCategory(4,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(4,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -430,21 +443,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 5)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                      <li><a href="#" onclick="searchByCategory(5,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(5,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -478,21 +491,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 6)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                     <li><a href="#" onclick="searchByCategory(6,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(6,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -525,21 +538,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 7)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
-                                                     <li><a href="#" onclick="searchByCategory(7,'@p')"> @p</a></li>
-                                                    }
+                                                    <li><a href="#" onclick="searchByCategory(7,'@p')"> @p</a></li>
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -572,21 +585,21 @@
                                                 set = new HashSet
                                                 <String>
                                                     ();
-                                                    for (int i = 0; i < Model.Count; i++)
-                                                    {
+                                                for (int i = 0; i < Model.Count; i++)
+                                                {
                                                     if (Model[i].SectionId == 8)
                                                     {
-                                                    set.Add(Model[i].Category.Trim());
+                                                        set.Add(Model[i].Category.Trim());
                                                     }
-                                                    }
+                                                }
 
-                                                    foreach (String p in set)
-                                                    {
+                                                foreach (String p in set)
+                                                {
 
                                                     <li><a href="#" onclick="searchByCategory(8,'@p')"> @p</a></li>
-                                                    }
+                                            }
 
-                                                    }
+                                                }
 
                                             </ul>
 
@@ -693,14 +706,14 @@
                                 int count = 0;
                                 }
                                 @for (int i = Model.Count - 1; i >= 0; i--)
-                                {
+                            {
                                 if (Model[i].SectionId != 1)
                                 {
-                                continue;
+                                    continue;
                                 }
                                 if (count > 4)
                                 {
-                                break;
+                                    break;
                                 }
                                 <div class="product product-single">
                                     <div class="product-thumb">
@@ -727,8 +740,8 @@
                                     </div>
                                 </div>
 
-                                count++;
-                                }
+                            count++;
+                        }
 
                             </div>
                         </div>
@@ -742,7 +755,7 @@
                     <div class="col-md-12">
                         <div class="section-title">
                             <h2 class="title"> <a href="#" onclick="gotoSection(2)">Women's Clothing</a></h2>
-                           
+
                             <div class="pull-right">
                                 <div class="product-slick-dots-2 custom-dots">
                                 </div>
@@ -763,15 +776,15 @@
 
                                 }
                                 @for (int i = Model.Count - 1; i >= 0; i--)
-                                {
+                            {
                                 if (Model[i].SectionId != 2)
                                 {
-                                continue;
+                                    continue;
                                 }
 
                                 if (count > 4)
                                 {
-                                break;
+                                    break;
                                 }
                                 String imgLink = "/" + Model[i].ImageLink + ".jpeg";
                                 <div class="product product-single">
@@ -790,8 +803,8 @@
                                     </div>
                                 </div>
 
-                                count++;
-                                }
+                            count++;
+                        }
                                 <!-- /Product Single -->
 
 
@@ -817,7 +830,7 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                          
+
                             <h2 class="title">  <a href="#" onclick="gotoSection(3)">Watch &Jewelry</a></h2>
                         </div>
                     </div>
@@ -827,14 +840,14 @@
                     count = 0;
                     }
                     @for (int i = Model.Count - 1; i >= 0; i--)
-                    {
+                {
                     if (Model[i].SectionId != 3)
                     {
-                    continue;
+                        continue;
                     }
                     if (count > 4)
                     {
-                    break;
+                        break;
                     }
                     String imgLink = "/" + Model[i].ImageLink + ".jpeg";
                     <div class="col-md-3 col-sm-6 col-xs-6">
@@ -858,8 +871,8 @@
                         </div>
                     </div>
                     <!-- /Product Single -->
-                    count++;
-                    }
+                count++;
+            }
                 </div>
                 <!-- /row -->
                 <!-- row -->
@@ -876,15 +889,15 @@
                     count = 0;
                     }
                     @for (int i = Model.Count - 1; i >= 0; i--)
-                    {
+                {
                     if (Model[i].SectionId != 4)
                     {
-                    continue;
+                        continue;
                     }
 
                     if (count > 4)
                     {
-                    break;
+                        break;
                     }
                     String imgLink = "/" + Model[i].ImageLink + ".jpeg";
                     <div class="col-md-3 col-sm-6 col-xs-6">
@@ -904,8 +917,8 @@
                             </div>
                         </div>
                     </div>
-                    count++;
-                    }
+                count++;
+            }
                     <!-- /Product Single -->
                     <!-- Product Single -->
                     <!-- /Product Single -->
@@ -1015,7 +1028,7 @@
         <script src="~/Style/user/js/jquery.zoom.min.js"></script>
 
         <script src="~/Style/user/js/main.js"></script>
-
+        <script type="text/javascript" src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
 
         <!--Login Modal-->
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1094,7 +1107,7 @@
                                 <tr>
                                     <input id="password" class="form-control" type="password" />
                                 </tr>
-                               
+
                             </table>
                         </form>
                     </div>
@@ -1107,6 +1120,34 @@
 
 
         <script>
+          function loadProduct() {
+                var nameArray = [];
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("allProduct", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data != null) {
+                            console.log(data);
+                            var nameArray = [];
+                            for (var i = 0; i < data.length; i++) {
+                                nameArray.push(data[i].ProductName);
+                            }
+                         
+                           
+
+                            
+                        }
+
+                    }
+                });
+
+                return nameArray;
+            } 
+         
             $(window).on('load', function () {
                 if (localStorage.getItem('status') == 'loggedIn') {
                     console.log("Loggedin");
@@ -1115,8 +1156,37 @@
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
                     document.getElementById("myProfileLink").setAttribute("style", "display: block");
                     document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
-
+                   
                 }
+                var input = document.getElementById("myInputext");
+                var awsomecomplete = new Awesomplete(input);
+            
+              
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("allProduct", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data != null) {
+                            
+                            var nameArray = [];
+                            for (var i = 0; i < data.length; i++) {
+                                nameArray.push(data[i].ProductName);
+                            }
+                         
+                           
+
+                            
+                        }
+                        awsomecomplete.list = nameArray;
+                    }
+                     
+                });
+
+               
             });
 
             $('#signOutLink').click(function () {
@@ -1128,15 +1198,15 @@
                 localStorage.setItem('status', 'signout');
                 localStorage.setItem('userID', null);
                 localStorage.setItem('FirstName', null);
-               
+
             });
             $("#loginBtn").click(function () {
-              
+
 
                 var email = $("#loginEmail").val();
                 var password = $("#loginPassword").val();
 
-              
+
                 var jsonData = { Email: email, Password: password };
                 $.ajax({
                     type: "POST",
@@ -1146,14 +1216,12 @@
                     dataType: "json",
                     success: function (data) {
 
-                        console.log(data);
-                       
                            if (data != null) {
-                              
+
                                localStorage.setItem('status', 'loggedIn');
                                localStorage.setItem('userID', data.Id);
                                localStorage.setItem('FirstName', data.FirstName);
-                              
+
 
                                if (localStorage.getItem('status') == 'loggedIn') {
                                    document.getElementById("loginLink").setAttribute("style", "display: none;");
@@ -1161,7 +1229,7 @@
                                    document.getElementById("signOutLink").setAttribute("style", "display: block");
                                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
                                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
-                                 
+
                                }
                                $("#loginModal").modal('hide');
                            }
@@ -1229,15 +1297,25 @@
                 document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
             }
 
+            function serachResult() {
+                var productName = document.getElementById("myInputext").value;
+                document.location = '@Url.Action("Products", "User")' + '?' + 'ProductName=' + productName;
+
+            }
+
             function gotoSection(id) {
                  document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
             }
 
             function searchByCategory(sectionid, category) {
                 // alert("Clicked");
-              
+
                 document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category+"&searchInCategory=true";
             }
+
+           
+
+         
 
         </script>
     </body>
