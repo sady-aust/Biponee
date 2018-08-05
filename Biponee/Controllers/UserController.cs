@@ -18,7 +18,7 @@ namespace Biponee.Controllers
         // GET: User
         public ActionResult Index()
         {
-            List<ProductC> productList = productManager.getAllProduct();
+            List<ProductC> productList = productManager.GetAllProduct();
             List<SectionC> sections = sectionManager.getAllSections();
             ViewBag.sections = sections;
             return View(productList);
@@ -45,17 +45,29 @@ namespace Biponee.Controllers
             ViewBag.sections = sections;
             return View(product);
         }
-        public ActionResult Products(int id)
+        public ActionResult Products(int id, String category, Boolean searchInCategory = false)
         {
-            List<ProductC> productList = productManager.getAllProductThisSection(id);
-            List<SectionC> sections = sectionManager.getAllSections();
-            ViewBag.sections = sections;
-            return View(productList);
+            if (!searchInCategory)
+            {
+                List<ProductC> productList = productManager.GetAllProductThisSection(id);
+                List<SectionC> sections = sectionManager.getAllSections();
+                ViewBag.sections = sections;
+                return View(productList);
+            }
+            else
+            {
+                List<ProductC> productList = productManager.GetProducts(id, category);
+                List<SectionC> sections = sectionManager.getAllSections();
+                ViewBag.sections = sections;
+                return View(productList);
+            }
         }
+       
+       
 
         public JsonResult getAllProduct()
         {
-            List<ProductC> list = productManager.getAllProduct();
+            List<ProductC> list = productManager.GetAllProduct();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -63,8 +75,16 @@ namespace Biponee.Controllers
         {
             UserC user = new UserC(FirstName, LastName, email, Password);
            Boolean res = userManager.insertUserInfo(user);
-           
-            return Json(res, JsonRequestBehavior.AllowGet);
+
+            if (res)
+            {
+                UserC loginuser = userManager.getetUser(email, Password);
+                return Json(loginuser, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
            
         }
 

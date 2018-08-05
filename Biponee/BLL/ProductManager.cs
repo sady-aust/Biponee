@@ -11,7 +11,7 @@ namespace Biponee.BLL
     {
         ProductGetway productGetway = new ProductGetway();
 
-        public Boolean insertProduct(ProductC product)
+        public Boolean InsertProduct(ProductC product)
         {
             if (productGetway.insertProduct(product) > 0)
             {
@@ -21,19 +21,19 @@ namespace Biponee.BLL
             return false;
         }
 
-        public List<ProductC> getAllProduct()
+        public List<ProductC> GetAllProduct()
         {
             return productGetway.getAllProduct();
         }
 
-        public List<ProductC> getAllProductThisSection(int id)
+        public List<ProductC> GetAllProductThisSection(int id)
         {
             return productGetway.getAllOfThisSection(id);
         }
 
-        public List<ProductC> getProduct(int secId, String productCode)
+        public List<ProductC> GetProduct(int secId, String productCode)
         {
-            return productGetway.getProduct(secId, productCode);
+            return productGetway.getProducts(secId, productCode);
         }
 
 
@@ -52,8 +52,13 @@ namespace Biponee.BLL
 
         public ProductC getProductByProductId(int id)
         {
-            List<ProductC> list = productGetway.getProduct(id);
+            List<ProductC> list = productGetway.getProducts(id);
             return list[0];
+        }
+
+        public List<ProductC> GetProducts(int secId,String CategoryName)
+        {
+            return productGetway.getAllProductOfthisCategory(secId, CategoryName);
         }
     }
 }

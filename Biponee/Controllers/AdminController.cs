@@ -35,7 +35,7 @@ namespace Biponee.Controllers
            
             List<SectionC> sections = sectionManager.getAllSections();
             Session["sectionInfo"] = sections;
-            List<ProductC> myProducts = productManager.getAllProduct();
+            List<ProductC> myProducts = productManager.GetAllProduct();
             return View(new AdminSectionC(sections,myProducts));
         }
         [HttpPost]
@@ -58,17 +58,17 @@ namespace Biponee.Controllers
                     photo.Save(@"~/" + imagePath);
                     product.ImageLink = imagePath;
 
-                    Boolean res = productManager.insertProduct(product);
+                    Boolean res = productManager.InsertProduct(product);
                     if (res)
                     {
                        ViewBag.insertResult = "1";
 
-                        List<ProductC> myProducts = productManager.getAllProduct();
+                        List<ProductC> myProducts = productManager.GetAllProduct();
                         return View(new AdminSectionC((AdminC)Session["adminIndo"],(List<SectionC>) Session["sectionInfo"], myProducts));
                     }
                     else
                     {
-                        List<ProductC> myProducts = productManager.getAllProduct();
+                        List<ProductC> myProducts = productManager.GetAllProduct();
                         ViewBag.insertResult = "0";
                         return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
                     }
@@ -76,14 +76,14 @@ namespace Biponee.Controllers
                 else
                 {
                    ViewBag.insertResult = "2";
-                    List<ProductC> myProducts = productManager.getAllProduct();
+                    List<ProductC> myProducts = productManager.GetAllProduct();
                     return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
                 }
             }
             else
             {
                ViewBag.insertResult = "3";
-                List<ProductC> myProducts = productManager.getAllProduct();
+                List<ProductC> myProducts = productManager.GetAllProduct();
                 return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], myProducts));
             }
            
@@ -117,13 +117,13 @@ namespace Biponee.Controllers
 
         public JsonResult getAllProduct(int SectionId)
         {
-            List<ProductC> list = productManager.getAllProductThisSection(SectionId);
+            List<ProductC> list = productManager.GetAllProductThisSection(SectionId);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult  getProductOfThisCode(int SectionId, String Code)
         {
-            List<ProductC> list = productManager.getProduct(SectionId, Code);
+            List<ProductC> list = productManager.GetProduct(SectionId, Code);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

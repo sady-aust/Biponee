@@ -19,6 +19,7 @@ namespace Biponee.DLL
                 String Query = "INSERT INTO users VALUES ('" + user.FirstName + "','" + user.LastName + "','" + user.Email + "','" + user.Password +"')";
                 SqlCommand command = new SqlCommand(Query, connection);
                 connection.Open();
+                
                 int res = command.ExecuteNonQuery();
                 connection.Close();
                 return res;

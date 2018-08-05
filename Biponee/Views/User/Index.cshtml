@@ -129,7 +129,18 @@
 
                                     <strong class="text-uppercase" id="myAccount">My Account <i class="fa fa-caret-down"></i></strong>
                                 </div>
-                                <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a> <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                               <table>
+                                   <tr>
+                                       <td>
+                                           <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a>
+                                       </td>
+                                       <td> | </td>
+                                       <td>
+                                           <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                                       </td>
+                                   </tr>
+                               </table>
+                          
                                 <ul class="custom-menu">
                                    
                                      <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
@@ -217,6 +228,7 @@
 
                                                 HashSet
                                                 <String>
+
                                                     set = new HashSet<String>
                                                         ();
                                                         for (int i = 0; i < Model.Count; i++)
@@ -275,14 +287,14 @@
                                                     {
                                                     if (Model[i].SectionId == 1)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                      <li><a href="#" onclick="searchByCategory(1,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -328,14 +340,14 @@
                                                     {
                                                     if (Model[i].SectionId == 3)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                      <li><a href="#" onclick="searchByCategory(3,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -375,14 +387,14 @@
                                                     {
                                                     if (Model[i].SectionId == 4)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                      <li><a href="#" onclick="searchByCategory(4,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -422,14 +434,14 @@
                                                     {
                                                     if (Model[i].SectionId == 5)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                      <li><a href="#" onclick="searchByCategory(5,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -470,14 +482,14 @@
                                                     {
                                                     if (Model[i].SectionId == 6)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                     <li><a href="#" onclick="searchByCategory(6,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -517,14 +529,14 @@
                                                     {
                                                     if (Model[i].SectionId == 7)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                     <li><a href="#" onclick="searchByCategory(7,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -564,14 +576,14 @@
                                                     {
                                                     if (Model[i].SectionId == 8)
                                                     {
-                                                    set.Add(Model[i].Category);
+                                                    set.Add(Model[i].Category.Trim());
                                                     }
                                                     }
 
                                                     foreach (String p in set)
                                                     {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                    <li><a href="#" onclick="searchByCategory(8,'@p')"> @p</a></li>
                                                     }
 
                                                     }
@@ -662,7 +674,7 @@
                     <!-- section-title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">Mens Clothing</h2>
+                            <h2 class="title"><a href="#" onclick="gotoSection(1)">Mens Clothing</a></h2>
                             <div class="pull-right">
                                 <div class="product-slick-dots-1 custom-dots"></div>
                             </div>
@@ -673,7 +685,7 @@
                     <!-- /banner -->
                     <!-- Product Slick -->
 
-                    <div class="col-md-9 col-sm-6 col-xs-6">
+                    <div class="col-md-12 col-sm-6 col-xs-6">
                         <div class="row" id="mensRow">
                             <div id="product-slick-1" class="product-slick">
                                 <!-- Product Single -->
@@ -686,7 +698,7 @@
                                 {
                                 continue;
                                 }
-                                if (count > 8)
+                                if (count > 4)
                                 {
                                 break;
                                 }
@@ -729,7 +741,8 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">Women's Clothing</h2>
+                            <h2 class="title"> <a href="#" onclick="gotoSection(2)">Women's Clothing</a></h2>
+                           
                             <div class="pull-right">
                                 <div class="product-slick-dots-2 custom-dots">
                                 </div>
@@ -740,7 +753,7 @@
                     <!-- Product Single -->
                     <!-- /Product Single -->
                     <!-- Product Slick -->
-                    <div class="col-md-9 col-sm-6 col-xs-6">
+                    <div class="col-md-12 col-sm-6 col-xs-6">
                         <div class="row">
                             <div id="product-slick-2" class="product-slick">
                                 <!-- Product Single -->
@@ -756,7 +769,7 @@
                                 continue;
                                 }
 
-                                if (count > 8)
+                                if (count > 4)
                                 {
                                 break;
                                 }
@@ -804,7 +817,8 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">Watch &Jewelry</h2>
+                          
+                            <h2 class="title">  <a href="#" onclick="gotoSection(3)">Watch &Jewelry</a></h2>
                         </div>
                     </div>
                     <!-- section title -->
@@ -818,7 +832,7 @@
                     {
                     continue;
                     }
-                    if (count > 8)
+                    if (count > 4)
                     {
                     break;
                     }
@@ -853,7 +867,7 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">kids Zone</h2>
+                            <h2 class="title"><a href="#" onclick="gotoSection(4)">Kid's Zone</a></h2>
                         </div>
                     </div>
                     <!-- section title -->
@@ -1057,40 +1071,35 @@
                                     <label>First Name</label>
                                 <tr>
                                 <tr>
-                                    <input class="form-control" />
+                                    <input id="firstName" class="form-control" />
                                 </tr>
 
                                 <tr>
                                     <label>Last Name</label>
                                 <tr>
                                 <tr>
-                                    <input class="form-control" />
+                                    <input id="lastName" class="form-control" />
                                 </tr>
 
                                 <tr>
                                     <label>Email</label>
                                 <tr>
                                 <tr>
-                                    <input class="form-control" />
+                                    <input id="email" class="form-control" />
                                 </tr>
 
                                 <tr>
                                     <label>Password</label>
                                 <tr>
                                 <tr>
-                                    <input class="form-control" type="password" />
+                                    <input id="password" class="form-control" type="password" />
                                 </tr>
-                                <tr>
-                                    <label>Image</label>
-                                <tr>
-                                <tr>
-                                    <input class="form-control" type="file" />
-                                </tr>
+                               
                             </table>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Sign Up</button>
+                        <button id="signUpbtn" style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -1164,12 +1173,70 @@
                 // alert(name + " " + email);
                 return false;
             });
+
+
+             $("#signUpbtn").click(function () {
+
+                 console.log("Clicked");
+                var firstName = $("#firstName").val();
+                 var lastName = $("#lastName").val();
+                 var email = $("#email").val();
+                  var password = $("#password").val();
+
+
+                 var jsonData = { FirstName: firstName, LastName: lastName, Email: email, Password: password };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("userSignUp", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        console.log(data);
+
+                           if (data != 'false') {
+
+                               localStorage.setItem('status', 'loggedIn');
+                               localStorage.setItem('userID', data.Id);
+                               localStorage.setItem('FirstName', data.FirstName);
+
+
+                               if (localStorage.getItem('status') == 'loggedIn') {
+                                   document.getElementById("loginLink").setAttribute("style", "display: none;");
+                                   document.getElementById("joinLink").setAttribute("style", "display: none;");
+                                   document.getElementById("signOutLink").setAttribute("style", "display: block");
+                                   document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                                   document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                               }
+                               $("#signupmodal").modal('hide');
+                           }
+                           else {
+                               alert("Please Try again");
+                           }
+                    }
+                });
+                // alert(name + " " + email);
+                return false;
+            });
+
             function showItems() {
                 document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
             }
 
             function goToProductPage(id) {
                 document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
+            }
+
+            function gotoSection(id) {
+                 document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+            }
+
+            function searchByCategory(sectionid, category) {
+                // alert("Clicked");
+              
+                document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category+"&searchInCategory=true";
             }
 
         </script>

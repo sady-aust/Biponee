@@ -90,7 +90,7 @@ namespace Biponee.DLL
             return list;
         }
 
-        public List<ProductC> getProduct(int mysectionId, String productCode)
+        public List<ProductC> getProducts(int mysectionId, String productCode)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             String Query = "SELECT * FROM products WHERE SectionId = " + mysectionId + " AND ProductCode ='" + productCode + "'";
@@ -153,10 +153,42 @@ namespace Biponee.DLL
             return list;
         }
 
-        public List<ProductC> getProduct(int Productid)
+        public List<ProductC> getProducts(int Productid)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             String Query = "SELECT * FROM products WHERE ProductId='" + Productid + "'";
+
+            SqlCommand command = new SqlCommand(Query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<ProductC> list = new List<ProductC>();
+
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["ProductId"]);
+                String name = reader["ProductName"].ToString();
+                String code = reader["ProductCode"].ToString();
+                int secId = (int)reader["SectionId"];
+                String price = reader["Price"].ToString();
+                String category = reader["Category"].ToString();
+                String description = reader["Description"].ToString();
+                String imgLink = reader["ImageLink"].ToString();
+                String lCount = reader["LCount"].ToString();
+                String mCount = reader["MCount"].ToString();
+                String xlCount = reader["XLCount"].ToString();
+                String xxlCount = reader["XXLCount"].ToString();
+                String quantiy = reader["Quantity"].ToString();
+                list.Add(new ProductC(id, name, code, secId, price, category, description, imgLink, lCount, mCount, xlCount, xxlCount, quantiy));
+            }
+
+            return list;
+        }
+
+        public List<ProductC> getAllProductOfthisCategory(int SectionId,String Category)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            String Query = "SELECT * FROM products WHERE SectionId=" + SectionId + " AND Category ='"+ Category + "'";
 
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();

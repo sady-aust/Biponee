@@ -120,7 +120,17 @@
 
                                 <strong class="text-uppercase" id="myAccount">My Account <i class="fa fa-caret-down"></i></strong>
                             </div>
-                            <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a> <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="#" id="loginLink" class="text-uppercase" data-toggle="modal" data-target="#loginModal" style="display:block">Login</a>
+                                    </td>
+                                    <td> | </td>
+                                    <td>
+                                        <a style="display:block" href="#" id="joinLink" data-toggle="modal" data-target="#signupmodal" class="text-uppercase">Join</a>
+                                    </td>
+                                </tr>
+                            </table>
                             <ul class="custom-menu">
 
                                 <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
@@ -809,44 +819,39 @@
                 <div class="modal-body">
                     <form>
                         <table>
-                            <tr ">
+                            <tr>
                                 <label>First Name</label>
                             <tr>
                             <tr>
-                                <input class="form-control" />
+                                <input id="firstName" class="form-control" />
                             </tr>
 
                             <tr>
                                 <label>Last Name</label>
                             <tr>
                             <tr>
-                                <input class="form-control" />
+                                <input id="lastName" class="form-control" />
                             </tr>
 
                             <tr>
                                 <label>Email</label>
                             <tr>
                             <tr>
-                                <input class="form-control" />
+                                <input id="email" class="form-control" />
                             </tr>
 
                             <tr>
                                 <label>Password</label>
                             <tr>
                             <tr>
-                                <input class="form-control" type="password" />
+                                <input id="password" class="form-control" type="password" />
                             </tr>
-                            <tr>
-                                <label>Image</label>
-                            <tr>
-                            <tr>
-                                <input class="form-control" type="file" />
-                            </tr>
+
                         </table>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Sign Up</button>
+                    <button id="signUpbtn" style="background-color:#f86949;border-color:#f86949" type="button" class="btn btn-primary">Sign Up</button>
                 </div>
             </div>
         </div>
@@ -921,6 +926,53 @@
                            }
                            else {
                                alert("Email and password doesnot match");
+                           }
+                    }
+                });
+                // alert(name + " " + email);
+                return false;
+        });
+
+        
+             $("#signUpbtn").click(function () {
+
+                 console.log("Clicked");
+                var firstName = $("#firstName").val();
+                 var lastName = $("#lastName").val();
+                 var email = $("#email").val();
+                  var password = $("#password").val();
+
+
+                 var jsonData = { FirstName: firstName, LastName: lastName, Email: email, Password: password };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("userSignUp", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        console.log(data);
+
+                           if (data != 'false') {
+
+                               localStorage.setItem('status', 'loggedIn');
+                               localStorage.setItem('userID', data.Id);
+                               localStorage.setItem('FirstName', data.FirstName);
+
+
+                               if (localStorage.getItem('status') == 'loggedIn') {
+                                   document.getElementById("loginLink").setAttribute("style", "display: none;");
+                                   document.getElementById("joinLink").setAttribute("style", "display: none;");
+                                   document.getElementById("signOutLink").setAttribute("style", "display: block");
+                                   document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                                   document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                               }
+                               $("#signupmodal").modal('hide');
+                           }
+                           else {
+                               alert("Please Try again");
                            }
                     }
                 });
