@@ -17,7 +17,7 @@ namespace Biponee.DLL
 
 
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "INSERT INTO carts VALUES (" + cart.ProductId + "," + cart.Qunaity + "," + cart.UserID + "," + cart.Status +",'"+cart.ImageLink+"','"+cart.Price+ "')";
+            String Query = "INSERT INTO carts VALUES (" + cart.ProductId + "," + cart.Qunaity + "," + cart.UserID + "," + cart.Status +",'"+cart.Size+"')";
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
             int res = command.ExecuteNonQuery();
@@ -44,11 +44,11 @@ namespace Biponee.DLL
                 int Quantity = Convert.ToInt32(reader["Quantity"]);
                 int UserId = Convert.ToInt32(reader["UserId"]);
                 int status = Convert.ToInt32(reader["Status"]);
-                String imgLink = reader["ProductName"].ToString();
-                String price = reader["Price"].ToString();
+                String size = reader["Size"].ToString();
+               
 
 
-                list.Add(new CartC(id,productId,Quantity,UserId,status,imgLink,price));
+                list.Add(new CartC(id,productId,Quantity,UserId,status, size));
             }
 
             return list;
@@ -59,7 +59,7 @@ namespace Biponee.DLL
         public List<CartC> getAllCartItemWithImage(int UserId)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            String Query = "SELECT products.ImageLink,products.ProductName,products.Price ,carts.Quantity FROM carts INNER JOIN products ON products.ProductId = carts.ProductId WHERE carts.UserId ="+ 1 +"AND carts.Status = 0";
+            String Query = "SELECT products.ImageLink,products.ProductName,products.Price ,carts.Quantity,carts.Size FROM carts INNER JOIN products ON products.ProductId = carts.ProductId WHERE carts.UserId =" + UserId +"AND carts.Status = 0";
 
             SqlCommand command = new SqlCommand(Query, connection);
             connection.Open();
@@ -70,13 +70,14 @@ namespace Biponee.DLL
             while (reader.Read())
             {
               
-                String imgLink = reader["ImageLink"].ToString();
+                String imgLink =reader["ImageLink"].ToString();
                 String name = reader["ProductName"].ToString();
                 String price = reader["Price"].ToString();
                 int quanity = Convert.ToInt32((reader["Quantity"].ToString()));
+                String size = reader["Size"].ToString();
 
 
-                list.Add(new CartC(quanity,imgLink,price,name));
+                list.Add(new CartC(quanity,imgLink,price,name,size));
             }
 
             return list;

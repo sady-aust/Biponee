@@ -12,38 +12,40 @@ namespace Biponee.Models
         public int Qunaity { get; set; }
         public int UserID { get; set; }
         public int Status { get; set; }
+        public String Size { get; set; }
+
+
+        public String ProductName { get; set; }
         public String ImageLink { get; set; }
         public String Price { get; set; }
-        public String name { get; set; }
 
-        public CartC(int cartItemId, int productId, int qunaity, int userID, int status,String imgLink,String price)
+
+        public CartC(int cartItemId, int productId, int qunaity, int userID, int status,String size)
         {
             CartItemId = cartItemId;
             ProductId = productId;
             Qunaity = qunaity;
             UserID = userID;
             Status = status;
-            ImageLink = imgLink;
-            Price = price;
+            Size = size;
         }
 
-        public CartC(int productId, int qunaity, int userID, int status, String imgLink, String price)
+        public CartC(int productId, int qunaity, int userID, int status, String size)
         {
-           
             ProductId = productId;
             Qunaity = qunaity;
             UserID = userID;
             Status = status;
-            ImageLink = imgLink;
-            Price = price;
+            Size = size;
         }
 
-        public CartC(int qunaity, string imageLink, string price, string name)
+        public CartC(int quantity,String imageLink,String price,String name,String size)
         {
-            Qunaity = qunaity;
+            Qunaity = quantity;
             ImageLink = imageLink;
             Price = price;
-            this.name = name;
+            ProductName = name;
+            Size = size;
         }
 
         public CartC()

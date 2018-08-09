@@ -45,34 +45,37 @@ namespace Biponee.Controllers
             ViewBag.sections = sections;
             return View(product);
         }
-        public ActionResult Products(int id, String category, Boolean searchInCategory = false)
+        public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
         {
-            if (!searchInCategory)
+            if (ProductName != null)
             {
-                List<ProductC> productList = productManager.GetAllProductThisSection(id);
+                List<ProductC> productList = productManager.GetProducts(ProductName);
                 List<SectionC> sections = sectionManager.getAllSections();
                 ViewBag.sections = sections;
                 return View(productList);
             }
+
             else
             {
-                List<ProductC> productList = productManager.GetProducts(id, category);
-                List<SectionC> sections = sectionManager.getAllSections();
-                ViewBag.sections = sections;
-                return View(productList);
+                if (!searchInCategory)
+                {
+                    List<ProductC> productList = productManager.GetAllProductThisSection(id);
+                    List<SectionC> sections = sectionManager.getAllSections();
+                    ViewBag.sections = sections;
+                    return View(productList);
+                }
+                else
+                {
+                    List<ProductC> productList = productManager.GetProducts(id, category);
+                    List<SectionC> sections = sectionManager.getAllSections();
+                    ViewBag.sections = sections;
+                    return View(productList);
+                }
             }
-        }
-        [HttpGet]
-        public ActionResult Products(String ProductName)
-        {
-
-            List<ProductC> productList = productManager.GetProducts(ProductName);
-            List<SectionC> sections = sectionManager.getAllSections();
-            ViewBag.sections = sections;
-            return View(productList);
 
         }
-
+      
+        
         public JsonResult getAllProduct()
         {
             List<ProductC> list = productManager.GetAllProduct();
@@ -104,20 +107,26 @@ namespace Biponee.Controllers
 
         }
 
-        public JsonResult insertCartItem(int ProductId,int Qunaity,int UserID,int Status,String ImageLink,String Price)
+        public JsonResult insertCartItem(int ProductId,int Qunaity,int UserID,int Status,String Size)
         {
-            CartC myCart = new CartC(ProductId, Qunaity, UserID, Status, ImageLink, Price);
+            CartC myCart = new CartC(ProductId, Qunaity, UserID, Status, Size);
             bool isInserted = cartManager.insertItem(myCart);
 
             if (isInserted)
             {
-                List<CartC> cartList = cartManager.getAllItem(UserID);
+                List<CartC> cartList = cartManager.getAllItemWithImage(UserID);
                 return Json(cartList, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public JsonResult getAllCartItem(int UserID)
+        {
+            List<CartC> cartList = cartManager.getAllItemWithImage(UserID);
+            return Json(cartList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult allProduct()
