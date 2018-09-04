@@ -16,13 +16,13 @@ namespace Biponee.Controllers
         UserManager userManager = new UserManager();
         CartManager cartManager = new CartManager();
         // GET: User
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
             List<ProductC> productList = productManager.GetAllProduct();
             List<SectionC> sections = sectionManager.getAllSections();
             ViewBag.sections = sections;
             return View(productList);
-        }
+        }*/
 
         public ActionResult Cart(int userId)
         {
@@ -45,7 +45,7 @@ namespace Biponee.Controllers
             ViewBag.sections = sections;
             return View(product);
         }
-        public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
+      /*  public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
         {
             if (ProductName != null)
             {
@@ -73,14 +73,14 @@ namespace Biponee.Controllers
                 }
             }
 
-        }
+        }*/
       
         
-        public JsonResult getAllProduct()
+       /* public JsonResult getAllProduct()
         {
             List<ProductC> list = productManager.GetAllProduct();
             return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
         public JsonResult userSignUp(String FirstName,String LastName,String email,String Password)
         {
@@ -129,11 +129,11 @@ namespace Biponee.Controllers
             return Json(cartList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult allProduct()
+       /* public JsonResult allProduct()
         {
             List<ProductC> productList = productManager.GetAllProduct();
             return Json(productList, JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
     }
 }

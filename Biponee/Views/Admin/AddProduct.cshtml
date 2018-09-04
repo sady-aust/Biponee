@@ -242,7 +242,7 @@
                                 Profile
                             </a>
 
-                            <a class="dropdown-item"href="#" id="signOutLink">
+                            <a class="dropdown-item" href="#" id="signOutLink">
                                 Sign Out
                             </a>
                         </div>
@@ -312,8 +312,10 @@
                 <!-- partial:../../partials/_footer.html -->
 
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#menu1" class="active">Add Product</a></li>
-                    <li><a data-toggle="tab" href="#menu2">Search Product</a></li>
+                    <li class="active"><a data-toggle="tab" href="#menu1" class="active">Clothing</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Electronics</a></li>
+                    <li><a data-toggle="tab" href="#menu3">Daily Needs</a></li>
+                    <li><a data-toggle="tab" href="#menu4">Mobile and Gadgets</a></li>
 
                 </ul>
 
@@ -327,96 +329,194 @@
                         <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
                             <thead>
                                 <tr>
-                                    <th scope="col">ProductId</th>
+
                                     <th scope="col">ProductName</th>
                                     <th scope="col">ProductCode</th>
                                     <th scope="col">SectionName</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Action</th>
 
-                                    <th scope="col">ImageLink</th>
-                                    <th scope="col">L Count</th>
-                                    <th scope="col">M Count</th>
-                                    <th scope="col">Xl Count</th>
-                                    <th scope="col">XXl Count</th>
-                                    <th scope="col">Quantity</th>
+
+
                                 </tr>
                             </thead>
 
 
-                            @for (int i = Model.products.Count - 1; i >= 0; i--)
-                        {
-                            <tr>
-                                <td>@Model.products[i].ProductId</td>
-                                <td>@Model.products[i].ProductName</td>
-                                <td>@Model.products[i].ProductCode</td>
-                                @for (int j = -0; j < Model.products.Count; j++)
+                            @for (int i = Model.ClothingProducts.Count - 1; i >= 0; i--)
                             {
-                                if (Model.Sections[j].SectionID == Model.products[i].SectionId)
-                                {
-                                    <td>@Model.Sections[j].SectionName</td>
-                                break;
+                                <tr>
+
+                                    <td>@Model.ClothingProducts[i].ProductName</td>
+                                    <td>@Model.ClothingProducts[i].ProductCode</td>
+                                    @for (int j = 0; j < Model.Sections.Count; j++)
+                                    {
+                                        if (Model.Sections[j].SectionID == Model.ClothingProducts[i].SectionId)
+                                        {
+                                            <td>@Model.Sections[j].SectionName</td>
+                                            break;
+                                        }
+                                    }
+
+                                    <td>@Model.ClothingProducts[i].Price</td>
+                                    <td>@Model.ClothingProducts[i].Category</td>
+
+                                    <td>
+                                        <a id="viewDetails" style="margin-top:20px;" class="btn btn-primary" onclick="viewData('@Model.ClothingProducts[i].SectionId','@Model.ClothingProducts[i].ProductCode')">View Details</a>
+                                    </td>
+
+
+                                </tr>
                             }
-                        }
-
-                                <td>@Model.products[i].Price</td>
-                                <td>@Model.products[i].Category</td>
-
-                                <td>@Model.products[i].ImageLink</td>
-                                <td>@Model.products[i].LCount</td>
-                                <td>@Model.products[i].MCount</td>
-                                <td>@Model.products[i].XLCount</td>
-                                <td>@Model.products[i].XXLCount</td>
-                                <td>@Model.products[i].Quantity</td>
-                            </tr>
-                    }
                         </table>
                     </div>
                     <div id="menu2" class="tab-pane fade">
-                        <h3>Search Product</h3>
-                        <table>
-                            <tr>
-                                <td colspan="2">
-                                    <select id="searchSecId" name="SectionId" class="form-control">
+                        <button style="margin-top:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addElectronicProductModal" id="addProduct">+ Add a new Product</button>
+                        <h3 style="margin-top:20px;">Your Products</h3>
 
-                                        @for (int i = 0; i < Model.Sections.Count; i++)
-                                    {
-                                        <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
-                                }
 
-                                    </select>
-                                </td>
-                                <td colspan="6">
-                                    <input id="productCode" class="form-control" placeholder="ProductCode" />
-                                </td>
-                                <td>
-                                    <button id="searchbtn" class="form-control btn-danger btn-danger">Search</button>
-                                </td>
-                            </tr>
-                        </table>
 
-                        <h4 style="text-align:center">Search Result</h4>
                         <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
-                            <thead class="thead-dark">
+                            <thead>
                                 <tr>
-                                    <th scope="col">ProductId</th>
+
                                     <th scope="col">ProductName</th>
                                     <th scope="col">ProductCode</th>
                                     <th scope="col">SectionName</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Action</th>
 
-                                    <th scope="col">ImageLink</th>
-                                    <th scope="col">L Count</th>
-                                    <th scope="col">M Count</th>
-                                    <th scope="col">Xl Count</th>
-                                    <th scope="col">XXl Count</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Operation</th>
+
+
                                 </tr>
-
                             </thead>
-                            <tbody id="searchResBody"></tbody>
+
+
+                            @for (int i = Model.ElectronicProducts.Count - 1; i >= 0; i--)
+                            {
+                                <tr>
+
+                                    <td>@Model.ElectronicProducts[i].ProductName</td>
+                                    <td>@Model.ElectronicProducts[i].ProductCode</td>
+                                    @for (int j = 0; j < Model.Sections.Count; j++)
+                                    {
+                                        if (Model.Sections[j].SectionID == Model.ElectronicProducts[i].SectionId)
+                                        {
+                                            <td>@Model.Sections[j].SectionName</td>
+                                            break;
+                                        }
+                                    }
+
+                                    <td>@Model.ElectronicProducts[i].Price</td>
+                                    <td>@Model.ElectronicProducts[i].Category</td>
+
+                                    <td>
+                                        <a href="#">View Details</a>
+                                    </td>
+
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div id="menu3" class="tab-pane fade">
+                        <button style="margin-top:20px;" class="btn btn-primary" data-toggle="modal" data-target="#adddailyNeedsPorduct" id="addProduct">+ Add a new Product</button>
+                        <h3 style="margin-top:20px;">Your Products</h3>
+
+
+
+                        <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">ProductName</th>
+                                    <th scope="col">ProductCode</th>
+                                    <th scope="col">SectionName</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Action</th>
+
+
+
+                                </tr>
+                            </thead>
+
+
+                            @for (int i = Model.DailyNeedProducts.Count - 1; i >= 0; i--)
+                            {
+                                <tr>
+
+                                    <td>@Model.DailyNeedProducts[i].ProductName</td>
+                                    <td>@Model.DailyNeedProducts[i].ProductCode</td>
+                                    @for (int j = 0; j < Model.Sections.Count; j++)
+                                    {
+                                        if (Model.Sections[j].SectionID == Model.DailyNeedProducts[i].SectionId)
+                                        {
+                                            <td>@Model.Sections[j].SectionName</td>
+                                            break;
+                                        }
+                                    }
+
+                                    <td>@Model.DailyNeedProducts[i].Price</td>
+                                    <td>@Model.DailyNeedProducts[i].Category</td>
+
+                                    <td>
+                                        <a href="#">View Details</a>
+                                    </td>
+
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div id="menu4" class="tab-pane fade">
+                        <button style="margin-top:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addMobileProduct" id="addProduct">+ Add a new Product</button>
+                        <h3 style="margin-top:20px;">Your Products</h3>
+
+
+
+                        <table class="table" style="overflow-y:scroll;height:500px;display:block;overflow-x:scroll">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">ProductName</th>
+                                    <th scope="col">ProductCode</th>
+                                    <th scope="col">SectionName</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Action</th>
+
+
+
+                                </tr>
+                            </thead>
+
+
+                            @for (int i = Model.MobileProduct.Count - 1; i >= 0; i--)
+                            {
+                                <tr>
+
+                                    <td>@Model.MobileProduct[i].ProductName</td>
+                                    <td>@Model.MobileProduct[i].ProductCode</td>
+                                    @for (int j = 0; j < Model.Sections.Count; j++)
+                                    {
+                                        if (Model.Sections[j].SectionID == Model.MobileProduct[i].SectionId)
+                                        {
+                                            <td>@Model.Sections[j].SectionName</td>
+                                            break;
+                                        }
+                                    }
+                                    <td>@Model.MobileProduct[i].Price</td>
+                                    <td>@Model.MobileProduct[i].Category</td>
+
+                                    <td>
+                                        <a href="#" onclick="viewData()">View Details</a>
+                                    </td>
+
+
+                                </tr>
+                            }
                         </table>
                     </div>
 
@@ -540,7 +640,10 @@
 
                                         @for (int i = 0; i < Model.Sections.Count; i++)
                                         {
-                                            <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                            if (Model.Sections[i].SectionID == 1)
+                                            {
+                                                <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                            }
                                         }
 
                                     </select>
@@ -594,9 +697,319 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Quantity(If dont have any size)</td>
+                                <td>Brand Name</td>
                                 <td>
-                                    <input class="form-control" placeholder="Quantity" name="Quantity" id="Quantity" />
+                                    <input class="form-control" placeholder="BrandName" name="BrandName" id="BrandName" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+                        <input type="submit" class="btn btn-primary" value="Add" input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addElectronicProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                            <img src='~/Style/img/loading.gif' width="44" height="44" />
+                            <br>Loading..
+                        </div>
+
+
+                        <table>
+                            <tr>
+                                <td colspan="2">Product Name</td>
+                                <td colspan="2">
+                                    <input id="ProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Product Code</td>
+                                <td colspan="2">
+                                    <input id="ProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Section Name</td>
+                                <td colspan="2">
+                                    <select id="SectionId" name="SectionId" class="form-control">
+
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
+                                        {
+                                            if (Model.Sections[i].SectionID == 2)
+                                            {
+                                                <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Category</td>
+                                <td colspan="2">
+                                    <input id="Category" name="Category" type="text" class="form-control" placeholder="Category" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Price</td>
+                                <td colspan="2">
+                                    <input id="Price" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Description</td>
+                                <td colspan="2">
+                                    <textarea id="Description" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Image</td>
+                                <td colspan="2">
+                                    <input id="ImageLink" name="ImageLink" type="file" class="form-control" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Quantity</td>
+                                <td>
+                                    <input class="form-control" type="number" placeholder="BrandName" name="Quantity" id="Quantity" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Brand Name</td>
+                                <td>
+                                    <input class="form-control" placeholder="BrandName" name="BrandName" id="BrandName" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+                        <input type="submit" class="btn btn-primary" value="Add" input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="adddailyNeedsPorduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                            <img src='~/Style/img/loading.gif' width="44" height="44" />
+                            <br>Loading..
+                        </div>
+
+
+                        <table>
+                            <tr>
+                                <td colspan="2">Product Name</td>
+                                <td colspan="2">
+                                    <input id="ProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Product Code</td>
+                                <td colspan="2">
+                                    <input id="ProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Section Name</td>
+                                <td colspan="2">
+                                    <select id="SectionId" name="SectionId" class="form-control">
+
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
+                                        {
+                                            if (Model.Sections[i].SectionID == 3)
+                                            {
+                                                <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Category</td>
+                                <td colspan="2">
+                                    <input id="Category" name="Category" type="text" class="form-control" placeholder="Category" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Price</td>
+                                <td colspan="2">
+                                    <input id="Price" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Description</td>
+                                <td colspan="2">
+                                    <textarea id="Description" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Image</td>
+                                <td colspan="2">
+                                    <input id="ImageLink" name="ImageLink" type="file" class="form-control" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Quantity</td>
+                                <td>
+                                    <input class="form-control" type="number" placeholder="BrandName" name="Quantity" id="Quantity" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Brand Name</td>
+                                <td>
+                                    <input class="form-control" placeholder="BrandName" name="BrandName" id="BrandName" />
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+                        <input type="submit" class="btn btn-primary" value="Add" input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addMobileProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div id="waitpic" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px; margin-top: 10px;">
+                            <img src='~/Style/img/loading.gif' width="44" height="44" />
+                            <br>Loading..
+                        </div>
+
+
+                        <table>
+                            <tr>
+                                <td colspan="2">Product Name</td>
+                                <td colspan="2">
+                                    <input id="ProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Product Code</td>
+                                <td colspan="2">
+                                    <input id="ProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Section Name</td>
+                                <td colspan="2">
+                                    <select id="SectionId" name="SectionId" class="form-control">
+
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
+                                        {
+                                            if (Model.Sections[i].SectionID == 4)
+                                            {
+                                                <option value="@Model.Sections[i].SectionID">@Model.Sections[i].SectionName</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Category</td>
+                                <td colspan="2">
+                                    <input id="Category" name="Category" type="text" class="form-control" placeholder="Category" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Price</td>
+                                <td colspan="2">
+                                    <input id="Price" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Description</td>
+                                <td colspan="2">
+                                    <textarea id="Description" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">Image</td>
+                                <td colspan="2">
+                                    <input id="ImageLink" name="ImageLink" type="file" class="form-control" />
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Quantity</td>
+                                <td>
+                                    <input class="form-control" type="number" placeholder="BrandName" name="Quantity" id="Quantity" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Brand Name</td>
+                                <td>
+                                    <input class="form-control" placeholder="BrandName" name="BrandName" id="BrandName" />
                                 </td>
                             </tr>
 
@@ -612,8 +1025,106 @@
     </div>
 
 
+
+   
+    <div class="modal" id="my" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <table>
+              <tr>
+                  <td colspan="2">Product Name</td>
+                  <td colspan="2">
+                      <input id="VclothingProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                  </td>
+
+              </tr>
+              <tr>
+
+                  <td colspan="2">Product Code</td>
+                  <td colspan="2">
+                      <input id="VclothingProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                  </td>
+              </tr>
+              <tr>
+
+                  <td colspan="2">Section Name</td>
+                  <td colspan="2">
+                      <input id="VclothingSectionId" />
+                  </td>
+              </tr>
+              <tr>
+
+                  <td colspan="2">Category</td>
+                  <td colspan="2">
+                      <input id="VclothingProductcategory" name="Category" type="text" class="form-control" placeholder="Category" />
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">Price</td>
+                  <td colspan="2">
+                      <input id="VclothingProductPrice" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                  </td>
+
+              </tr>
+              <tr>
+                  <td colspan="2">Description</td>
+                  <td colspan="2">
+                      <textarea id="VclothingProductDescription" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                  </td>
+
+              </tr>
+              <tr>
+                  <td colspan="2">Image</td>
+                  <td colspan="2">
+                      <img id="VclothingProductImg" />
+                  </td>
+
+              </tr>
+              <tr>
+                  <td colspan="2">Sizes Count</td>
+
+              </tr>
+              <tr>
+                  <td>
+                      <input id="vLCount" name="LCount" type="number" class="form-control" placeholder="L" min="0" />
+                  </td>
+                  <td>
+                      <input id="vMCount" name="MCount" type="number" class="form-control" placeholder="M" min="0" />
+                  </td>
+                  <td>
+                      <input id="vXLCount" name="XLCount" type="number" class="form-control" placeholder="XL" min="0" />
+                  </td>
+                  <td>
+                      <input id="vXXLCount" name="XXLCount" type="number" class="form-control" placeholder="XXL" min="0" />
+                  </td>
+              </tr>
+              <tr>
+                  <td>Brand Name</td>
+                  <td>
+                      <input class="form-control" placeholder="BrandName" name="BrandName" id="vBrandName" />
+                  </td>
+              </tr>
+
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script>
-        $(document).ready(function () {
+     
             $("#signOutLink").click(function () {
                 localStorage.setItem("adminId", null);
                 localStorage.setItem("Email", null);
@@ -722,9 +1233,38 @@
 
 
 
+         
+
+           
 
 
-        });
+          function viewData(secid, productCode) {
+            
+            var jsonData = { SectionId: secid, Code: productCode };
+            $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getProductOfThisCode", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                   
+                           $("#VclothingProductName").val(data[0].ProductName);
+                    $("#VclothingProductCode").val(data[0].ProductCode);
+                    $("#VclothingProductId").val(data[0].ProductCode);
+                    $("#VclothingSectionId").val(data[0].SectionId);
+                    $("#VclothingProductcategory").val(data[0].Category);
+                    $("#VclothingProductPrice").val(data[0].Price);
+                    $("#VclothingProductDescription").val(data[0].Description);
+                    $("#VclothingProductImg").attr("src", data[0].ImageLink);
+                               $("#my").modal("show");
+                        }
+                    });
+        }
+
+
+        
     </script>
 </body>
 

@@ -1,5 +1,6 @@
 ﻿using Biponee.DLL;
 using Biponee.Models;
+using Biponee.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Biponee.BLL
     {
         ProductGetway productGetway = new ProductGetway();
 
-        public Boolean InsertProduct(ProductC product)
+        public Boolean InsertClothingProduct(ClothingProduct product)
         {
-            if (productGetway.insertProduct(product) > 0)
+            if (productGetway.insertClothingProduct(product) > 0)
             {
                 return true;
             }
@@ -21,20 +22,68 @@ namespace Biponee.BLL
             return false;
         }
 
-        public List<ProductC> GetAllProduct()
+        public Boolean InsertElectronicsProduct(ElectronicsProduct product)
         {
-            return productGetway.getAllProduct();
+            if (productGetway.insertElectronicsProduct(product) > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public List<ProductC> GetAllProductThisSection(int id)
+        public Boolean InsertDailyNeedsProduct(DailyNeedProduct product)
         {
-            return productGetway.getAllOfThisSection(id);
+            if (productGetway.insertDailyNeedsProduct(product) > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public Boolean InsertMobileProduct(MobileProduct product)
+        {
+            if (productGetway.insertMobileProduct(product) > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public List<ProductC> GetProduct(int secId, String productCode)
+
+        public List<ClothingProduct> GetAllCLothingProduct()
         {
-            return productGetway.getProducts(secId, productCode);
+            return productGetway.getAllClothingProduct();
         }
+        public List<ElectronicsProduct> GetAllElectroinicProduct()
+        {
+            return productGetway.getAllElectronicsProduct();
+        }
+        public List<DailyNeedProduct> GetAllDailyNeedProuct()
+        {
+            return productGetway.getAllDailyNeedProduct();
+        }
+        public List<MobileProduct> GetAllMobileProduct()
+        {
+            return productGetway.getMobileProduct();
+        }
+
+        public List<ClothingProduct> getAClothingProduct(String ProductCode)
+        {
+            return productGetway.getaClothingProduct(ProductCode);
+        }
+
+
+        /* public List<ProductC> GetAllProductThisSection(int id)
+         {
+             return productGetway.getAllOfThisSection(id);
+         }*/
+
+        /* public List<ProductC> GetProduct(int secId, String productCode)
+         {
+             return productGetway.getProducts(secId, productCode);
+         }*/
 
 
 
