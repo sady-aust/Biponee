@@ -364,6 +364,9 @@
                                     <td>
                                         <a id="viewDetails" style="margin-top:20px;" class="btn btn-primary" onclick="viewData('@Model.ClothingProducts[i].SectionId','@Model.ClothingProducts[i].ProductCode')">View Details</a>
                                     </td>
+                                    <td>
+                                        <a style="margin-top:20px;" class="btn btn-primary" onclick="deleteProduct(@Model.ClothingProducts[i].ProductId,'@Model.ClothingProducts[i].ImageLink')">Delete</a>
+                                    </td>
 
 
                                 </tr>
@@ -411,9 +414,14 @@
                                     <td>@Model.ElectronicProducts[i].Price</td>
                                     <td>@Model.ElectronicProducts[i].Category</td>
 
+
                                     <td>
-                                        <a href="#">View Details</a>
+                                        <a id="viewDetails" style="margin-top:20px;" class="btn btn-primary" onclick="viewData('@Model.ElectronicProducts[i].SectionId','@Model.ElectronicProducts[i].ProductCode')">View Details</a>
                                     </td>
+                                    <td>
+                                        <a style="margin-top:20px;" class="btn btn-primary" onclick="deleteProduct(@Model.ElectronicProducts[i].ProductId,'@Model.ElectronicProducts[i].ImageLink')">Delete</a>
+                                    </td>
+
 
 
                                 </tr>
@@ -462,7 +470,12 @@
                                     <td>@Model.DailyNeedProducts[i].Category</td>
 
                                     <td>
-                                        <a href="#">View Details</a>
+
+                                        <a id="viewDetails" style="margin-top:20px;" class="btn btn-primary" onclick="viewData('@Model.DailyNeedProducts[i].SectionId','@Model.DailyNeedProducts[i].ProductCode')">View Details</a>
+
+                                    </td>
+                                    <td>
+                                        <a style="margin-top:20px;" onclick="deleteProduct(@Model.DailyNeedProducts[i].ProductId,'@Model.DailyNeedProducts[i].ImageLink')" class="btn btn-primary">Delete</a>
                                     </td>
 
 
@@ -511,7 +524,10 @@
                                     <td>@Model.MobileProduct[i].Category</td>
 
                                     <td>
-                                        <a href="#" onclick="viewData()">View Details</a>
+                                        <a id="viewDetails" style="margin-top:20px;" class="btn btn-primary" onclick="viewData('@Model.MobileProduct[i].SectionId','@Model.MobileProduct[i].ProductCode')">View Details</a>
+                                    </td>
+                                    <td>
+                                        <a style="margin-top:20px;" onclick="deleteProduct(@Model.MobileProduct[i].ProductId,'@Model.MobileProduct[i].ImageLink')" class="btn btn-primary">Delete</a>
                                     </td>
 
 
@@ -1026,105 +1042,212 @@
 
 
 
-   
+
     <div class="modal" id="my" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <table>
-              <tr>
-                  <td colspan="2">Product Name</td>
-                  <td colspan="2">
-                      <input id="VclothingProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
-                  </td>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td colspan="2">Product Id</td>
+                            <td colspan="2">
+                                <input id="VclothingProductId" readonly type="text" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Product Name</td>
+                            <td colspan="2">
+                                <input id="VclothingProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                            </td>
 
-              </tr>
-              <tr>
+                        </tr>
+                        <tr>
 
-                  <td colspan="2">Product Code</td>
-                  <td colspan="2">
-                      <input id="VclothingProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
-                  </td>
-              </tr>
-              <tr>
+                            <td colspan="2">Product Code</td>
+                            <td colspan="2">
+                                <input id="VclothingProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                            </td>
+                        </tr>
+                        <tr>
 
-                  <td colspan="2">Section Name</td>
-                  <td colspan="2">
-                      <input id="VclothingSectionId" />
-                  </td>
-              </tr>
-              <tr>
+                            <td colspan="2">Section Id</td>
+                            <td colspan="2">
+                                <input id="VclothingSectionId" readonly />
+                            </td>
+                        </tr>
+                        <tr>
 
-                  <td colspan="2">Category</td>
-                  <td colspan="2">
-                      <input id="VclothingProductcategory" name="Category" type="text" class="form-control" placeholder="Category" />
-                  </td>
-              </tr>
-              <tr>
-                  <td colspan="2">Price</td>
-                  <td colspan="2">
-                      <input id="VclothingProductPrice" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
-                  </td>
+                            <td colspan="2">Category</td>
+                            <td colspan="2">
+                                <input id="VclothingProductcategory" name="Category" type="text" class="form-control" placeholder="Category" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Price</td>
+                            <td colspan="2">
+                                <input id="VclothingProductPrice" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                            </td>
 
-              </tr>
-              <tr>
-                  <td colspan="2">Description</td>
-                  <td colspan="2">
-                      <textarea id="VclothingProductDescription" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Description</td>
+                            <td colspan="2">
+                                <textarea id="VclothingProductDescription" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
 
-                  </td>
+                            </td>
 
-              </tr>
-              <tr>
-                  <td colspan="2">Image</td>
-                  <td colspan="2">
-                      <img id="VclothingProductImg" />
-                  </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Image</td>
+                            <td colspan="2">
+                                <img id="VclothingProductImg" width="200" height="200" readonly />
+                            </td>
 
-              </tr>
-              <tr>
-                  <td colspan="2">Sizes Count</td>
+                        </tr>
 
-              </tr>
-              <tr>
-                  <td>
-                      <input id="vLCount" name="LCount" type="number" class="form-control" placeholder="L" min="0" />
-                  </td>
-                  <td>
-                      <input id="vMCount" name="MCount" type="number" class="form-control" placeholder="M" min="0" />
-                  </td>
-                  <td>
-                      <input id="vXLCount" name="XLCount" type="number" class="form-control" placeholder="XL" min="0" />
-                  </td>
-                  <td>
-                      <input id="vXXLCount" name="XXLCount" type="number" class="form-control" placeholder="XXL" min="0" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>Brand Name</td>
-                  <td>
-                      <input class="form-control" placeholder="BrandName" name="BrandName" id="vBrandName" />
-                  </td>
-              </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>
+                                <input id="vLCount" name="LCount" type="number" class="form-control" min="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>
+                                <input id="vMCount" name="MCount" type="number" class="form-control" min="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>
+                                <input id="vXLCount" name="XLCount" type="number" class="form-control" min="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>XXL</td>
+                            <td>
+                                <input id="vXXLCount" name="XXLCount" type="number" class="form-control" min="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Brand Name</td>
+                            <td>
+                                <input class="form-control" placeholder="BrandName" name="BrandName" id="vBrandName" />
+                            </td>
+                        </tr>
 
-          </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="clothUpdate" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
+
+    <div class="modal" id="generalModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td colspan="2">Product Id</td>
+                            <td colspan="2">
+                                <input id="gProductId" readonly type="text" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Product Name</td>
+                            <td colspan="2">
+                                <input id="gProductName" name="ProductName" type="text" class="form-control" placeholder="Product Name" />
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td colspan="2">Product Code</td>
+                            <td colspan="2">
+                                <input id="gProductCode" name="ProductCode" type="text" class="form-control" placeholder="Product Coce" />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="2">Section Id</td>
+                            <td colspan="2">
+                                <input id="gSectionId" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="2">Category</td>
+                            <td colspan="2">
+                                <input id="gProductcategory" name="Category" type="text" class="form-control" placeholder="Category" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Price</td>
+                            <td colspan="2">
+                                <input id="gProductPrice" name="Price" min="0" type="number" class="form-control" placeholder="Product Price" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">Description</td>
+                            <td colspan="2">
+                                <textarea id="gProductDescription" name="Description" class="form-control" rows="4" placeholder="Description of this Product"></textarea>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">Image</td>
+                            <td colspan="2">
+                                <img id="gProductImg" width="200" height="200" readonly />
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>Quanity</td>
+                            <td>
+                                <input id="gQuantity" name="LCount" type="number" class="form-control" min="0" />
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>Brand Name</td>
+                            <td>
+                                <input class="form-control" placeholder="BrandName" name="BrandName" id="gBrandName" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="gUpdate" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-     
+
             $("#signOutLink").click(function () {
                 localStorage.setItem("adminId", null);
                 localStorage.setItem("Email", null);
@@ -1231,15 +1354,8 @@
 
                 });
 
-
-
-         
-
-           
-
-
           function viewData(secid, productCode) {
-            
+
             var jsonData = { SectionId: secid, Code: productCode };
             $.ajax({
                         type: "POST",
@@ -1249,22 +1365,255 @@
                         dataType: "json",
                 success: function (data) {
                     console.log(data);
-                   
-                           $("#VclothingProductName").val(data[0].ProductName);
-                    $("#VclothingProductCode").val(data[0].ProductCode);
-                    $("#VclothingProductId").val(data[0].ProductCode);
-                    $("#VclothingSectionId").val(data[0].SectionId);
-                    $("#VclothingProductcategory").val(data[0].Category);
-                    $("#VclothingProductPrice").val(data[0].Price);
-                    $("#VclothingProductDescription").val(data[0].Description);
-                    $("#VclothingProductImg").attr("src", data[0].ImageLink);
-                               $("#my").modal("show");
-                        }
-                    });
+                    if (secid == 1) {
+
+                        $("#VclothingProductName").val(data[0].ProductName);
+                        $("#VclothingProductCode").val(data[0].ProductCode);
+                        $("#VclothingProductId").val(data[0].ProductId);
+                        $("#VclothingSectionId").val(data[0].SectionId);
+                        $("#VclothingProductcategory").val(data[0].Category);
+                        $("#VclothingProductPrice").val(data[0].Price);
+                        $("#VclothingProductDescription").val(data[0].Description);
+                        $("#vLCount").val(data[0].LCount);
+                        $("#vMCount").val(data[0].MCount);
+                        $("#vXLCount").val(data[0].XLCount);
+                        $("#vXXLCount").val(data[0].XXLCount);
+                        $("#vBrandName").val(data[0].BrandName);
+                        $("#VclothingProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#my").modal("show");
+                    }
+                    else if (secid == 2) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                    else if (secid == 3) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                    else if (secid == 3) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+                    else if (secid == 4) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                }
+           });
         }
 
+        $("#clothUpdate").click(function () {
+           var productName =  $("#VclothingProductName").val().trim();
+            var produtId = $("#VclothingProductId").val().trim();
+           var productCode = $("#VclothingProductCode").val().trim();
+           var productSectionId =  $("#VclothingSectionId").val().trim();
+            var productCategory = $("#VclothingProductcategory").val().trim();
+            var productPrice=  $("#VclothingProductPrice").val().trim();
+            var productDescriptipon = $("#VclothingProductDescription").val().trim();
+            var productLCount = $("#vLCount").val().trim();
+            var productMCount = $("#vMCount").val().trim();
+            var productXLCount = $("#vXLCount").val().trim();
+            var productXXLCount = $("#vXXLCount").val().trim();
+            var brandName = $("#vBrandName").val().trim();
 
-        
+            var jsonData = {
+                ProductId: produtId,
+                ProductName: productName,
+                ProductCode: productCode,
+                SectionId: productSectionId,
+                Price: productPrice,
+                Category: productCategory,
+                Description: productDescriptipon,
+                BrandName: brandName,
+                LCount: productLCount,
+                MCount: productMCount,
+                XLCount: productXLCount,
+                XXLCount: productXXLCount
+            };
+
+              $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("updateClothingProductInfo", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                        if (data === "true") {
+                            $("#my").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                        alert("Not Updated");
+                        }
+
+                        }
+                    });
+
+        });
+
+
+
+        $("#gUpdate").click(function () {
+           var productName =  $("#gProductName").val().trim();
+            var produtId = $("#gProductId").val().trim();
+           var productCode = $("#gProductCode").val().trim();
+           var productSectionId =  $("#gSectionId").val().trim();
+            var productCategory = $("#gProductcategory").val().trim();
+            var productPrice=  $("#gProductPrice").val().trim();
+            var productDescriptipon = $("#gProductDescription").val().trim();
+            var quantity = $("#gQuantity").val().trim();
+            var brandName = $("#gBrandName").val().trim();
+            console.log(productName);
+
+            var jsonData = {
+                ProductId: produtId,
+                ProductName: productName,
+                ProductCode: productCode,
+                SectionId: productSectionId,
+                Price: productPrice,
+                Category: productCategory,
+                Description: productDescriptipon,
+                BrandName: brandName,
+                Quantity: quantity
+            };
+
+            if (productSectionId == 2) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateElectronicsProductInfo", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+            else  if (productSectionId == 3) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateDailyNeedProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+             else  if (productSectionId == 4) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateMobileProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+
+
+        });
+
+        function deleteProduct(id,imagePath) {
+            var status = confirm("Are you sure?");
+            if (status == true) {
+                var jsonData = {
+                    ProductId: id,
+                    ImageLink: imagePath
+            };
+
+
+             $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                          
+                             document.location = '@Url.Action("AddProduct", "Admin")';
+                        }
+                        else {
+                            alert("Error!!");
+                        }
+
+                    }
+                });
+            }
+        }
+
     </script>
 </body>
 

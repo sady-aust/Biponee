@@ -68,10 +68,24 @@ namespace Biponee.BLL
         {
             return productGetway.getMobileProduct();
         }
+        public List<MobileProduct> GetAllMobileProduct(String ProductCode)
+        {
+            return productGetway.getMobileProduct(ProductCode);
+        }
 
         public List<ClothingProduct> getAClothingProduct(String ProductCode)
         {
             return productGetway.getaClothingProduct(ProductCode);
+        }
+
+        public List<ElectronicsProduct> GetElectronicsProducts(String ProductCode)
+        {
+            return productGetway.getAllElectronicsProduct(ProductCode);
+        }
+
+        public List<DailyNeedProduct> GetAllDailyNeedProuct(String productCode)
+        {
+            return productGetway.getAllDailyNeedProduct(productCode);
         }
 
 
@@ -113,6 +127,51 @@ namespace Biponee.BLL
         public List<ProductC> GetProducts(String name)
         {
             return productGetway.getProducts(name);
+        }
+
+        public Boolean UpdateClothingProduct(ClothingProduct product)
+        {
+            if (productGetway.UpdateProductInfo(product)>0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean UpdateElectronicsProduct(ElectronicsProduct product)
+        {
+            if (productGetway.UpdateProductInfo(product) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean UpdateDailyNeedsProduct(DailyNeedProduct product)
+        {
+            if(productGetway.UpdateProductInfo(product) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean UpdateMobileProduct(MobileProduct product)
+        {
+            if (productGetway.UpdateProductInfo(product) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean DeleteProduct(int id)
+        {
+            if (productGetway.DeleteProduct(id) > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

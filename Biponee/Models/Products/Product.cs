@@ -7,6 +7,7 @@ namespace Biponee.Models.Products
 {
     public class Product
     {
+        public int ProductId { get; set; }
         public String ProductName { get; set; }
         public String ProductCode { get; set; }
         public int SectionId { get; set; }
@@ -18,6 +19,19 @@ namespace Biponee.Models.Products
 
         public Product(string productName, string productCode, int sectionId, Double price, string category, string description, string imageLink, string brandName)
         {
+            ProductName = productName;
+            ProductCode = productCode;
+            SectionId = sectionId;
+            Price = price;
+            Category = category;
+            Description = description;
+            ImageLink = imageLink;
+            BrandName = brandName;
+        }
+
+        public Product(int productId,string productName, string productCode, int sectionId, Double price, string category, string description, string imageLink, string brandName)
+        {
+            ProductId = productId;
             ProductName = productName;
             ProductCode = productCode;
             SectionId = sectionId;

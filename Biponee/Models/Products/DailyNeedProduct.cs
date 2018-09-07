@@ -13,6 +13,11 @@ namespace Biponee.Models.Products
             this.Quantity = quntity;
         }
 
+        public DailyNeedProduct(int id,string productName, string productCode, int sectionId, double price, int quntity, string category, string description, string imageLink, string brandName) : base(id,productName, productCode, sectionId, price, category, description, imageLink, brandName)
+        {
+            this.Quantity = quntity;
+        }
+
         public DailyNeedProduct() : base()
         {
 

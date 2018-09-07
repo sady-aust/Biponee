@@ -13,6 +13,9 @@ namespace Biponee.Controllers
 {
     public class AdminController : Controller
     {
+
+
+
         AdminManager adminManager = new AdminManager();
         SectionManager sectionManager = new SectionManager();
         ProductManager productManager = new ProductManager();
@@ -60,25 +63,29 @@ namespace Biponee.Controllers
                      imagePath = @"Style/ProductImage/" + product.SectionId + @"/" + newFileName;
 
                      photo.Save(@"~/" + imagePath);
-                     product.ImageLink = imagePath;
-
                     Boolean res = false;
-
                     if (SectionId == 1)
                     {
+                        product.ImageLink = imagePath;
                         res = productManager.InsertClothingProduct(product);
                     }
-                    else if (SectionId == 2)
+
+                   else if (SectionId == 2)
                     {
+                        electronics.ImageLink = imagePath;
                         res = productManager.InsertElectronicsProduct(electronics);
                     }
-                    else if (SectionId == 3)
+
+                   else if (SectionId == 3)
                     {
+                        dailyNeeds.ImageLink = imagePath;
                         res = productManager.InsertDailyNeedsProduct(dailyNeeds);
                     }
-                    else if (SectionId == 4)
+
+                   else if (SectionId == 4)
                     {
-                        res = productManager.InsertMobileProduct(mobile);
+                        mobile.ImageLink = imagePath;
+                        productManager.InsertMobileProduct(mobile);
                     }
 
                     if (res)
@@ -152,11 +159,6 @@ namespace Biponee.Controllers
 
         }
 
-       /* public JsonResult getAllProduct(int SectionId)
-        {
-            List<ProductC> list = productManager.GetAllProductThisSection(SectionId);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }*/
 
         public JsonResult  getProductOfThisCode(int SectionId, String Code)
         {
@@ -165,10 +167,97 @@ namespace Biponee.Controllers
             if (SectionId == 1)
             {
                 List<ClothingProduct> list = productManager.getAClothingProduct(Code);
+               
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else if(SectionId == 2)
+            {
+                List<ElectronicsProduct> list = productManager.GetElectronicsProducts(Code);
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else if(SectionId == 3)
+            {
+                List<DailyNeedProduct> list = productManager.GetAllDailyNeedProuct(Code);
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else if(SectionId == 4)
+            {
+                List<MobileProduct> list = productManager.GetAllMobileProduct(Code);
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
 
-            return Json("Moro");
+            return Json("");
         }
+
+        public JsonResult updateClothingProductInfo(ClothingProduct product)
+        {
+
+
+            if (productManager.UpdateClothingProduct(product))
+            {
+                return Json("true", JsonRequestBehavior.AllowGet);
+            }
+            return Json("false", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult updateElectronicsProductInfo(ElectronicsProduct product)
+        {
+            if (productManager.UpdateElectronicsProduct(product))
+            {
+                return Json("true", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("false", JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult updateDailyNeedProduct(DailyNeedProduct product)
+        {
+            if (productManager.UpdateDailyNeedsProduct(product)){
+                return Json("true", JsonRequestBehavior.AllowGet);
+            }
+            return Json("false", JsonRequestBehavior.AllowGet);
+
+        }
+        public JsonResult updateMobileProduct(MobileProduct product)
+        {
+            if (productManager.UpdateMobileProduct(product))
+            {
+                return Json("true", JsonRequestBehavior.AllowGet);
+            }
+            return Json("false", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteProduct(int ProductId,String ImageLink)
+        {
+           
+           
+            if (productManager.DeleteProduct(ProductId))
+            {
+                String imagePath = Request.MapPath("~/" + ImageLink + ".jpeg");
+                if ((System.IO.File.Exists(imagePath)))
+                {
+                  System.IO.File.Delete(imagePath);
+                }
+
+                return Json("true",JsonRequestBehavior.AllowGet);
+            }
+            return Json("false", JsonRequestBehavior.AllowGet);
+        }
+
+
+        /* public JsonResult updateDailyNeedsProduct(DailyNeedProduct product)
+         {
+             productManager.Up(product);
+             return Json("true", JsonRequestBehavior.AllowGet);
+         }*/
+        /*public JsonResult updateDailyNeedsProducts(DailyNeedProduct product)
+        {
+            productManager.upda(product);
+            return Json("true", JsonRequestBehavior.AllowGet);
+        }*/
+
+
+
     }
 }

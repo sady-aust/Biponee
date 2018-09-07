@@ -12,6 +12,11 @@ namespace Biponee.Models.Products
         {
             this.Quantity = quantity;
         }
+        public MobileProduct(int id,string productName, string productCode, int sectionId, double price, int quantity, string category, string description, string imageLink, string brandName) : base(id,productName, productCode, sectionId, price, category, description, imageLink, brandName)
+        {
+            this.Quantity = quantity;
+        }
+
 
         public MobileProduct() : base()
         {
