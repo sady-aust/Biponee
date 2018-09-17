@@ -58,19 +58,19 @@ namespace Biponee.BLL
         }
         public List<ElectronicsProduct> GetAllElectroinicProduct()
         {
-            return productGetway.getAllElectronicsProduct();
+            return productGetway.getElectronicProduct();
         }
-        public List<DailyNeedProduct> GetAllDailyNeedProuct()
+        public List<DailyNeedProduct> GetADailyNeedProuct()
         {
-            return productGetway.getAllDailyNeedProduct();
+            return productGetway.getADailyNeedProduct();
         }
         public List<MobileProduct> GetAllMobileProduct()
         {
-            return productGetway.getMobileProduct();
+            return productGetway.getAllMobileProduct();
         }
         public List<MobileProduct> GetAllMobileProduct(String ProductCode)
         {
-            return productGetway.getMobileProduct(ProductCode);
+            return productGetway.getAMobileProduct(ProductCode);
         }
 
         public List<ClothingProduct> getAClothingProduct(String ProductCode)
@@ -80,13 +80,18 @@ namespace Biponee.BLL
 
         public List<ElectronicsProduct> GetElectronicsProducts(String ProductCode)
         {
-            return productGetway.getAllElectronicsProduct(ProductCode);
+            return productGetway.getElectronicProduct(ProductCode);
         }
 
-        public List<DailyNeedProduct> GetAllDailyNeedProuct(String productCode)
+        public List<DailyNeedProduct> GetADailyNeedProuct(String productCode)
         {
-            return productGetway.getAllDailyNeedProduct(productCode);
+            return productGetway.getADailyNeedProduct(productCode);
         }
+        public List<MobileProduct> GetAMobileProduct(String productCode)
+        {
+            return productGetway.getMobileProduct(productCode);
+        }
+
 
 
         /* public List<ProductC> GetAllProductThisSection(int id)
@@ -105,7 +110,7 @@ namespace Biponee.BLL
 
         public Boolean isThisCodeAlreadyExist(String code)
         {
-            List<ProductC> productList = productGetway.getProductWithProductCode(code);
+            List<Product> productList = productGetway.getAllProduct(code);
             if (productList.Count > 0)
             {
                 return true;
@@ -113,21 +118,19 @@ namespace Biponee.BLL
             return false;
         }
 
-        public ProductC getProductByProductId(int id)
+        public Product getProductByProductId(int id)
         {
-            List<ProductC> list = productGetway.getProducts(id);
+            List<Product> list = productGetway.GetAllProduct(id);
             return list[0];
         }
 
         public List<ProductC> GetProducts(int secId,String CategoryName)
         {
-            return productGetway.getAllProductOfthisCategory(secId, CategoryName);
+            //  return productGetway.getAllProductOfthisCategory(secId, CategoryName);
+            return null;
         }
 
-        public List<ProductC> GetProducts(String name)
-        {
-            return productGetway.getProducts(name);
-        }
+     
 
         public Boolean UpdateClothingProduct(ClothingProduct product)
         {
@@ -172,6 +175,11 @@ namespace Biponee.BLL
                 return true;
             }
             return false;
+        }
+
+        public List<Product> GetAllProduct()
+        {
+            return productGetway.GetAllProduct();
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Biponee.Controllers
             Session["sectionInfo"] = sections;
             List<ClothingProduct> clothingProducts = productManager.GetAllCLothingProduct();
             List<ElectronicsProduct> electronicsProducts = productManager.GetAllElectroinicProduct();
-            List<DailyNeedProduct> dailyNeedProducts = productManager.GetAllDailyNeedProuct();
+            List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
             List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
             return View(new AdminSectionC(sections, clothingProducts,electronicsProducts,dailyNeedProducts,mobileProducts));
         }
@@ -94,7 +94,7 @@ namespace Biponee.Controllers
 
                          List<ClothingProduct> clothingProducts = productManager.GetAllCLothingProduct();
                          List<ElectronicsProduct> electronicsProducts = productManager.GetAllElectroinicProduct();
-                         List<DailyNeedProduct> dailyNeedProducts = productManager.GetAllDailyNeedProuct();
+                         List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
                          List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
                          return View(new AdminSectionC((AdminC)Session["adminIndo"],(List<SectionC>) Session["sectionInfo"], clothingProducts,electronicsProducts,dailyNeedProducts,mobileProducts));
                      }
@@ -102,7 +102,7 @@ namespace Biponee.Controllers
                      {
                          List<ClothingProduct> clothingProducts = productManager.GetAllCLothingProduct();
                          List<ElectronicsProduct> electronicsProducts = productManager.GetAllElectroinicProduct();
-                         List<DailyNeedProduct> dailyNeedProducts = productManager.GetAllDailyNeedProuct();
+                         List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
                          List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
                          return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], clothingProducts, electronicsProducts, dailyNeedProducts, mobileProducts));
                      }
@@ -112,7 +112,7 @@ namespace Biponee.Controllers
                     ViewBag.insertResult = "2";
                      List<ClothingProduct> clothingProducts = productManager.GetAllCLothingProduct();
                      List<ElectronicsProduct> electronicsProducts = productManager.GetAllElectroinicProduct();
-                     List<DailyNeedProduct> dailyNeedProducts = productManager.GetAllDailyNeedProuct();
+                     List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
                      List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
                      return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], clothingProducts, electronicsProducts, dailyNeedProducts, mobileProducts));
                  }
@@ -122,7 +122,7 @@ namespace Biponee.Controllers
                 ViewBag.insertResult = "3";
                  List<ClothingProduct> clothingProducts = productManager.GetAllCLothingProduct();
                  List<ElectronicsProduct> electronicsProducts = productManager.GetAllElectroinicProduct();
-                 List<DailyNeedProduct> dailyNeedProducts = productManager.GetAllDailyNeedProuct();
+                 List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
                  List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
                  return View(new AdminSectionC((AdminC)Session["adminIndo"], (List<SectionC>)Session["sectionInfo"], clothingProducts, electronicsProducts, dailyNeedProducts, mobileProducts));
              }
@@ -177,7 +177,7 @@ namespace Biponee.Controllers
             }
             else if(SectionId == 3)
             {
-                List<DailyNeedProduct> list = productManager.GetAllDailyNeedProuct(Code);
+                List<DailyNeedProduct> list = productManager.GetADailyNeedProuct(Code);
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
             else if(SectionId == 4)

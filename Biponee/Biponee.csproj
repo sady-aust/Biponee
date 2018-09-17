@@ -171,6 +171,7 @@
     <Compile Include="Models\Products\Product.cs" />
     <Compile Include="Models\SectionC.cs" />
     <Compile Include="Models\UserC.cs" />
+    <Compile Include="Models\UserSectionC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2089,7 +2090,7 @@
     <Content Include="Style\user\js\main.js" />
     <Content Include="Style\user\js\nouislider.min.js" />
     <Content Include="Style\user\js\slick.min.js" />
-    <Content Include="Style\user\js\user.js" />
+    <Content Include="Style\user\js\productPage.js" />
     <Content Include="Style\user\logo\logo.png" />
     <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />

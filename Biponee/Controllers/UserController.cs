@@ -1,5 +1,6 @@
 ﻿using Biponee.BLL;
 using Biponee.Models;
+using Biponee.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,17 @@ namespace Biponee.Controllers
         UserManager userManager = new UserManager();
         CartManager cartManager = new CartManager();
         // GET: User
-       /* public ActionResult Index()
+        public ActionResult Index()
         {
-            List<ProductC> productList = productManager.GetAllProduct();
+            List<ClothingProduct> clothingProduct = productManager.GetAllCLothingProduct();
+            List<DailyNeedProduct> dailyNeedProducts = productManager.GetADailyNeedProuct();
+            List<ElectronicsProduct> electronicsProduct = productManager.GetAllElectroinicProduct();
+            List<MobileProduct> mobileProducts = productManager.GetAllMobileProduct();
+
             List<SectionC> sections = sectionManager.getAllSections();
-            ViewBag.sections = sections;
-            return View(productList);
-        }*/
+          
+            return View(new UserSectionC(sections,mobileProducts,electronicsProduct,dailyNeedProducts, clothingProduct));
+        }
 
         public ActionResult Cart(int userId)
         {
@@ -38,31 +43,84 @@ namespace Biponee.Controllers
             return View();
         }
 
-        public ActionResult ProductPage(int id)
+        public ActionResult ProductPage(String code,int sectionId)
         {
-            ProductC product = productManager.getProductByProductId(id);
+           
             List<SectionC> sections = sectionManager.getAllSections();
             ViewBag.sections = sections;
-            return View(product);
+
+            if(sectionId == 1)
+            {
+                 ClothingProduct clothingProduct= productManager.getAClothingProduct(code)[0];
+                 ViewBag.product = clothingProduct;
+            }
+            else if(sectionId == 2)
+            {
+                ElectronicsProduct electronicsProduct = productManager.GetElectronicsProducts(code)[0];
+                 ViewBag.product = electronicsProduct;
+
+            }
+            else if (sectionId == 3)
+            {
+                DailyNeedProduct dailyNeedProduct = productManager.GetADailyNeedProuct(code)[0];
+                ViewBag.product = dailyNeedProduct;
+
+            }
+            else if (sectionId == 4)
+            {
+                MobileProduct mobileProduct = productManager.GetAllMobileProduct(code)[0];
+                ViewBag.product = mobileProduct;
+
+            }
+
+
+            return View();
         }
-      /*  public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
+        public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
         {
             if (ProductName != null)
             {
-                List<ProductC> productList = productManager.GetProducts(ProductName);
+              /*  List<ProductC> productList = productManager.GetProducts(ProductName);
                 List<SectionC> sections = sectionManager.getAllSections();
                 ViewBag.sections = sections;
-                return View(productList);
+                return View(productList);*/
             }
 
             else
             {
                 if (!searchInCategory)
                 {
-                    List<ProductC> productList = productManager.GetAllProductThisSection(id);
                     List<SectionC> sections = sectionManager.getAllSections();
                     ViewBag.sections = sections;
-                    return View(productList);
+                    List<ClothingProduct> clothingproductList = null;
+                    List<ElectronicsProduct> electronicsProductList = null;
+                    List<DailyNeedProduct> dailyNeedProductList = null;
+                    List<MobileProduct> mobileProductList = null;
+                    if (id == 1)
+                    {
+                        clothingproductList = productManager.GetAllCLothingProduct();
+                      
+                    }
+                    else if(id == 2)
+                    {
+                        electronicsProductList = productManager.GetAllElectroinicProduct();
+                      
+                    }
+                    else if (id == 3)
+                    {
+                         dailyNeedProductList = productManager.GetADailyNeedProuct();
+                        
+                    }
+                    else if(id == 4)
+                    {
+                         mobileProductList = productManager.GetAllMobileProduct();
+                       
+                    }
+
+                    View(new UserSectionC(null, mobileProductList, electronicsProductList,dailyNeedProductList,clothingproductList));
+                  
+                   
+                 
                 }
                 else
                 {
@@ -73,7 +131,8 @@ namespace Biponee.Controllers
                 }
             }
 
-        }*/
+            return View();
+        }
       
         
        /* public JsonResult getAllProduct()
@@ -107,8 +166,9 @@ namespace Biponee.Controllers
 
         }
 
-        public JsonResult insertCartItem(int ProductId,int Qunaity,int UserID,int Status,String Size)
+        public JsonResult insertCartIteminsertCartItemInSessionStorage(int ProductId,int Qunaity,int UserID,int Status,String Size)
         {
+         
             CartC myCart = new CartC(ProductId, Qunaity, UserID, Status, Size);
             bool isInserted = cartManager.insertItem(myCart);
 
@@ -121,6 +181,8 @@ namespace Biponee.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+
+           
         }
 
         public JsonResult getAllCartItem(int UserID)
@@ -129,11 +191,16 @@ namespace Biponee.Controllers
             return Json(cartList, JsonRequestBehavior.AllowGet);
         }
 
-       /* public JsonResult allProduct()
+        public JsonResult allProduct()
         {
-            List<ProductC> productList = productManager.GetAllProduct();
+            List<Product> productList = productManager.GetAllProduct();
             return Json(productList, JsonRequestBehavior.AllowGet);
-        }*/
+        }
 
+        public JsonResult getclothProduct(String Code)
+        {
+            ClothingProduct clothingProduct = productManager.getAClothingProduct(Code)[0];
+            return Json(clothingProduct, JsonRequestBehavior.AllowGet);
+        }
     }
 }

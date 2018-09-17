@@ -1,5 +1,5 @@
 ﻿@using Biponee.Models
-@model List<Biponee.Models.ProductC>
+@model Biponee.Models.UserSectionC
 
 <!DOCTYPE html>
 <html lang="en">
@@ -766,31 +766,119 @@
                         <!-- row -->
                         <div class="row">
                             <!-- Product Single -->
-                            @for (int i = Model.Count - 1; i >= 0; i--)
-                            {
-                                String imgLink = "/" + Model[i].ImageLink + ".jpeg";
+                            @{
+                                if (Model.ClothingProducts != null)
+                                {
+                                    for (int i = Model.ClothingProducts.Count - 1; i >= 0; i--)
+                                    {
+                                        String imgLink = "/" + Model.ClothingProducts[i].ImageLink + ".jpeg";
                                 <div class="col-md-4 col-sm-6 col-xs-6">
                                     <div class="product product-single">
                                         <div class="product-thumb">
                                             <div class="product-label">
 
                                             </div>
-                                            <button onclick="goToProductPage('@Model[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                            <button onclick="goToProductPage('@Model.ClothingProducts[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                                             <img src="@imgLink" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-price">TK @Model[i].Price </h3>
+                                            <h3 class="product-price">TK @Model.ClothingProducts[i].Price </h3>
 
-                                            <h2 class="product-name"><a href="#">@Model[i].ProductName</a></h2>
+                                            <h2 class="product-name"><a href="#">@Model.ClothingProducts[i].ProductName</a></h2>
                                             <div class="product-btns">
 
-                                                <button onclick="addToCart('@Model[i].ProductId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                <button onclick="addToCart('@Model.ClothingProducts[i].ProductId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            }
+                                        }
+                                }
+                                else  if (Model.ElectronicProducts != null)
+                                {
+                                    for (int i = Model.ElectronicProducts.Count - 1; i >= 0; i--)
+                                    {
+                                        String imgLink = "/" + Model.ElectronicProducts[i].ImageLink + ".jpeg";
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="product product-single">
+                                        <div class="product-thumb">
+                                            <div class="product-label">
 
+                                            </div>
+                                            <button onclick="goToProductPage('@Model.ElectronicProducts[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                            <img src="@imgLink" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">TK @Model.ElectronicProducts[i].Price </h3>
+
+                                            <h2 class="product-name"><a href="#">@Model.ElectronicProducts[i].ProductName</a></h2>
+                                            <div class="product-btns">
+
+                                                <button onclick="addToCart('@Model.ElectronicProducts[i].ProductId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        }
+                                }
+
+                                 else  if (Model.DailyNeedProducts != null)
+                                {
+                                    for (int i = Model.DailyNeedProducts.Count - 1; i >= 0; i--)
+                                    {
+                                        String imgLink = "/" + Model.DailyNeedProducts[i].ImageLink + ".jpeg";
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="product product-single">
+                                        <div class="product-thumb">
+                                            <div class="product-label">
+
+                                            </div>
+                                            <button onclick="goToProductPage('@Model.DailyNeedProducts[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                            <img src="@imgLink" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">TK @Model.DailyNeedProducts[i].Price </h3>
+
+                                            <h2 class="product-name"><a href="#">@Model.DailyNeedProducts[i].ProductName</a></h2>
+                                            <div class="product-btns">
+
+                                                <button onclick="addToCart('@Model.DailyNeedProducts[i].ProductId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        }
+                                }
+                                
+                                 else  if (Model.MobileProduct != null)
+                                {
+                                    for (int i = Model.MobileProduct.Count - 1; i >= 0; i--)
+                                    {
+                                        String imgLink = "/" + Model.MobileProduct[i].ImageLink + ".jpeg";
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="product product-single">
+                                        <div class="product-thumb">
+                                            <div class="product-label">
+
+                                            </div>
+                                            <button onclick="goToProductPage('@Model.MobileProduct[i].ProductId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                            <img src="@imgLink" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">TK @Model.MobileProduct[i].Price </h3>
+
+                                            <h2 class="product-name"><a href="#">@Model.MobileProduct[i].ProductName</a></h2>
+                                            <div class="product-btns">
+
+                                                <button onclick="addToCart('@Model.MobileProduct[i].ProductId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        }
+                                }
+
+                                }
 
 
                             <!-- /Product Single -->
