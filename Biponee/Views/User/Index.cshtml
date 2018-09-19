@@ -915,35 +915,29 @@
                     <table>
                         <tr>
                             <td>Size</td>
-                            <td >
-                                <select id="availablePrductSize">
-
-                                </select>
+                            <td>
+                                <select id="availablePrductSize"></select>
                             </td>
                         </tr>
 
                     </table>
                 </div>
                 <div id="addtoCartButton" class="modal-footer">
-                   
+
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
     <script>
-        var cart = {};
-        cart.products = [];
+    var cart = {};
+cart.products = [];
 
-        if (localStorage.getItem('cart') == null) {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
+if (localStorage.getItem('cart') == null) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 
-    function loadProduct() {
+function loadProduct() {
     var nameArray = [];
     $.ajax({
         type: "POST",
@@ -977,7 +971,7 @@ function getProductWidget(productName, price, imgLink) {
     productThumb.setAttribute("class", "product-thumb");
 
     var img = document.createElement("img");
-    img.setAttribute("src",  imgLink );
+    img.setAttribute("src", imgLink);
 
     productThumb.appendChild(img);
 
@@ -1183,7 +1177,7 @@ function showItems() {
     document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
 }
 
-function goToProductPage(code,sectionId) {
+function goToProductPage(code, sectionId) {
     document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + code + '&sectionId=' + parseInt(sectionId);
 }
 function serachResult() {
@@ -1207,11 +1201,11 @@ function searchByCategory(sectionid, category) {
     document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
 }
 
-function addToCart(id,code,name,img,price,sectionId) {
+function addToCart(id, code, name, img, price, sectionId) {
     if ((localStorage.getItem('status') != 'loggedIn')) {
         alert("Please Log in First");
     }
-    else {  
+    else {
         var productId = parseInt(id);
         var quantity = 1;
         var userId = localStorage.getItem('userID');
@@ -1260,10 +1254,13 @@ function showCartItem(data) {
     }
     $(".qty").text(data.length);
 }
+function goToCart() {
+    document.location = '@Url.Action("ViewCart", "User")'
+}
 
 
-
-    </script>
+    </script>  
 </body>
+
 
 </html>

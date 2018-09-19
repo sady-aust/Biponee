@@ -150,7 +150,6 @@
     <Compile Include="BLL\SectionManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AdminGetway.cs" />
     <Compile Include="DAL\CartGetway.cs" />
@@ -2091,6 +2090,8 @@
     <Content Include="Style\user\js\nouislider.min.js" />
     <Content Include="Style\user\js\slick.min.js" />
     <Content Include="Style\user\js\productPage.js" />
+    <Content Include="Style\user\js\userIndex.js" />
+    <Content Include="Style\user\js\viewcart.js" />
     <Content Include="Style\user\logo\logo.png" />
     <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />
@@ -2124,7 +2125,6 @@
     <Content Include="Style\user\fonts\slick.eot" />
     <Content Include="Style\user\fonts\slick.ttf" />
     <Content Include="Style\user\fonts\slick.woff" />
-    <Content Include="Views\User\Cart.cshtml" />
     <Content Include="Views\User\Checkout.cshtml" />
     <Content Include="Views\User\CustmerAccount.cshtml" />
     <Content Include="Views\User\ProductPage.cshtml" />
@@ -2304,6 +2304,7 @@
     <Content Include="Views\Admin\Orders.cshtml" />
     <Content Include="Views\Admin\Charts.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\User\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

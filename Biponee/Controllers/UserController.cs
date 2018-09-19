@@ -29,17 +29,20 @@ namespace Biponee.Controllers
             return View(new UserSectionC(sections,mobileProducts,electronicsProduct,dailyNeedProducts, clothingProduct));
         }
 
-        public ActionResult Cart(int userId)
-        {
-            List<CartC> list = cartManager.getAllItemWithImage(userId);
-            return View(list);
-        }
+       
         public ActionResult Checkout()
         {
             return View();
         }
         public ActionResult CustmerAccount()
         {
+            return View();
+        }
+
+        public ActionResult ViewCart()
+        {
+            List<SectionC> sections = sectionManager.getAllSections();
+            ViewBag.sections = sections;
             return View();
         }
 
@@ -133,6 +136,8 @@ namespace Biponee.Controllers
 
             return View();
         }
+
+
       
         
        /* public JsonResult getAllProduct()
@@ -184,6 +189,7 @@ namespace Biponee.Controllers
 
            
         }
+
 
         public JsonResult getAllCartItem(int UserID)
         {
