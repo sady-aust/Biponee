@@ -145,14 +145,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AdminManager.cs" />
-    <Compile Include="BLL\CartManger.cs" />
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\SectionManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AdminGetway.cs" />
-    <Compile Include="DAL\CartGetway.cs" />
     <Compile Include="DAL\ProductGetway.cs" />
     <Compile Include="DAL\SectionGetway.cs" />
     <Compile Include="DAL\UserGetway.cs" />
@@ -161,7 +159,8 @@
     </Compile>
     <Compile Include="Models\AdminC.cs" />
     <Compile Include="Models\AdminSectionC.cs" />
-    <Compile Include="Models\CartC.cs" />
+    <Compile Include="Models\CartItemC.cs" />
+    <Compile Include="Models\OrderC.cs" />
     <Compile Include="Models\ProductC.cs" />
     <Compile Include="Models\Products\ClothingProduct.cs" />
     <Compile Include="Models\Products\DailyNeedProduct.cs" />
@@ -2084,6 +2083,7 @@
     <Content Include="Style\user\img\thumb-product03.jpg" />
     <Content Include="Style\user\img\thumb-product04.jpg" />
     <Content Include="Style\user\js\bootstrap.min.js" />
+    <Content Include="Style\user\js\checkout.min.js" />
     <Content Include="Style\user\js\jquery.min.js" />
     <Content Include="Style\user\js\jquery.zoom.min.js" />
     <Content Include="Style\user\js\main.js" />

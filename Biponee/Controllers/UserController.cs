@@ -15,7 +15,7 @@ namespace Biponee.Controllers
         ProductManager productManager = new ProductManager();
         SectionManager sectionManager = new SectionManager();
         UserManager userManager = new UserManager();
-        CartManager cartManager = new CartManager();
+       
         // GET: User
         public ActionResult Index()
         {
@@ -138,14 +138,6 @@ namespace Biponee.Controllers
         }
 
 
-      
-        
-       /* public JsonResult getAllProduct()
-        {
-            List<ProductC> list = productManager.GetAllProduct();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }*/
-
         public JsonResult userSignUp(String FirstName,String LastName,String email,String Password)
         {
             UserC user = new UserC(FirstName, LastName, email, Password);
@@ -171,32 +163,10 @@ namespace Biponee.Controllers
 
         }
 
-        public JsonResult insertCartIteminsertCartItemInSessionStorage(int ProductId,int Qunaity,int UserID,int Status,String Size)
+        public JsonResult PlaceOrder(OrderC order)
         {
-         
-            CartC myCart = new CartC(ProductId, Qunaity, UserID, Status, Size);
-            bool isInserted = cartManager.insertItem(myCart);
-
-            if (isInserted)
-            {
-                List<CartC> cartList = cartManager.getAllItemWithImage(UserID);
-                return Json(cartList, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-
-           
+            return Json(null,JsonRequestBehavior.AllowGet);
         }
-
-
-        public JsonResult getAllCartItem(int UserID)
-        {
-            List<CartC> cartList = cartManager.getAllItemWithImage(UserID);
-            return Json(cartList, JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult allProduct()
         {
             List<Product> productList = productManager.GetAllProduct();

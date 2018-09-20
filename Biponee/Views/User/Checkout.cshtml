@@ -143,7 +143,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="qty"></span>
+                                   
 
                                 </div>
                                 <strong class="text-uppercase">My Cart:</strong>
@@ -587,47 +587,47 @@
                             </h4>
                         </div>
                         <div id="address" class="panel-collapse collapse">
-                            <form>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            First Name
-                                        </td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
-                                        <td style="width:100px;"></td>
-                                        <td>Last Name</td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
 
-                                    </tr>
-                                    <tr>
-                                        <td>Phone</td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Address</td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>State</td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
-                                        <td style="width:100px;"></td>
-                                        <td>City</td>
-                                        <td>
-                                            <input class="form-control" type="text" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
+                            <table>
+                                <tr>
+                                    <td>
+                                        First Name
+                                    </td>
+                                    <td>
+                                        <input id="firstName" class="form-control" type="text" placeholder="First Name" required />
+                                    </td>
+                                    <td style="width:100px;"></td>
+                                    <td>Last Name</td>
+                                    <td>
+                                        <input id="lastName" class="form-control" type="text" placeholder="Last Name" required />
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>
+                                        <input id="phone" class="form-control" type="text" placeholder="Phone" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>
+                                        <input id="shipaddress" class="form-control" type="text" placeholder="Address" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>State</td>
+                                    <td>
+                                        <input id="state" class="form-control" type="text" placeholder="State" required />
+                                    </td>
+                                    <td style="width:100px;"></td>
+                                    <td>City</td>
+                                    <td>
+                                        <input id="city" class="form-control" type="text" placeholder="City" required />
+                                    </td>
+                                </tr>
+                            </table>
+
                         </div>
                     </div>
                 </div>
@@ -643,14 +643,10 @@
                             <form>
                                 <table>
                                     <tr>
-                                        <td>
-                                            <label><input type="checkbox" value="">Cash On Delivery</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label><input type="checkbox" value="">Online Payment</label>
-                                        </td>
+                                        <input id="cashOnDelivery" required type="radio" name="paymentMethod" value="Cash On Delivery"> Cash On Delivery
+                                        <br>
+                                        <input id="cardOnDelivery" required type="radio" name="paymentMethod" value="Card On Delivery">  Card On Delivery
+
                                     </tr>
                                 </table>
                             </form>
@@ -665,66 +661,40 @@
                             </h4>
                         </div>
                         <div id="orderReview" class="panel-collapse collapse">
-                            <form>
-                                <table class="table">
-                                    <thead style="background-color:black;color:#f86949" class="thead-dark">
-                                        <tr>
 
+                            <table class="table">
+                                <thead style="background-color:black;color:#f86949" class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Product Id</th>
+                                        <th scope="col">Product Image</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Product Size</th>
+                                        <th scope="col">Unit Price</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="checkoutTableBody"></tbody>
+                            </table>
 
-                                            <th scope="col">Product Name</th>
-                                            <th scope="col">Unit Price</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-
-                                            <td>
-                                                <div>
-                                                    <p>Bag101</p>
-
-                                                </div>
-                                            </td>
-                                            <td>500</td>
-                                            <td width="200px">
-                                                <p>2</p>
-                                            </td>
-                                            <td>1000</td>
-                                        </tr>
-                                        <tr>
-
-
-
-                                            <td>
-                                                <div>
-                                                    <p>Shoe</p>
-
-                                                </div>
-                                            </td>
-                                            <td>1100</td>
-                                            <td width="200px">
-                                                <p>2</p>
-                                            </td>
-                                            <td>2200</td>
-                                        </tr>
-
-                                        <tr allign="right">
-                                            <td>
-                                                Total 25000/-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <button class="btn btn-primary">Place Order</button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </form>
                         </div>
+
                     </div>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button onclick="placeOrder()" class="btn btn-info">Place Order</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <!-- /row -->
@@ -905,343 +875,65 @@
         </div>
     </div>
     <!-- jQuery Plugins -->
-    <script src="js/jquery.min.js"></script>
+    <script src="~/Style/user/js/checkout.min.js"></script>
+    <!-- jQuery Plugins -->
+    <script src="~/Style/user/js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="~/Style/user/js/slick.min.js"></script>
+    <script src="~/Style/user/js/nouislider.min.js"></script>
+    <script src="~/Style/user/js/jquery.zoom.min.js"></script>
+    <script src="~/Style/user/js/main.js"></script>
+
     <script>
-         function loadProduct() {
-    var nameArray = [];
-    $.ajax({
-        type: "POST",
-        url: '@Url.Action("allProduct", "User")',
-        contentType: "application/json;charset=utf-8",
+        function placeOrder() {
+            
+            var fName = $("#firstName").val();
+            var lName = $("#lastName").val();
+            var phone = $("#phone").val();
+            var address = $("#shipaddress").val();
+            var state = $("#state").val();
+            var city = $("#city").val();
+            var uId = localStorage.getItem("userID");
+            var total = document.getElementById("totalPrice").innerText;
 
-        dataType: "json",
-        success: function (data) {
-
-            if (data != null) {
-                console.log(data);
-                var nameArray = [];
-                for (var i = 0; i < data.length; i++) {
-                    nameArray.push(data[i].ProductName);
-                }
-
+            var paymentMethod = "";
+            if (document.getElementById("cashOnDelivery").checked) {
+                paymentMethod = "Cash On Delivery";
+            }
+            else if (document.getElementById("cardOnDelivery").checked) {
+                paymentMethod = "Card On Delivery";
             }
 
-        }
-    });
+            var JsonData =
+                {
+                    FirstName: fName,
+                    LastName: lName,
+                    Phone: phone,
+                    Address: address,
+                    State: state,
+                    City: city,
+                    UserId: uId,
+                    PaymentMethod: paymentMethod,
+                    Total: total
+                };
 
 
-
-
-
-    return nameArray;
-}
-
-        function getProductWidget(productName, price, imgLink) {
-            var productWidgetDiv = document.createElement("div");
-            productWidgetDiv.setAttribute("class", "product product-widget");
-
-            var productThumb = document.createElement("div");
-            productThumb.setAttribute("class", "product-thumb");
-
-            var img = document.createElement("img");
-            img.setAttribute("src", imgLink);
-
-            productThumb.appendChild(img);
-
-
-            var bodyDiv = document.createElement("div");
-            bodyDiv.setAttribute("class", "product-body");
-
-            var h5 = document.createElement("h5");
-            h5.innerHTML = "Price " + price + " Tk"
-
-            var Qh5 = document.createElement("h5");
-            Qh5.innerHTML = "Quanity " + "1";
-            var nmaeh5 = document.createElement("h5");
-            nmaeh5.innerHTML = productName;
-
-            bodyDiv.appendChild(h5);
-            bodyDiv.appendChild(Qh5);
-            bodyDiv.appendChild(nmaeh5);
-
-            productWidgetDiv.appendChild(productThumb);
-            productWidgetDiv.appendChild(bodyDiv);
-            return productWidgetDiv;
-
-        }
-
-
-
-$(window).on('load', function () {
-    if (localStorage.getItem('status') == 'loggedIn') {
-        console.log("Loggedin");
-        document.getElementById("loginLink").setAttribute("style", "display: none;");
-        document.getElementById("joinLink").setAttribute("style", "display: none;");
-        document.getElementById("signOutLink").setAttribute("style", "display: block");
-        document.getElementById("myProfileLink").setAttribute("style", "display: block");
-        document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
-
-    }
-    var input = document.getElementById("myInputext");
-    var awsomecomplete = new Awesomplete(input);
-
-
-    showCartItem(JSON.parse(localStorage.getItem('cart')).products);
-
-
-    var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
-
-
-    $.ajax({
-        type: "POST",
-        url: '@Url.Action("getAllCartItem", "User")',
+            $.ajax({
+        type: "GET",
+        url: '@Url.Action("PlaceOrder", "User")',
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(JsonData),
         dataType: "json",
         success: function (data) {
 
-            if (data != null) {
-                console.log(data);
-                var shoppingCart = document.getElementById("userShoppingcart");
-                console.log(shoppingCart);
-                clearCartItem();
-                showCartItem(data);
-                $(".qty").text(data.length);
-
-
-
-            }
-
         }
-    });
-
-
-});
-        $('#signOutLink').click(function () {
-    document.getElementById("loginLink").setAttribute("style", "display: block;");
-    document.getElementById("joinLink").setAttribute("style", "display: block;");
-    document.getElementById("signOutLink").setAttribute("style", "display: none");
-    document.getElementById("myProfileLink").setAttribute("style", "display: none");
-    document.getElementById("myAccount").innerHTML = "My Account";
-    localStorage.setItem('status', 'signout');
-    localStorage.setItem('userID', null);
-    localStorage.setItem('FirstName', null);
-
-    localStorage.clear();
-    clearCartItem();
-    $(".qty").empty();
-    document.location = '@Url.Action("Index", "User")'
-
         });
 
+          
 
-$("#loginBtn").click(function () {
-
-
-    var email = $("#loginEmail").val();
-    var password = $("#loginPassword").val();
-
-
-    var jsonData = { Email: email, Password: password };
-    $.ajax({
-        type: "POST",
-        url: '@Url.Action("userLogIn", "User")',
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(jsonData),
-        dataType: "json",
-        success: function (data) {
-
-            if (data != null) {
-
-                localStorage.setItem('status', 'loggedIn');
-                localStorage.setItem('userID', data.Id);
-                localStorage.setItem('FirstName', data.FirstName);
-
-
-                if (localStorage.getItem('status') == 'loggedIn') {
-                    document.getElementById("loginLink").setAttribute("style", "display: none;");
-                    document.getElementById("joinLink").setAttribute("style", "display: none;");
-                    document.getElementById("signOutLink").setAttribute("style", "display: block");
-                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
-                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
-
-                }
-                $("#loginModal").modal('hide');
-
-                var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
-
-
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("getAllCartItem", "User")',
-                    contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify(JsonData),
-                    dataType: "json",
-                    success: function (data) {
-
-                        if (data != null) {
-                            console.log(data);
-                            var shoppingCart = document.getElementById("userShoppingcart");
-                            console.log(shoppingCart);
-
-                            clearCartItem();
-                            showCartItem(data);
-                            $(".qty").text(data.length);
-
-                        }
-
-                    }
-                });
-            }
-            else {
-                alert("Email and password doesnot match");
-            }
         }
-    });
-    // alert(name + " " + email);
-    return false;
-});
-
-
-$("#signUpbtn").click(function () {
-
-    console.log("Clicked");
-    var firstName = $("#firstName").val();
-    var lastName = $("#lastName").val();
-    var email = $("#email").val();
-    var password = $("#password").val();
-
-
-    var jsonData = { FirstName: firstName, LastName: lastName, Email: email, Password: password };
-    $.ajax({
-        type: "POST",
-        url: '@Url.Action("userSignUp", "User")',
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(jsonData),
-        dataType: "json",
-        success: function (data) {
-
-
-
-            if (data != 'false') {
-
-                localStorage.setItem('status', 'loggedIn');
-                localStorage.setItem('userID', data.Id);
-                localStorage.setItem('FirstName', data.FirstName);
-
-
-                if (localStorage.getItem('status') == 'loggedIn') {
-                    document.getElementById("loginLink").setAttribute("style", "display: none;");
-                    document.getElementById("joinLink").setAttribute("style", "display: none;");
-                    document.getElementById("signOutLink").setAttribute("style", "display: block");
-                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
-                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
-
-                }
-                $("#signupmodal").modal('hide');
-
-            }
-            else {
-                alert("Please Try again");
-            }
-        }
-    });
-    // alert(name + " " + email);
-    return false;
-});
-
-function showItems() {
-    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
-}
-
-function goToProductPage(id) {
-    document.location = '@Url.Action("ProductPage", "User")' + '?' + 'id=' + parseInt(id);
-}
-function serachResult() {
-    var productName = document.getElementById("myInputext").value;
-    if (productName == "" || productName == null) {
-        alert("Please enter a product name");
-    }
-    else {
-        document.location = '@Url.Action("Products", "User")' + '?' + 'id=-1&' + 'ProductName=' + productName;
-    }
-
-}
-
-function gotoSection(id) {
-    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
-}
-
-function searchByCategory(sectionid, category) {
-    // alert("Clicked");
-
-    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
-}
-
-function addToCart(id,name,img,price) {
-    if ((localStorage.getItem('status') != 'loggedIn')) {
-        alert("Please Log in First");
-    }
-    else {
-
-        var productId = parseInt(id);
-        var quantity = 1;
-        var userId = localStorage.getItem('userID');
-        var status = 0;
-        var size = null;
-
-
-        var JsonData = { ProductId: productId, ProductName: name, Image: img, Price: price, Qunaity: quantity, UserID: userId, Status: status, Size: size }
-
-        if (localStorage && localStorage.getItem('cart')) {
-            var cart = JSON.parse(localStorage.getItem('cart'));
-            cart.products.push(JsonData);
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            console.log(localStorage.getItem('cart'));
-            showCartItem(JSON.parse(localStorage.getItem('cart')).products);
-        }
-        else {
-            console.log("Not define");
-        }
-
-    }
-
-    return false;
-}
-
-
-function clearCartItem() {
-    $("#userShoppingcart").empty();
-}
-
-        function showCartItem(data) {
-
-            console.log(data)
-            var shoppingCart = document.getElementById("userShoppingcart");
-            console.log(shoppingCart);
-            clearCartItem();
-            $(".qty").text(data.length);
-
-
-            for (var i = 0; i < data.length; i++) {
-
-                var cartWid = getProductWidget(data[i].ProductName, data[i].Price, data[i].Image);
-                shoppingCart.appendChild(cartWid);
-            }
-            $(".qty").text(data.length);
-        }
-
-
 
     </script>
-
 </body>
 
 </html>

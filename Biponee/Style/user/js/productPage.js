@@ -9,7 +9,7 @@
         dataType: "json",
         success: function (data) {
 
-            if (data != null) {
+            if (data !== null) {
         console.log(data);
     var nameArray = [];
                 for (var i = 0; i < data.length; i++) {
@@ -52,7 +52,7 @@
             bodyDiv.appendChild(Qh5);
             bodyDiv.appendChild(nmaeh5);
 
-            if (size != null) {
+            if (size !== null) {
                 var sizeV = document.createElement("h5");
                 sizeV.innerHTML = "Size " + size;
                 bodyDiv.appendChild(sizeV);
@@ -66,7 +66,7 @@
 
 
 $(window).on('load', function () {
-    if (localStorage.getItem('status') == 'loggedIn') {
+    if (localStorage.getItem('status') === 'loggedIn') {
         console.log("Loggedin");
     document.getElementById("loginLink").setAttribute("style", "display: none;");
         document.getElementById("joinLink").setAttribute("style", "display: none;");
@@ -85,7 +85,7 @@ $(window).on('load', function () {
         dataType: "json",
         success: function (data) {
 
-            if (data != null) {
+            if (data !== null) {
 
                 var nameArray = [];
                 for (var i = 0; i < data.length; i++) {
@@ -136,14 +136,14 @@ $("#loginBtn").click(function () {
         dataType: "json",
         success: function (data) {
 
-            if (data != null) {
+            if (data !== null) {
 
         localStorage.setItem('status', 'loggedIn');
     localStorage.setItem('userID', data.Id);
                 localStorage.setItem('FirstName', data.FirstName);
 
 
-                if (localStorage.getItem('status') == 'loggedIn') {
+                if (localStorage.getItem('status') === 'loggedIn') {
         document.getElementById("loginLink").setAttribute("style", "display: none;");
     document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
@@ -164,7 +164,7 @@ $("#loginBtn").click(function () {
                     dataType: "json",
                     success: function (data) {
 
-                        if (data != null) {
+                        if (data !== null) {
             console.log(data);
         var shoppingCart = document.getElementById("userShoppingcart");
                             console.log(shoppingCart);
@@ -208,14 +208,14 @@ $("#signUpbtn").click(function () {
 
 
 
-            if (data != 'false') {
+            if (data !== 'false') {
 
             localStorage.setItem('status', 'loggedIn');
         localStorage.setItem('userID', data.Id);
                 localStorage.setItem('FirstName', data.FirstName);
 
 
-                if (localStorage.getItem('status') == 'loggedIn') {
+                if (localStorage.getItem('status') === 'loggedIn') {
             document.getElementById("loginLink").setAttribute("style", "display: none;");
         document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
@@ -244,7 +244,7 @@ function goToProductPage(id) {
             }
 function serachResult() {
     var productName = document.getElementById("myInputext").value;
-    if (productName == "" || productName == null) {
+    if (productName === "" || productName === null) {
                 alert("Please enter a product name");
             }
     else {
@@ -265,7 +265,7 @@ function searchByCategory(sectionid, category) {
 
 
 function addToCart(id,name,img,price,secId) {
-    if ((localStorage.getItem('status') != 'loggedIn')) {
+    if ((localStorage.getItem('status') !== 'loggedIn')) {
                 alert("Please Log in First");
             }
     else {
@@ -275,7 +275,7 @@ function addToCart(id,name,img,price,secId) {
         var userId = localStorage.getItem('userID');
         var status = 0;
         var size = null;
-        if (secId == 1) {
+        if (secId === 1) {
             var selectionArea = document.getElementById("sizes");
             size = selectionArea.options[selectionArea.selectedIndex].value;
         }

@@ -587,7 +587,7 @@
                                 <td>Name</td>
                                 <td>Size</td>
                                 <td>Quantity</td>
-                                <td>Price</td>
+                                <td>Price(Unit)</td>
                             </tr>
 
                         </thead>
@@ -784,7 +784,12 @@
     <script src="~/Style/user/js/main.js"></script>
    
 
+    <script>
+        function proceedCheckout() {
+    document.location = '@Url.Action("Checkout", "User")';
+}
 
+    </script>
 </body>
 
 </html>
