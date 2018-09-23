@@ -904,13 +904,32 @@
                 paymentMethod = "Card On Delivery";
             }
 
+            var arr = JSON.parse(localStorage.getItem('cart')).products;
+
+            var cartArr = [];
+            for (var i = 0; i < arr.length ; i++) {
+                var cartJson =
+                    {
+                        OrderId: -1,
+                        ProductId: arr[i].ProductId,
+                        ProductImage: arr[i].Image,
+                        ProductName: arr[i].ProductName,
+                        ProductSize: arr[i].Size,
+                        UnitPrice: arr[i].Price,
+                        Qty: arr[i].Qunaity,
+                        Subtotal: arr[i].Qunaity * arr[i].Price
+                    }
+                cartArr.push(cartJson);
+            }
+
             var JsonData =
                 {
+                    OrderId: -1,
                     FirstName: fName,
                     LastName: lName,
                     Phone: phone,
                     Address: address,
-                    State: state,
+                    State: state,          
                     City: city,
                     UserId: uId,
                     PaymentMethod: paymentMethod,
@@ -919,17 +938,18 @@
 
 
             $.ajax({
-        type: "GET",
+        type: "POST",
         url: '@Url.Action("PlaceOrder", "User")',
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(JsonData),
         dataType: "json",
         success: function (data) {
 
-        }
-        });
 
-          
+
+        }
+    });
+         
 
         }
 

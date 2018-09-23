@@ -145,12 +145,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AdminManager.cs" />
+    <Compile Include="BLL\OrderManager.cs" />
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\SectionManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AdminGetway.cs" />
+    <Compile Include="DAL\OrderGetway.cs" />
     <Compile Include="DAL\ProductGetway.cs" />
     <Compile Include="DAL\SectionGetway.cs" />
     <Compile Include="DAL\UserGetway.cs" />

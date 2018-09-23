@@ -15,6 +15,7 @@ namespace Biponee.Controllers
         ProductManager productManager = new ProductManager();
         SectionManager sectionManager = new SectionManager();
         UserManager userManager = new UserManager();
+        OrderManager orderManager = new OrderManager();
        
         // GET: User
         public ActionResult Index()
@@ -162,9 +163,12 @@ namespace Biponee.Controllers
             return Json(res, JsonRequestBehavior.AllowGet);
 
         }
-
+   
         public JsonResult PlaceOrder(OrderC order)
         {
+            if (orderManager.InsertOrder(order)){
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
             return Json(null,JsonRequestBehavior.AllowGet);
         }
         public JsonResult allProduct()

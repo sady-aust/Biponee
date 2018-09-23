@@ -7,7 +7,7 @@ namespace Biponee.Models
 {
     public class OrderC
     {
-        public String OrderId { get; set; }
+        public int OrderId { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Phone { get; set; }
@@ -18,7 +18,7 @@ namespace Biponee.Models
         public String PaymentMethod { get; set; }
         public Double Total { get; set; }
 
-        public OrderC(string orderId, string firstName, string lastName, string phone, string address, string state, string city, int userId, string paymentMethod, double total)
+       /* public OrderC(int orderId, string firstName, string lastName, string phone, string address, string state, string city, int userId, string paymentMethod, double total)
         {
             OrderId = orderId;
             FirstName = firstName;
@@ -43,6 +43,6 @@ namespace Biponee.Models
             UserId = userId;
             PaymentMethod = paymentMethod;
             Total = total;
-        }
+        }*/
     }
 }
