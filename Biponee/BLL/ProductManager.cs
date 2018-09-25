@@ -94,19 +94,10 @@ namespace Biponee.BLL
 
 
 
-        /* public List<ProductC> GetAllProductThisSection(int id)
-         {
-             return productGetway.getAllOfThisSection(id);
-         }*/
-
-        /* public List<ProductC> GetProduct(int secId, String productCode)
-         {
-             return productGetway.getProducts(secId, productCode);
-         }*/
-
-
-
-
+       public List<Product> GetProduct(String name)
+       {
+            return productGetway.getAllProductOfThisName(name);
+       }
 
         public Boolean isThisCodeAlreadyExist(String code)
         {

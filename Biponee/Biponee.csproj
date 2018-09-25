@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AdminManager.cs" />
+    <Compile Include="BLL\CartItemManager.cs" />
     <Compile Include="BLL\OrderManager.cs" />
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\SectionManager.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AdminGetway.cs" />
+    <Compile Include="DAL\CartItemGetway.cs" />
     <Compile Include="DAL\OrderGetway.cs" />
     <Compile Include="DAL\ProductGetway.cs" />
     <Compile Include="DAL\SectionGetway.cs" />
@@ -2307,6 +2309,7 @@
     <Content Include="Views\Admin\Charts.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\ViewCart.cshtml" />
+    <Content Include="Views\User\ViewOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

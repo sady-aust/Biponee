@@ -89,9 +89,11 @@ $(window).on('load', function () {
 
                 var nameArray = [];
                 for (var i = 0; i < data.length; i++) {
-        nameArray.push(data[i].ProductName);
-    }
+                    nameArray.push(data[i].ProductName);
+                }
             }
+
+            console.log(nameArray);
             awsomecomplete.list = nameArray;
         }
     });
@@ -304,7 +306,7 @@ function clearCartItem() {
                 $("#userShoppingcart").empty();
             }
 
-        function showCartItem(data) {
+function showCartItem(data) {
 
                 console.log(data)
             var shoppingCart = document.getElementById("userShoppingcart");
@@ -319,5 +321,7 @@ function clearCartItem() {
                 shoppingCart.appendChild(cartWid);
             }
             $(".qty").text(data.length);
-        }
+}
+
+
 

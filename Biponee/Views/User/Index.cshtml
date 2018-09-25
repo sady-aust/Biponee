@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="shopping-cart-btns">
                                         <button onclick="goToCart()" class="main-btn">View Cart</button>
-                                        <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                                        <button onclick="goToCheckout()" class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -499,6 +499,11 @@
                                 {
                                     break;
                                 }
+                                if (Model.ClothingProducts[i].LCount <=0 && Model.ClothingProducts[i].MCount<=0 && Model.ClothingProducts[i].XLCount<=0 && Model.ClothingProducts[i].XXLCount<=0)
+                                {
+                                    continue;
+                                }
+
                                 <div class="product product-single">
                                     <div class="product-thumb">
 
@@ -568,6 +573,11 @@
                                 {
                                     break;
                                 }
+
+                                if (Model.ElectronicProducts[i].Quantity <= 0)
+                                {
+                                    continue;
+                                }
                                 String imgLink = "/" + Model.ElectronicProducts[i].ImageLink + ".jpeg";
                                 <div class="product product-single">
                                     <div class="product-thumb">
@@ -630,6 +640,12 @@
                     {
                         break;
                     }
+
+                    if (Model.DailyNeedProducts[i].Quantity <= 0)
+                    {
+                        continue;
+                    }
+
                     String imgLink = "/" + Model.DailyNeedProducts[i].ImageLink + ".jpeg";
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="product product-single">
@@ -679,6 +695,11 @@
                     if (count > 4)
                     {
                         break;
+                    }
+
+                    if (Model.MobileProduct[i].Quantity <= 0)
+                    {
+                        continue;
                     }
                     String imgLink = "/" + Model.MobileProduct[i].ImageLink + ".jpeg";
                     <div class="col-md-3 col-sm-6 col-xs-6">
@@ -1174,7 +1195,7 @@ $("#signUpbtn").click(function () {
 });
 
 function showItems() {
-    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
+   document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
 }
 
 function goToProductPage(code, sectionId) {
@@ -1186,7 +1207,7 @@ function serachResult() {
         alert("Please enter a product name");
     }
     else {
-        document.location = '@Url.Action("Products", "User")' + '?' + 'id=-1&' + 'ProductName=' + productName;
+        document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + null + '&sectionId=-1&name=' + productName;
     }
 
 }
@@ -1256,7 +1277,11 @@ function showCartItem(data) {
 }
 function goToCart() {
     document.location = '@Url.Action("ViewCart", "User")';
-}
+        }
+
+        function goToCheckout() {
+            document.location = '@Url.Action("Checkout", "User")';
+        }
 
 
     </script>  

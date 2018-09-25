@@ -16,6 +16,7 @@ namespace Biponee.Controllers
         SectionManager sectionManager = new SectionManager();
         UserManager userManager = new UserManager();
         OrderManager orderManager = new OrderManager();
+        CartItemManager cartItemManager = new CartItemManager();
        
         // GET: User
         public ActionResult Index()
@@ -47,21 +48,21 @@ namespace Biponee.Controllers
             return View();
         }
 
-        public ActionResult ProductPage(String code,int sectionId)
+        public ActionResult ProductPage(String code,int sectionId,String name)
         {
            
             List<SectionC> sections = sectionManager.getAllSections();
             ViewBag.sections = sections;
 
-            if(sectionId == 1)
+            if (sectionId == 1)
             {
-                 ClothingProduct clothingProduct= productManager.getAClothingProduct(code)[0];
-                 ViewBag.product = clothingProduct;
+                ClothingProduct clothingProduct = productManager.getAClothingProduct(code)[0];
+                ViewBag.product = clothingProduct;
             }
-            else if(sectionId == 2)
+            else if (sectionId == 2)
             {
                 ElectronicsProduct electronicsProduct = productManager.GetElectronicsProducts(code)[0];
-                 ViewBag.product = electronicsProduct;
+                ViewBag.product = electronicsProduct;
 
             }
             else if (sectionId == 3)
@@ -76,17 +77,45 @@ namespace Biponee.Controllers
                 ViewBag.product = mobileProduct;
 
             }
+            else if (code.Equals("null") && sectionId == -1)
+            {
+                List<Product> products = productManager.GetProduct(name);
+
+                int secId = products[0].SectionId;
+
+                if (secId == 1)
+                {
+                    ClothingProduct clothingProduct = productManager.getAClothingProduct(products[0].ProductCode)[0];
+                    ViewBag.product = clothingProduct;
+                }
+                else if (secId == 2)
+                {
+                    ElectronicsProduct electronicsProduct = productManager.GetElectronicsProducts(products[0].ProductCode)[0];
+                    ViewBag.product = electronicsProduct;
+                }
+                else if (secId == 3)
+                {
+                    DailyNeedProduct dailyNeedProduct = productManager.GetADailyNeedProuct(products[0].ProductCode)[0];
+                    ViewBag.product = dailyNeedProduct;
+                }
+                else if(secId == 4)
+                {
+                    MobileProduct mobileProduct = productManager.GetAllMobileProduct(products[0].ProductCode)[0];
+                    ViewBag.product = mobileProduct;
+                }
+            }
 
 
             return View();
         }
         public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
         {
-            if (ProductName != null)
+            if (ProductName != null && id==-1)
             {
-              /*  List<ProductC> productList = productManager.GetProducts(ProductName);
-                List<SectionC> sections = sectionManager.getAllSections();
+               /* List<SectionC> sections = sectionManager.getAllSections();
                 ViewBag.sections = sections;
+
+                List<Product> productList = productManager.GetProduct(ProductName);
                 return View(productList);*/
             }
 
@@ -121,7 +150,7 @@ namespace Biponee.Controllers
                        
                     }
 
-                    View(new UserSectionC(null, mobileProductList, electronicsProductList,dailyNeedProductList,clothingproductList));
+                  return  View(new UserSectionC(null, mobileProductList, electronicsProductList,dailyNeedProductList,clothingproductList));
                   
                    
                  
@@ -131,13 +160,22 @@ namespace Biponee.Controllers
                     List<ProductC> productList = productManager.GetProducts(id, category);
                     List<SectionC> sections = sectionManager.getAllSections();
                     ViewBag.sections = sections;
-                    return View(productList);
+                    return View();
                 }
             }
 
             return View();
         }
 
+        public ActionResult ViewOrders(int UID)
+        {
+
+            List<OrderC> orders = orderManager.getAllOrder(UID);
+
+            ViewBag.userOrders = orders;
+
+            return View();
+        }
 
         public JsonResult userSignUp(String FirstName,String LastName,String email,String Password)
         {
@@ -167,9 +205,23 @@ namespace Biponee.Controllers
         public JsonResult PlaceOrder(OrderC order)
         {
             if (orderManager.InsertOrder(order)){
-                return Json(true, JsonRequestBehavior.AllowGet);
+                int id = orderManager.GetLastOrderID();
+
+                
+                return Json(id, JsonRequestBehavior.AllowGet);
             }
             return Json(null,JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult PlaceCartItems(List<CartItemC> list)
+        {
+            if (cartItemManager.insertCartItem(list))
+            {
+                  return Json("placed", JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+
+
         }
         public JsonResult allProduct()
         {

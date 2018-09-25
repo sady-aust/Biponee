@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Collections.Generic;
+@using Biponee.Models
+@model Biponee.Models.OrderC
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -143,7 +146,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
-                                   
+
 
                                 </div>
                                 <strong class="text-uppercase">My Cart:</strong>
@@ -578,125 +581,36 @@
         <!-- container -->
         <div class="container">
             <!-- row -->
-            <div class="row">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#address">1.YOUR ADDRESS</a>
-                            </h4>
-                        </div>
-                        <div id="address" class="panel-collapse collapse">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
 
-                            <table>
-                                <tr>
-                                    <td>
-                                        First Name
-                                    </td>
-                                    <td>
-                                        <input id="firstName" class="form-control" type="text" placeholder="First Name" required />
-                                    </td>
-                                    <td style="width:100px;"></td>
-                                    <td>Last Name</td>
-                                    <td>
-                                        <input id="lastName" class="form-control" type="text" placeholder="Last Name" required />
-                                    </td>
 
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>
-                                        <input id="phone" class="form-control" type="text" placeholder="Phone" required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>
-                                        <input id="shipaddress" class="form-control" type="text" placeholder="Address" required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>State</td>
-                                    <td>
-                                        <input id="state" class="form-control" type="text" placeholder="State" required />
-                                    </td>
-                                    <td style="width:100px;"></td>
-                                    <td>City</td>
-                                    <td>
-                                        <input id="city" class="form-control" type="text" placeholder="City" required />
-                                    </td>
-                                </tr>
-                            </table>
+                        <td>Order Id</td>
+                        <td>Payment Method</td>
+                        <td>Total</td>
+                        <td>Date</td>
+                        <td>Details</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+        List<OrderC> orders = ViewBag.userOrders;
+        for (int i = 0; i < orders.Count; i++)
+        {
+                    <tr>
+                        <td>@orders[i].OrderId</td>
+                        <td>@orders[i].PaymentMethod</td>
+                        <td>@orders[i].Total</td>
+                        <td>@orders[i].Date</td>
+                        <td>"dsdsdf"</td>
 
-                        </div>
-                    </div>
-                </div>
+                    </tr>
 
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#meymentMethod">2.PYMENT METHOD</a>
-                            </h4>
-                        </div>
-                        <div id="meymentMethod" class="panel-collapse collapse">
-                            <form>
-                                <table>
-                                    <tr>
-                                        <input id="cashOnDelivery" required type="radio" name="paymentMethod" value="Cash On Delivery"> Cash On Delivery
-                                        <br>
-                                        <input id="cardOnDelivery" required type="radio" name="paymentMethod" value="Card On Delivery">  Card On Delivery
-
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#orderReview">3.ORDER REVIEW</a>
-                            </h4>
-                        </div>
-                        <div id="orderReview" class="panel-collapse collapse">
-
-                            <table class="table">
-                                <thead style="background-color:black;color:#f86949" class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Product Id</th>
-                                        <th scope="col">Product Image</th>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Product Size</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="checkoutTableBody"></tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div>
-                    <table>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button onclick="placeOrder()" class="btn btn-info">Place Order</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+}
+                    }
+                </tbody>
+            </table>
             <!-- /row -->
         </div>
         <!-- /container -->
@@ -884,135 +798,7 @@
     <script src="~/Style/user/js/jquery.zoom.min.js"></script>
     <script src="~/Style/user/js/main.js"></script>
 
-    <script>
-        function placeOrder() {
-            
-            var fName = $("#firstName").val();
-            var lName = $("#lastName").val();
-            var phone = $("#phone").val();
-            var address = $("#shipaddress").val();
-            var state = $("#state").val();
-            var city = $("#city").val();
-            var uId = localStorage.getItem("userID");
-            var total = document.getElementById("totalPrice").innerText;
 
-            var paymentMethod = "";
-            if (document.getElementById("cashOnDelivery").checked) {
-                paymentMethod = "Cash On Delivery";
-            }
-            else if (document.getElementById("cardOnDelivery").checked) {
-                paymentMethod = "Card On Delivery";
-            }
-
-            var arr = JSON.parse(localStorage.getItem('cart')).products;
-
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1; 
-            var yyyy = today.getFullYear();
-
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-
-            today = mm + '/' + dd + '/' + yyyy;
-           
-
-
-            var JsonData =
-                {
-                    OrderId: -1,
-                    FirstName: fName,
-                    LastName: lName,
-                    Phone: phone,
-                    Address: address,
-                    State: state,          
-                    City: city,
-                    UserId: uId,
-                    PaymentMethod: paymentMethod,
-                    Total: total,
-                    Date: today
-                };
-
-            var cartArr = [];
-
-            var isInserted;
-            $.ajax({
-        type: "POST",
-        url: '@Url.Action("PlaceOrder", "User")',
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(JsonData),
-        dataType: "json",
-        success: function (data) {
-
-            var OrderID = data;
-            isInserted = true;
-            console.log(isInserted);
-          
-            for (var i = 0; i < arr.length; i++) {
-                var cartJson =
-                    {
-                        OrderId: OrderID,
-                        ProductId: arr[i].ProductId,
-                        ProductImage: arr[i].Image,
-                        ProductName: arr[i].ProductName,
-                        ProductSize: arr[i].Size,
-                        UnitPrice: arr[i].Price,
-                        Qty: arr[i].Qunaity,
-                        Subtotal: (arr[i].Qunaity * arr[i].Price).toString()
-                    }
-                cartArr.push(cartJson);
-               
-          
-            }
-
-          
-
-            if (isInserted) {
-               
-
-                $.ajax({
-                     type: "POST",
-                     url: '@Url.Action("PlaceCartItems", "User")',
-                     contentType: "application/json;charset=utf-8",
-                     data: JSON.stringify(cartArr),
-                     dataType: "json",
-                    success: function (data) {
-
-                        if (data === "placed") {
-                            var cart = {};
-                            cart.products = [];
-
-                           
-                                localStorage.setItem('cart', JSON.stringify(cart));
-
-                            console.log(cart);
-
-                            document.location = '@Url.Action("ViewOrders", "User")' + '?UID=' + uId;
-                        }
-                    }
-                });
-            }
-
-
-
-        }
-            });
-
-
-         
-           
-           
-        }
-           
-
-        
-
-    </script>
 </body>
 
 </html>

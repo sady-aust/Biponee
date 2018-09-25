@@ -14,9 +14,9 @@ namespace Biponee.Models
         public String ProductSize { get; set; }
         public Double UnitPrice { get; set; }
         public int Qty { get; set; }
-        public Double Subtotal { get; set; }
+        public String Subtotal { get; set; }
 
-        public CartItemC(int orderId,int productId, string productImage, string productName, string productSize, double unitPrice, int qty, double subtotal)
+        public CartItemC(int orderId, int productId, string productImage, string productName, string productSize, double unitPrice, int qty, string subtotal)
         {
             OrderId = orderId;
             ProductId = productId;
@@ -27,9 +27,9 @@ namespace Biponee.Models
             Qty = qty;
             Subtotal = subtotal;
         }
-        public CartItemC( int productId, string productImage, string productName, string productSize, double unitPrice, int qty, double subtotal)
+
+        public CartItemC(int productId, string productImage, string productName, string productSize, double unitPrice, int qty, string subtotal)
         {
-            
             ProductId = productId;
             ProductImage = productImage;
             ProductName = productName;
@@ -39,6 +39,8 @@ namespace Biponee.Models
             Subtotal = subtotal;
         }
 
-
+        public CartItemC()
+        {
+        }
     }
 }

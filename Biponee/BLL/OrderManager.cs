@@ -20,5 +20,15 @@ namespace Biponee.BLL
             }
             return false;
         }
+
+        public int GetLastOrderID()
+        {
+            return orderGetway.GetLastInsertedOrderID();
+        }
+
+        public List<OrderC> getAllOrder(int uId)
+        {
+            return orderGetway.getAllOrders(uId);
+        }
     }
 }
