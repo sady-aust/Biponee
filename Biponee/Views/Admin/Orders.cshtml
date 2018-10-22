@@ -1,5 +1,7 @@
-﻿
-@model Biponee.Models.AdminC
+﻿@using System.Collections.Generic;
+@using Biponee.Models
+@model Biponee.Models.OrderC
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +22,7 @@
     <link rel="stylesheet" href="~/Style/admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.addons.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -37,6 +40,30 @@
 </head>
 
 <body>
+    <script>
+            $(document).ready(function () {
+                $(window).on('load', function () {
+                    $('body').hide();
+                    if (localStorage['status'] == 'loggedin') {
+
+                        $("#profileName1").text(localStorage['FirstName']);
+
+                        console.log(localStorage['FirstName']);
+                        $("#profileName2").text(localStorage['FirstName']);
+                        $("#firstName").text(localStorage['FirstName']);
+                        $('#lastName').text(localStorage['Email']);
+                        $('#email').text(localStorage['Email']);
+                        $('body').show();
+
+                    }
+                    else {
+                          document.location = '@Url.Action("Index", "Admin")';
+                    }
+
+                });
+            });
+
+    </script>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -185,7 +212,7 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">@Model.FirstName</span>
+                            <span class="profile-text" id="profileName1"></span>
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -194,7 +221,7 @@
                                 Profile
                             </a>
 
-                            <a class="dropdown-item">
+                            <a href="#" id="signOutLink" class="dropdown-item">
                                 Sign Out
                             </a>
                         </div>
@@ -215,7 +242,7 @@
                             <div class="user-wrapper">
 
                                 <div class="text-wrapper">
-                                    <p class="profile-name">@Model.FirstName</p>
+                                    <p class="profile-name" id="profileName2"></p>
                                     <div>
                                         <small class="designation text-muted">Admin</small>
                                         <span class="status-indicator online"></span>
@@ -266,11 +293,31 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">OrderId</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Details</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @{
+            List<OrderC> orders = ViewBag.orders;
+            for (int i = 0; i < orders.Count; i++)
+            {
+                <tr>
+                    <td>@orders[i].OrderId</td>
+                    <td>@orders[i].FirstName</td>
+                    <td>@orders[i].Phone</td>
+                    <td>@orders[i].Date</td>
+                    <td>
+                        <a onclick="viewOrderDetails('@orders[i].OrderId')" class="btn btn-info" >Details</a>
+                    </td>
+
+                </tr>
+
+             }
+           }
+                    </tbody>
 
                 </table>
 
@@ -328,19 +375,19 @@
 
                     <table>
                         <tr>
-                            <td>First Name </td>
-                            <td>@Model.FirstName</td>
+                            <td colspan="2">First Name: </td>
+                            <td id="firstName"></td>
 
                         </tr>
                         <tr>
 
-                            <td>Last Name </td>
-                            <td>@Model.LastName</td>
+                            <td colspan="2">Last Name: </td>
+                            <td id="lastName"></td>
 
                         </tr>
                         <tr>
-                            <td>Email </td>
-                            <td>@Model.Email</td>
+                            <td colspan="2">Email: </td>
+                            <td id="email"></td>
 
                         </tr>
 
@@ -354,22 +401,37 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+              $(document).ready(function () {
             $("#dashboard").click(function () {
-                 document.location = '@Url.Action("AdminPage", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AdminPage", "Admin")';
             });
 
             $("#addproducts").click(function () {
-                 document.location = '@Url.Action("AddProduct", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("AddProduct", "Admin")';
             });
             $("#chart").click(function () {
-                 document.location = '@Url.Action("Charts", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Charts", "Admin")';
             });
             $("#orders").click(function () {
-                 document.location = '@Url.Action("Orders", "Admin")' + '?' + 'id=' + @Model.ID;
+                 document.location = '@Url.Action("Orders", "Admin")';
+            });
+
+            $("#signOutLink").click(function () {
+                localStorage.setItem("adminId", null);
+                localStorage.setItem("Email", null);
+                localStorage.setItem("FirstName", null);
+                localStorage.setItem("LastName", null);
+                localStorage.setItem("status", 'signout');
+                document.location = '@Url.Action("Index", "Admin")';
             });
 
         });
+
+
+        function viewOrderDetails(orderId) {
+            document.location = '@Url.Action("ViewOrderDetails", "Admin")' + '?' + 'OrderId=' + orderId;;
+
+        }
     </script>
 </body>
 

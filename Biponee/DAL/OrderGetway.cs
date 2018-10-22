@@ -76,5 +76,67 @@ namespace Biponee.DAL
 
             return list;
         }
+
+        public List<OrderC> getAllOrders()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            String QUERY = "SELECT * FROM orders";
+
+            SqlCommand command = new SqlCommand(QUERY, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<OrderC> list = new List<OrderC>();
+
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["orderId"]);
+                String firstName = (String)reader["firstName"];
+                String lastName = (String)reader["lastName"];
+                String phone = (String)reader["phone"];
+                String address = (String)reader["address"];
+                String state = (String)reader["city"];
+                String city = (String)reader["state"];
+                int userId = (int)reader["userId"];
+                String paymentMethod = (String)reader["paymentmethod"];
+                double total = Convert.ToDouble(reader["total"]);
+                String date = (String)reader["date"];
+                list.Add(new OrderC(id, firstName, lastName, phone, address, state, city, userId, paymentMethod, total, date));
+            }
+
+
+            return list;
+        }
+
+        public OrderC getOrder(int orderId)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            String QUERY = "SELECT * FROM orders WHERE orderId ="+orderId;
+
+            SqlCommand command = new SqlCommand(QUERY, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<OrderC> list = new List<OrderC>();
+
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["orderId"]);
+                String firstName = (String)reader["firstName"];
+                String lastName = (String)reader["lastName"];
+                String phone = (String)reader["phone"];
+                String address = (String)reader["address"];
+                String state = (String)reader["city"];
+                String city = (String)reader["state"];
+                int userId = (int)reader["userId"];
+                String paymentMethod = (String)reader["paymentmethod"];
+                double total = Convert.ToDouble(reader["total"]);
+                String date = (String)reader["date"];
+                list.Add(new OrderC(id, firstName, lastName, phone, address, state, city, userId, paymentMethod, total, date));
+            }
+
+
+            return list[0];
+        }
     }
 }

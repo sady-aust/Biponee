@@ -127,6 +127,14 @@ $('#signOutLink').click(function () {
     document.location = '@Url.Action("Index", "User")'
 
 });
+
+$("#viewOrdersLink").click(function () {
+
+    document.location = '@Url.Action("ViewOrders", "User")' + '?' + 'UID=' + parseInt(localStorage.getItem("userID")
+        }
+    );
+
+
 $("#loginBtn").click(function () {
 
 
@@ -155,6 +163,8 @@ $("#loginBtn").click(function () {
                     document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
                     document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+
                     document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
 
                 }

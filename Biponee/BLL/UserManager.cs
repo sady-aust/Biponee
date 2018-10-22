@@ -20,7 +20,7 @@ namespace Biponee.BLL
             return false;
         }
 
-        public UserC getetUser(String email,String password)
+        public UserC getAUser(String email,String password)
         {
             List<UserC> list = userGetway.getUser(email, password);
 
@@ -29,6 +29,11 @@ namespace Biponee.BLL
                 return list[0];
             }
             return null;
+        }
+
+        public List<UserC> getAllUser()
+        {
+            return userGetway.getAllUser();
         }
     }
 }

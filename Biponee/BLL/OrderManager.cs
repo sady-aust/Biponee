@@ -30,5 +30,15 @@ namespace Biponee.BLL
         {
             return orderGetway.getAllOrders(uId);
         }
+
+        public List<OrderC> getAllOrder()
+        {
+            return orderGetway.getAllOrders();
+        }
+
+        public OrderC GetOrder(int orderId)
+        {
+            return orderGetway.getOrder(orderId);
+        }
     }
 }

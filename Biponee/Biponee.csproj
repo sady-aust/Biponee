@@ -165,6 +165,7 @@
     <Compile Include="Models\AdminSectionC.cs" />
     <Compile Include="Models\CartItemC.cs" />
     <Compile Include="Models\OrderC.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
     <Compile Include="Models\ProductC.cs" />
     <Compile Include="Models\Products\ClothingProduct.cs" />
     <Compile Include="Models\Products\DailyNeedProduct.cs" />
@@ -2097,6 +2098,7 @@
     <Content Include="Style\user\js\userIndex.js" />
     <Content Include="Style\user\js\viewcart.js" />
     <Content Include="Style\user\logo\logo.png" />
+    <Content Include="Views\Admin\ViewOrderDetails.cshtml" />
     <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

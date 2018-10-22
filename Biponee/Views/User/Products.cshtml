@@ -149,7 +149,7 @@
                                 </tr>
                             </table>
                             <ul class="custom-menu">
-
+                                <li><a href="#" onclick="viewOrders()" id="viewOrdersLink" style="display:none">MY Orders</a></li>
                                 <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
                                 <li><a href="#" id="signOutLink" style="display:none">Sign Out</a></li>
 
@@ -200,379 +200,23 @@
         <!-- container -->
         <div class="container">
             <div id="responsive-nav">
-                <!-- category nav -->
-                <div class="category-nav show-on-click">
-                    <span class="category-header">Categories <i class="fa fa-list"></i></span>
-                    <ul class="category-list">
-                        <li class="dropdown side-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women’s Clothing <i class="fa fa-angle-right"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row hidden-sm hidden-xs">
-                                    <div class="col-md-12">
-                                        <hr>
-                                        <a class="banner banner-1" href="#">
-                                            <img src="./img/banner05.jpg" alt="">
-                                            <div class="banner-caption text-center">
-                                                <h2 class="white-color">NEW COLLECTION</h2>
-                                                <h3 class="white-color font-weak">HOT DEAL</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                        <li class="dropdown side-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones & Accessories <i class="fa fa-angle-right"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4 hidden-sm hidden-xs">
-                                        <a class="banner banner-2" href="#">
-                                            <img src="./img/banner04.jpg" alt="">
-                                            <div class="banner-caption">
-                                                <h3 class="white-color">NEW<br>COLLECTION</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Computer & Office</a></li>
-                        <li><a href="#">Consumer Electronics</a></li>
-                        <li class="dropdown side-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Jewelry & Watches <i class="fa fa-angle-right"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Bags & Shoes</a></li>
-                        <li><a href="#">View All</a></li>
-                    </ul>
-                </div>
-                <!-- /category nav -->
+           
                 <!-- menu nav -->
                 <div class="menu-nav">
                     <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                     <ul class="menu-list">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="dropdown mega-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row hidden-sm hidden-xs">
-                                    <div class="col-md-12">
-                                        <hr>
-                                        <a class="banner banner-1" href="#">
-                                            <img src="./img/banner05.jpg" alt="">
-                                            <div class="banner-caption text-center">
-                                                <h2 class="white-color">NEW COLLECTION</h2>
-                                                <h3 class="white-color font-weak">HOT DEAL</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown mega-dropdown full-width">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Men <i class="fa fa-caret-down"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner06.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Women’s</h3>
-                                                </div>
-                                            </a>
-                                            <hr>
-                                        </div>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner07.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Men’s</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner08.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Accessories</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner09.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Bags</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Sales</a></li>
-                        <li class="dropdown default-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
-                            <ul class="custom-menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="products.html">Products</a></li>
-                                <li><a href="product-page.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
+                        <ul class="menu-list">
+                        <li><a href="#" onclick="gotoHome()">Home</a></li>
+                        @foreach (SectionC sec in sections)
+                            {
+                             
+                                <li><a href="#" onclick="gotoSection('@sec.SectionID')">@sec.SectionName</a></li>
+                            }
+                     
+             
+
+
+                </ul>
                     </ul>
                 </div>
                 <!-- menu nav -->
@@ -601,275 +245,275 @@
                 <div id="aside" class="col-md-3">
                     <!-- aside widget -->
                     <div class="aside">
-                        
+
                     </div>
-                   
+
                     <!-- aside widget -->
                     <!-- aside widget -->
                     <div class="aside">
-                        
+
                     </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
                     <div class="aside">
-                       
+
                     </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
                     <div class="aside">
-                       
+
                     </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
                     <div class="aside">
-                        
+
                     </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
                     <div class="aside">
-                       
-                        </div>
-                        <!-- /widget product -->
-                        <!-- widget product -->
-                        <div class="product product-widget">
-                           
-                        </div>
-                        <!-- /widget product -->
+
                     </div>
-                    <!-- /aside widget -->
+                    <!-- /widget product -->
+                    <!-- widget product -->
+                    <div class="product product-widget">
+
+                    </div>
+                    <!-- /widget product -->
                 </div>
-                <!-- /ASIDE -->
-                <!-- MAIN -->
-                <div id="main" class="col-md-9">
-                    <!-- store top filter -->
-                    <div class="store-filter clearfix">
-                        <div class="pull-left">
-                            <div class="row-filter">
-                                <a href="#"><i class="fa fa-th-large"></i></a>
-                                <a href="#" class="active"><i class="fa fa-bars"></i></a>
-                            </div>
-                            <div class="sort-filter">
-                                <span class="text-uppercase">Sort By:</span>
-                                <select class="input">
-                                    <option value="0">Position</option>
-                                    <option value="0">Price</option>
-                                    <option value="0">Rating</option>
-                                </select>
-                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-                            </div>
-                        </div>
-                        <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /store top filter -->
-                    <!-- STORE -->
-                    <div id="store">
-                        <!-- row -->
-                        <div class="row">
-                            <!-- Product Single -->
-                            @{
-                                if (Model.ClothingProducts != null)
-                                {
-                                    for (int i = Model.ClothingProducts.Count - 1; i >= 0; i--)
-                                    {
-                                        if (Model.ClothingProducts[i].LCount <= 0 && Model.ClothingProducts[i].MCount <= 0 && Model.ClothingProducts[i].XLCount <= 0 && Model.ClothingProducts[i].XXLCount <= 0)
-                                        {
-                                            continue;
-                                        }
-
-                                        String imgLink = "/" + Model.ClothingProducts[i].ImageLink + ".jpeg";
-                                <div class="col-md-4 col-sm-6 col-xs-6">
-                                    <div class="product product-single">
-                                        <div class="product-thumb">
-                                            <div class="product-label">
-
-                                            </div>
-                                            <button onclick="goToProductPage('@Model.ClothingProducts[i].ProductCode','@Model.ClothingProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                            <img src="@imgLink" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">TK @Model.ClothingProducts[i].Price </h3>
-
-                                            <h2 class="product-name"><a href="#">@Model.ClothingProducts[i].ProductName</a></h2>
-                                            <div class="product-btns">
-
-                                                <button  onclick="goToProductPage('@Model.ClothingProducts[i].ProductCode','@Model.ClothingProducts[i].SectionId')"  class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    }
-                                }
-                                else  if (Model.ElectronicProducts != null)
-                                {
-                                    for (int i = Model.ElectronicProducts.Count - 1; i >= 0; i--)
-                                    {
-                                        if (Model.ElectronicProducts[i].Quantity <= 0)
-                                        {
-                                            continue;
-                                        }
-
-                                        String imgLink = "/" + Model.ElectronicProducts[i].ImageLink + ".jpeg";
-                                <div class="col-md-4 col-sm-6 col-xs-6">
-                                    <div class="product product-single">
-                                        <div class="product-thumb">
-                                            <div class="product-label">
-
-                                            </div>
-                                            <button onclick="goToProductPage('@Model.ElectronicProducts[i].ProductCode','@Model.ElectronicProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                            <img src="@imgLink" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">TK @Model.ElectronicProducts[i].Price </h3>
-
-                                            <h2 class="product-name"><a href="#">@Model.ElectronicProducts[i].ProductName</a></h2>
-                                            <div class="product-btns">
-
-                                                <button onclick="addToCart('@Model.ElectronicProducts[i].ProductId','@Model.ElectronicProducts[i].ProductCode','@Model.ElectronicProducts[i].ProductName','@imgLink','@Model.ElectronicProducts[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    }
-                                }
-
-                                else  if (Model.DailyNeedProducts != null)
-                                {
-                                    for (int i = Model.DailyNeedProducts.Count - 1; i >= 0; i--)
-                                    {
-                                        if (Model.DailyNeedProducts[i].Quantity <= 0)
-                                        {
-                                            continue;
-                                        }
-                                        String imgLink = "/" + Model.DailyNeedProducts[i].ImageLink + ".jpeg";
-                                <div class="col-md-4 col-sm-6 col-xs-6">
-                                    <div class="product product-single">
-                                        <div class="product-thumb">
-                                            <div class="product-label">
-
-                                            </div>
-                                            <button onclick="goToProductPage('@Model.DailyNeedProducts[i].ProductCode','@Model.DailyNeedProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                            <img src="@imgLink" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">TK @Model.DailyNeedProducts[i].Price </h3>
-
-                                            <h2 class="product-name"><a href="#">@Model.DailyNeedProducts[i].ProductName</a></h2>
-                                            <div class="product-btns">
-
-                                                <button onclick="addToCart('@Model.DailyNeedProducts[i].ProductId','@Model.DailyNeedProducts[i].ProductCode','@Model.DailyNeedProducts[i].ProductName','@imgLink','@Model.DailyNeedProducts[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    }
-                                }
-
-                                else  if (Model.MobileProduct != null)
-                                {
-                                    for (int i = Model.MobileProduct.Count - 1; i >= 0; i--)
-                                    {
-                                        if (Model.MobileProduct[i].Quantity <= 0)
-                                        {
-                                            continue;
-                                        }
-
-                                        String imgLink = "/" + Model.MobileProduct[i].ImageLink + ".jpeg";
-                                <div class="col-md-4 col-sm-6 col-xs-6">
-                                    <div class="product product-single">
-                                        <div class="product-thumb">
-                                            <div class="product-label">
-
-                                            </div>
-                                            <button onclick="goToProductPage('@Model.MobileProduct[i].ProductCode','@Model.MobileProduct[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                            <img src="@imgLink" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">TK @Model.MobileProduct[i].Price </h3>
-
-                                            <h2 class="product-name"><a href="#">@Model.MobileProduct[i].ProductName</a></h2>
-                                            <div class="product-btns">
-
-                                                <button onclick="addToCart('@Model.MobileProduct[i].ProductId','@Model.MobileProduct[i].ProductCode','@Model.MobileProduct[i].ProductName','@imgLink','@Model.MobileProduct[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                        }
-                                }
-
-                                }
-
-
-                            <!-- /Product Single -->
-                            <!-- /Product Single -->
-                            <!-- Product Single -->
-                            <!-- /Product Single -->
-                            <!-- Product Single -->
-                            <!-- /Product Single -->
-                            <!-- Product Single -->
-                            <!-- /Product Single -->
-                        </div>
-                        <!-- /row -->
-                    </div>
-                    <!-- /STORE -->
-                    <!-- store bottom filter -->
-                    <div class="store-filter clearfix">
-                        <div class="pull-left">
-                            <div class="row-filter">
-                                <a href="#"><i class="fa fa-th-large"></i></a>
-                                <a href="#" class="active"><i class="fa fa-bars"></i></a>
-                            </div>
-                            <div class="sort-filter">
-                                <span class="text-uppercase">Sort By:</span>
-                                <select class="input">
-                                    <option value="0">Position</option>
-                                    <option value="0">Price</option>
-                                    <option value="0">Rating</option>
-                                </select>
-                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-                            </div>
-                        </div>
-                        <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /store bottom filter -->
-                </div>
-                <!-- /MAIN -->
+                <!-- /aside widget -->
             </div>
-            <!-- /row -->
+            <!-- /ASIDE -->
+            <!-- MAIN -->
+            <div id="main" class="col-md-9">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="pull-left">
+                        <div class="row-filter">
+                            <a href="#"><i class="fa fa-th-large"></i></a>
+                            <a href="#" class="active"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="sort-filter">
+                            <span class="text-uppercase">Sort By:</span>
+                            <select class="input">
+                                <option value="0">Position</option>
+                                <option value="0">Price</option>
+                                <option value="0">Rating</option>
+                            </select>
+                            <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <div class="page-filter">
+                            <span class="text-uppercase">Show:</span>
+                            <select class="input">
+                                <option value="0">10</option>
+                                <option value="1">20</option>
+                                <option value="2">30</option>
+                            </select>
+                        </div>
+                        <ul class="store-pages">
+                            <li><span class="text-uppercase">Page:</span></li>
+                            <li class="active">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /store top filter -->
+                <!-- STORE -->
+                <div id="store">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- Product Single -->
+                        @{
+                            if (Model.ClothingProducts != null)
+                            {
+                                for (int i = Model.ClothingProducts.Count - 1; i >= 0; i--)
+                                {
+                                    if (Model.ClothingProducts[i].LCount <= 0 && Model.ClothingProducts[i].MCount <= 0 && Model.ClothingProducts[i].XLCount <= 0 && Model.ClothingProducts[i].XXLCount <= 0)
+                                    {
+                                        continue;
+                                    }
+
+                                    String imgLink = "/" + Model.ClothingProducts[i].ImageLink + ".jpeg";
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="product product-single">
+                                            <div class="product-thumb">
+                                                <div class="product-label">
+
+                                                </div>
+                                                <button onclick="goToProductPage('@Model.ClothingProducts[i].ProductCode','@Model.ClothingProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                                <img src="@imgLink" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">TK @Model.ClothingProducts[i].Price </h3>
+
+                                                <h2 class="product-name"><a href="#">@Model.ClothingProducts[i].ProductName</a></h2>
+                                                <div class="product-btns">
+
+                                                    <button onclick="goToProductPage('@Model.ClothingProducts[i].ProductCode','@Model.ClothingProducts[i].SectionId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else if (Model.ElectronicProducts != null)
+                            {
+                                for (int i = Model.ElectronicProducts.Count - 1; i >= 0; i--)
+                                {
+                                    if (Model.ElectronicProducts[i].Quantity <= 0)
+                                    {
+                                        continue;
+                                    }
+
+                                    String imgLink = "/" + Model.ElectronicProducts[i].ImageLink + ".jpeg";
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="product product-single">
+                                            <div class="product-thumb">
+                                                <div class="product-label">
+
+                                                </div>
+                                                <button onclick="goToProductPage('@Model.ElectronicProducts[i].ProductCode','@Model.ElectronicProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                                <img src="@imgLink" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">TK @Model.ElectronicProducts[i].Price </h3>
+
+                                                <h2 class="product-name"><a href="#">@Model.ElectronicProducts[i].ProductName</a></h2>
+                                                <div class="product-btns">
+
+                                                    <button onclick="addToCart('@Model.ElectronicProducts[i].ProductId','@Model.ElectronicProducts[i].ProductCode','@Model.ElectronicProducts[i].ProductName','@imgLink','@Model.ElectronicProducts[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            else if (Model.DailyNeedProducts != null)
+                            {
+                                for (int i = Model.DailyNeedProducts.Count - 1; i >= 0; i--)
+                                {
+                                    if (Model.DailyNeedProducts[i].Quantity <= 0)
+                                    {
+                                        continue;
+                                    }
+                                    String imgLink = "/" + Model.DailyNeedProducts[i].ImageLink + ".jpeg";
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="product product-single">
+                                            <div class="product-thumb">
+                                                <div class="product-label">
+
+                                                </div>
+                                                <button onclick="goToProductPage('@Model.DailyNeedProducts[i].ProductCode','@Model.DailyNeedProducts[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                                <img src="@imgLink" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">TK @Model.DailyNeedProducts[i].Price </h3>
+
+                                                <h2 class="product-name"><a href="#">@Model.DailyNeedProducts[i].ProductName</a></h2>
+                                                <div class="product-btns">
+
+                                                    <button onclick="addToCart('@Model.DailyNeedProducts[i].ProductId','@Model.DailyNeedProducts[i].ProductCode','@Model.DailyNeedProducts[i].ProductName','@imgLink','@Model.DailyNeedProducts[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            else if (Model.MobileProduct != null)
+                            {
+                                for (int i = Model.MobileProduct.Count - 1; i >= 0; i--)
+                                {
+                                    if (Model.MobileProduct[i].Quantity <= 0)
+                                    {
+                                        continue;
+                                    }
+
+                                    String imgLink = "/" + Model.MobileProduct[i].ImageLink + ".jpeg";
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="product product-single">
+                                            <div class="product-thumb">
+                                                <div class="product-label">
+
+                                                </div>
+                                                <button onclick="goToProductPage('@Model.MobileProduct[i].ProductCode','@Model.MobileProduct[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                                <img src="@imgLink" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">TK @Model.MobileProduct[i].Price </h3>
+
+                                                <h2 class="product-name"><a href="#">@Model.MobileProduct[i].ProductName</a></h2>
+                                                <div class="product-btns">
+
+                                                    <button onclick="addToCart('@Model.MobileProduct[i].ProductId','@Model.MobileProduct[i].ProductCode','@Model.MobileProduct[i].ProductName','@imgLink','@Model.MobileProduct[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        }
+
+
+                        <!-- /Product Single -->
+                        <!-- /Product Single -->
+                        <!-- Product Single -->
+                        <!-- /Product Single -->
+                        <!-- Product Single -->
+                        <!-- /Product Single -->
+                        <!-- Product Single -->
+                        <!-- /Product Single -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /STORE -->
+                <!-- store bottom filter -->
+                <div class="store-filter clearfix">
+                    <div class="pull-left">
+                        <div class="row-filter">
+                            <a href="#"><i class="fa fa-th-large"></i></a>
+                            <a href="#" class="active"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="sort-filter">
+                            <span class="text-uppercase">Sort By:</span>
+                            <select class="input">
+                                <option value="0">Position</option>
+                                <option value="0">Price</option>
+                                <option value="0">Rating</option>
+                            </select>
+                            <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <div class="page-filter">
+                            <span class="text-uppercase">Show:</span>
+                            <select class="input">
+                                <option value="0">10</option>
+                                <option value="1">20</option>
+                                <option value="2">30</option>
+                            </select>
+                        </div>
+                        <ul class="store-pages">
+                            <li><span class="text-uppercase">Page:</span></li>
+                            <li class="active">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /store bottom filter -->
+            </div>
+            <!-- /MAIN -->
         </div>
-        <!-- /container -->
+        <!-- /row -->
+    </div>
+    <!-- /container -->
     </div>
     <!-- /section -->
     <!-- FOOTER -->
@@ -1319,7 +963,9 @@ function searchByCategory(sectionid, category) {
 
     document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
 }
-
+        function viewOrders() {
+            document.location = '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
+        }
 
 
         function showCartItem(data) {
@@ -1349,13 +995,13 @@ function showCartItem(data) {
 
     console.log(data);
     var shoppingCart = document.getElementById("userShoppingcart");
-   
+
     clearCartItem();
     $(".qty").text(data.length);
 
 
     for (var i = 0; i < data.length; i++) {
-        
+
         var cartWid = getProductWidget(data[i].ProductName, data[i].Price, data[i].Image);
         shoppingCart.appendChild(cartWid);
 
@@ -1402,6 +1048,358 @@ function showCartItem(data) {
         }
         function goToCheckout() {
             document.location = '@Url.Action("Checkout", "User")';
+        }
+
+
+    </script>
+
+    <script>
+    var cart = {};
+cart.products = [];
+
+if (localStorage.getItem('cart') == null) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+function loadProduct() {
+    var nameArray = [];
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("allProduct", "User")',
+        contentType: "application/json;charset=utf-8",
+
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+                console.log(data);
+                var nameArray = [];
+                for (var i = 0; i < data.length; i++) {
+                    nameArray.push(data[i].ProductName);
+                }
+
+            }
+
+        }
+    });
+
+
+    return nameArray;
+}
+
+function getProductWidget(productName, price, imgLink) {
+    var productWidgetDiv = document.createElement("div");
+    productWidgetDiv.setAttribute("class", "product product-widget");
+
+    var productThumb = document.createElement("div");
+    productThumb.setAttribute("class", "product-thumb");
+
+    var img = document.createElement("img");
+    img.setAttribute("src", imgLink);
+
+    productThumb.appendChild(img);
+
+
+    var bodyDiv = document.createElement("div");
+    bodyDiv.setAttribute("class", "product-body");
+
+    var h5 = document.createElement("h5");
+    h5.innerHTML = "Price " + price + " Tk"
+
+    var Qh5 = document.createElement("h5");
+    Qh5.innerHTML = "Quanity " + "1";
+    var nmaeh5 = document.createElement("h5");
+    nmaeh5.innerHTML = productName;
+
+    bodyDiv.appendChild(h5);
+    bodyDiv.appendChild(Qh5);
+    bodyDiv.appendChild(nmaeh5);
+
+    productWidgetDiv.appendChild(productThumb);
+    productWidgetDiv.appendChild(bodyDiv);
+    return productWidgetDiv;
+
+}
+
+
+
+$(window).on('load', function () {
+    if (localStorage.getItem('status') == 'loggedIn') {
+        console.log("Loggedin");
+        document.getElementById("loginLink").setAttribute("style", "display: none;");
+        document.getElementById("joinLink").setAttribute("style", "display: none;");
+        document.getElementById("signOutLink").setAttribute("style", "display: block");
+        document.getElementById("myProfileLink").setAttribute("style", "display: block");
+        document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+        document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
+
+    }
+    var input = document.getElementById("myInputext");
+    var awsomecomplete = new Awesomplete(input);
+
+
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("allProduct", "User")',
+        contentType: "application/json;charset=utf-8",
+
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+
+                var nameArray = [];
+                for (var i = 0; i < data.length; i++) {
+                    nameArray.push(data[i].ProductName);
+                }
+            }
+            awsomecomplete.list = nameArray;
+        }
+
+    });
+
+
+    var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
+
+
+    showCartItem(JSON.parse(localStorage.getItem('cart')).products);
+    console.log(JSON.parse(localStorage.getItem('cart')).products);
+
+});
+
+$('#signOutLink').click(function () {
+    document.getElementById("loginLink").setAttribute("style", "display: block;");
+    document.getElementById("joinLink").setAttribute("style", "display: block;");
+    document.getElementById("signOutLink").setAttribute("style", "display: none");
+    document.getElementById("myProfileLink").setAttribute("style", "display: none");
+    document.getElementById("viewOrdersLink").setAttribute("style", "display: none");
+    document.getElementById("myAccount").innerHTML = "My Account";
+    localStorage.setItem('status', 'signout');
+    localStorage.setItem('userID', null);
+    localStorage.setItem('FirstName', null);
+
+    localStorage.clear();
+    clearCartItem();
+    $(".qty").empty();
+    document.location = '@Url.Action("Index", "User")'
+
+});
+$("#loginBtn").click(function () {
+
+
+    var email = $("#loginEmail").val();
+    var password = $("#loginPassword").val();
+
+
+    var jsonData = { Email: email, Password: password };
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("userLogIn", "User")',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(jsonData),
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+
+                localStorage.setItem('status', 'loggedIn');
+                localStorage.setItem('userID', data.Id);
+                localStorage.setItem('FirstName', data.FirstName);
+
+
+                if (localStorage.getItem('status') == 'loggedIn') {
+                    document.getElementById("loginLink").setAttribute("style", "display: none;");
+                    document.getElementById("joinLink").setAttribute("style", "display: none;");
+                    document.getElementById("signOutLink").setAttribute("style", "display: block");
+                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                }
+                $("#loginModal").modal('hide');
+
+                var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
+
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("getAllCartItem", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(JsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data != null) {
+                            console.log(data);
+                            var shoppingCart = document.getElementById("userShoppingcart");
+                            console.log(shoppingCart);
+
+                            clearCartItem();
+                            showCartItem(data);
+                            $(".qty").text(data.length);
+
+                        }
+
+                    }
+                });
+            }
+            else {
+                alert("Email and password doesnot match");
+            }
+        }
+    });
+    // alert(name + " " + email);
+    return false;
+});
+
+
+$("#signUpbtn").click(function () {
+
+    console.log("Clicked");
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+
+
+    var jsonData = { FirstName: firstName, LastName: lastName, Email: email, Password: password };
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("userSignUp", "User")',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(jsonData),
+        dataType: "json",
+        success: function (data) {
+
+
+
+            if (data != 'false') {
+
+                localStorage.setItem('status', 'loggedIn');
+                localStorage.setItem('userID', data.Id);
+                localStorage.setItem('FirstName', data.FirstName);
+
+
+                if (localStorage.getItem('status') == 'loggedIn') {
+                    document.getElementById("loginLink").setAttribute("style", "display: none;");
+                    document.getElementById("joinLink").setAttribute("style", "display: none;");
+                    document.getElementById("signOutLink").setAttribute("style", "display: block");
+                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+                    console.log(document.getElementById("viewOrdersLink"));
+
+                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                }
+                $("#signupmodal").modal('hide');
+
+            }
+            else {
+                alert("Please Try again");
+            }
+        }
+    });
+    // alert(name + " " + email);
+    return false;
+});
+
+
+function showItems() {
+   document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
+        }
+
+function gotoSection(id) {
+    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+}
+
+function goToProductPage(code, sectionId) {
+    document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + code + '&sectionId=' + parseInt(sectionId);
+}
+function serachResult() {
+    var productName = document.getElementById("myInputext").value;
+    if (productName == "" || productName == null) {
+        alert("Please enter a product name");
+    }
+    else {
+        document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + null + '&sectionId=-1&name=' + productName;
+    }
+
+}
+
+function gotoSection(id) {
+    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+}
+
+function searchByCategory(sectionid, category) {
+    // alert("Clicked");
+
+    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
+}
+
+function addToCart(id, code, name, img, price, sectionId) {
+    if ((localStorage.getItem('status') != 'loggedIn')) {
+        alert("Please Log in First");
+    }
+    else {
+        var productId = parseInt(id);
+        var quantity = 1;
+        var userId = localStorage.getItem('userID');
+        var status = 0;
+        var size = null;
+
+
+        var JsonData = { ProductId: productId, ProductName: name, Image: img, Price: price, Qunaity: quantity, UserID: userId, Status: status, Size: size }
+
+        if (localStorage && localStorage.getItem('cart')) {
+            var cart = JSON.parse(localStorage.getItem('cart'));
+            cart.products.push(JsonData);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            console.log(localStorage.getItem('cart'));
+            showCartItem(JSON.parse(localStorage.getItem('cart')).products);
+        }
+        else {
+            console.log("Not define");
+        }
+
+    }
+
+    return false;
+}
+
+
+function clearCartItem() {
+    $("#userShoppingcart").empty();
+}
+
+function showCartItem(data) {
+
+    console.log(data)
+    var shoppingCart = document.getElementById("userShoppingcart");
+    console.log(shoppingCart);
+    clearCartItem();
+    $(".qty").text(data.length);
+
+
+    for (var i = 0; i < data.length; i++) {
+
+        var cartWid = getProductWidget(data[i].ProductName, data[i].Price, data[i].Image);
+        shoppingCart.appendChild(cartWid);
+    }
+    $(".qty").text(data.length);
+}
+function goToCart() {
+    document.location = '@Url.Action("ViewCart", "User")';
+        }
+
+        function goToCheckout() {
+            document.location = '@Url.Action("Checkout", "User")';
+        }
+
+        function viewOrders() {
+            document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
         }
 
 

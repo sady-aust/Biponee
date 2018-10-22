@@ -10,8 +10,8 @@
         success: function (data) {
 
             if (data !== null) {
-        console.log(data);
-    var nameArray = [];
+      
+                var nameArray = [];
                 for (var i = 0; i < data.length; i++) {
         nameArray.push(data[i].ProductName);
     }
@@ -67,7 +67,7 @@
 
 $(window).on('load', function () {
     if (localStorage.getItem('status') === 'loggedIn') {
-        console.log("Loggedin");
+       
     document.getElementById("loginLink").setAttribute("style", "display: none;");
         document.getElementById("joinLink").setAttribute("style", "display: none;");
         document.getElementById("signOutLink").setAttribute("style", "display: block");
@@ -93,7 +93,7 @@ $(window).on('load', function () {
                 }
             }
 
-            console.log(nameArray);
+          
             awsomecomplete.list = nameArray;
         }
     });
@@ -167,8 +167,8 @@ $("#loginBtn").click(function () {
                     success: function (data) {
 
                         if (data !== null) {
-            console.log(data);
-        var shoppingCart = document.getElementById("userShoppingcart");
+            
+                             var shoppingCart = document.getElementById("userShoppingcart");
                             console.log(shoppingCart);
 
                             clearCartItem();
@@ -192,7 +192,7 @@ $("#loginBtn").click(function () {
 
 $("#signUpbtn").click(function () {
 
-            console.log("Clicked");
+           
         var firstName = $("#firstName").val();
     var lastName = $("#lastName").val();
     var email = $("#email").val();
@@ -222,6 +222,7 @@ $("#signUpbtn").click(function () {
         document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
                     document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
                     document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
 
                 }
@@ -271,19 +272,23 @@ function addToCart(id,name,img,price,secId) {
                 alert("Please Log in First");
             }
     else {
+        console.log("SEC ID " + typeof secId);
 
         var productId = parseInt(id);
         var quantity = 1;
         var userId = localStorage.getItem('userID');
         var status = 0;
         var size = null;
-        if (secId === 1) {
+        if (secId === "1") {
             var selectionArea = document.getElementById("sizes");
             size = selectionArea.options[selectionArea.selectedIndex].value;
         }
 
 
-        var JsonData = {ProductId: productId, ProductName: name, Image: img, Price: price, Qunaity: quantity, UserID: userId, Status: status, Size: size }
+        var JsonData = { ProductId: productId, ProductName: name, Image: img, Price: price, Qunaity: quantity, UserID: userId, Status: status, Size: size }
+        console.log("Adding TO Cart");
+        console.log(JsonData);
+
 
         if (localStorage && localStorage.getItem('cart')) {
             var cart = JSON.parse(localStorage.getItem('cart'));
@@ -308,9 +313,9 @@ function clearCartItem() {
 
 function showCartItem(data) {
 
-                console.log(data)
+              
             var shoppingCart = document.getElementById("userShoppingcart");
-            console.log(shoppingCart);
+          
             clearCartItem();
             $(".qty").text(data.length);
 

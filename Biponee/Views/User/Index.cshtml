@@ -156,7 +156,7 @@
                             </table>
 
                             <ul class="custom-menu">
-
+                                <li><a href="#" onclick="viewOrders()" id="viewOrdersLink" style="display:none">MY Orders</a></li>
                                 <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
                                 <li><a href="#" id="signOutLink" style="display:none">Sign Out</a></li>
 
@@ -1027,6 +1027,7 @@ $(window).on('load', function () {
         document.getElementById("joinLink").setAttribute("style", "display: none;");
         document.getElementById("signOutLink").setAttribute("style", "display: block");
         document.getElementById("myProfileLink").setAttribute("style", "display: block");
+        document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
         document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
 
     }
@@ -1068,6 +1069,7 @@ $('#signOutLink').click(function () {
     document.getElementById("joinLink").setAttribute("style", "display: block;");
     document.getElementById("signOutLink").setAttribute("style", "display: none");
     document.getElementById("myProfileLink").setAttribute("style", "display: none");
+    document.getElementById("viewOrdersLink").setAttribute("style", "display: none");
     document.getElementById("myAccount").innerHTML = "My Account";
     localStorage.setItem('status', 'signout');
     localStorage.setItem('userID', null);
@@ -1107,6 +1109,7 @@ $("#loginBtn").click(function () {
                     document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
                     document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
                     document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
 
                 }
@@ -1179,6 +1182,9 @@ $("#signUpbtn").click(function () {
                     document.getElementById("joinLink").setAttribute("style", "display: none;");
                     document.getElementById("signOutLink").setAttribute("style", "display: block");
                     document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+                    console.log(document.getElementById("viewOrdersLink"));
+
                     document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
 
                 }
@@ -1194,9 +1200,12 @@ $("#signUpbtn").click(function () {
     return false;
 });
 
+
 function showItems() {
    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
-}
+        }
+
+        
 
 function goToProductPage(code, sectionId) {
     document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + code + '&sectionId=' + parseInt(sectionId);
@@ -1281,6 +1290,10 @@ function goToCart() {
 
         function goToCheckout() {
             document.location = '@Url.Action("Checkout", "User")';
+        }
+
+        function viewOrders() {
+            document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
         }
 
 

@@ -24,5 +24,10 @@ namespace Biponee.BLL
 
             return isAllInserted;
         }
+
+        public List<CartItemC> getAllCartItems(int orderid)
+        {
+            return cartItemGetway.getAllCartItem(orderid);
+        }
     }
 }

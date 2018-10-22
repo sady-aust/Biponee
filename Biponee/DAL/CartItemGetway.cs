@@ -87,7 +87,36 @@ namespace Biponee.DAL
 
             return -1;
         }
-        
+
+        public List<CartItemC> getAllCartItem(int orderId)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            String Query = "SELECT * FROM CartItems WHERE OrderID ="+orderId;
+
+            SqlCommand command = new SqlCommand(Query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<CartItemC> list = new List<CartItemC>();
+
+            while (reader.Read())
+            {
+                int cartItemId = (int)reader["CartItemID"];
+                int orderID = (int)reader["OrderID"];
+                int productId = (int)reader["ProductID"];
+                String productImage = reader["ProductImage"].ToString();
+                String productName = reader["ProductName"].ToString();
+                String productSize = reader["ProductSize"].ToString();
+                double unitPrice = Convert.ToDouble(reader["UnitPrice"]);
+                int qty = (int)reader["Quantity"];
+                double subtotal = Convert.ToDouble(reader["Subtotal"]);
+
+                list.Add(new CartItemC(cartItemId,orderID,productId,productImage,productName,productSize,unitPrice,qty,Convert.ToString(subtotal)));
+            }
+
+            return list;
+
+        }
+
 
     }
 }

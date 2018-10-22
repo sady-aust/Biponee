@@ -184,7 +184,7 @@ namespace Biponee.Controllers
 
             if (res)
             {
-                UserC loginuser = userManager.getetUser(email, Password);
+                UserC loginuser = userManager.getAUser(email, Password);
                 return Json(loginuser, JsonRequestBehavior.AllowGet);
             }
             else
@@ -196,7 +196,7 @@ namespace Biponee.Controllers
 
         public JsonResult userLogIn(String Email,String Password)
         {
-            UserC res = userManager.getetUser(Email, Password);
+            UserC res = userManager.getAUser(Email, Password);
          
             return Json(res, JsonRequestBehavior.AllowGet);
 

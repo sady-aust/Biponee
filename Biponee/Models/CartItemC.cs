@@ -7,6 +7,7 @@ namespace Biponee.Models
 {
     public class CartItemC
     {
+        public int CartItemId { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public String ProductImage { get; set; }
@@ -30,6 +31,19 @@ namespace Biponee.Models
 
         public CartItemC(int productId, string productImage, string productName, string productSize, double unitPrice, int qty, string subtotal)
         {
+            ProductId = productId;
+            ProductImage = productImage;
+            ProductName = productName;
+            ProductSize = productSize;
+            UnitPrice = unitPrice;
+            Qty = qty;
+            Subtotal = subtotal;
+        }
+
+        public CartItemC(int cartItemId, int orderId, int productId, string productImage, string productName, string productSize, double unitPrice, int qty, string subtotal)
+        {
+            CartItemId = cartItemId;
+            OrderId = orderId;
             ProductId = productId;
             ProductImage = productImage;
             ProductName = productName;

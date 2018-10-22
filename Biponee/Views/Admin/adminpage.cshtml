@@ -1,5 +1,6 @@
-﻿
-
+﻿ing System.Collections.Generic;
+@using Biponee.Models
+@model Biponee.Models.OrderC
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,22 +30,19 @@
                 $(window).on('load', function () {
                     $('body').hide();
                     if (localStorage['status'] == 'loggedin') {
-                       
+
                         $("#profileName1").text(localStorage['FirstName']);
                         $("#profileName2").text(localStorage['FirstName']);
                         $("#firstName").text(localStorage['FirstName']);
                         $('#lastName').text(localStorage['Email']);
                         $('#email').text(localStorage['Email']);
                         $('body').show();
-                        /*document.getElementById('firstName').innerHTML = localStorage['FirstName']; 
-                        document.getElementById('lastName').innerHTML = localStorage['LastName']; 
-                        document.getElementById('email').innerHTML = localStorage['Email']; 
-                        console.log(document.getElementById("profileName"));*/
+
                     }
                     else {
                           document.location = '@Url.Action("Index", "Admin")';
                     }
-                    
+
                 });
             });
 
@@ -55,7 +53,7 @@
                 <a class="navbar-brand brand-logo">
                     <img src="~/Style/user/logo/logo.png" alt="logo" />
                 </a>
-                <a class="navbar-brand brand-logo-mini" >
+                <a class="navbar-brand brand-logo-mini">
                     <img src="~/Style/user/logo/logo.png" alt="logo" />
                 </a>
             </div>
@@ -201,7 +199,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
 
-                            <a class="dropdown-item mt-2" href="#"  data-toggle="modal" data-target="#adminprofile">
+                            <a class="dropdown-item mt-2" href="#" data-toggle="modal" data-target="#adminprofile">
                                 Profile
                             </a>
 
@@ -247,13 +245,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" id="addproducts" class="nav-link" >
+                        <a href="#" id="addproducts" class="nav-link">
                             <i class="menu-icon mdi mdi-backup-restore"></i>
                             <span class="menu-title">Add Products</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  href="#" class="nav-link" id="chart">
+                        <a href="#" class="nav-link" id="chart">
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Charts</span>
                         </a>
@@ -282,14 +280,17 @@
                                             <i class="mdi mdi-receipt text-warning icon-lg"></i>
                                         </div>
                                         <div class="float-right">
+                                            @{
+                                                List<OrderC> orderList = ViewBag.orders;
+                                            }
                                             <p class="mb-0 text-right">Orders</p>
                                             <div class="fluid-container">
-                                                <h3 class="font-weight-medium text-right mb-0">3455</h3>
+                                                <h3 class="font-weight-medium text-right mb-0">@orderList.Count</h3>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="text-muted mt-3 mb-0">
-                                        <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+                                        <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Total Number Of Orders
                                     </p>
                                 </div>
                             </div>
@@ -321,15 +322,18 @@
                                         <div class="float-left">
                                             <i class="mdi mdi-account-location text-info icon-lg"></i>
                                         </div>
+                                        @{ 
+                                            List<UserC> userList = ViewBag.users;
+                                        }
                                         <div class="float-right">
                                             <p class="mb-0 text-right">Total Users</p>
                                             <div class="fluid-container">
-                                                <h3 class="font-weight-medium text-right mb-0">246</h3>
+                                                <h3 class="font-weight-medium text-right mb-0">@userList.Count</h3>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="text-muted mt-3 mb-0">
-                                        <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
+                                        <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Total Number Of User
                                     </p>
                                 </div>
                             </div>
@@ -491,165 +495,40 @@
                                                     <th>
                                                         First name
                                                     </th>
-                                                    <th>
-                                                        Progress
-                                                    </th>
+                                                   
                                                     <th>
                                                         Amount
                                                     </th>
+                                                    
                                                     <th>
-                                                        Sales
-                                                    </th>
-                                                    <th>
-                                                        Deadline
+                                                        Order Date
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                @{ 
+                                                    for(int i= orderList.Count - 1, j = 0; i >= 0 && j <= 5; i--, j++)
+                                                    {
+                                                          <tr>
                                                     <td class="font-weight-medium">
-                                                        1
+                                                       @orderList[i].OrderId
                                                     </td>
                                                     <td>
-                                                        Herman Beck
+                                                        @orderList[i].FirstName
                                                     </td>
+                                                   
                                                     <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
+                                                        @orderList[i].Total
                                                     </td>
+                                                  
                                                     <td>
-                                                        $ 77.99
-                                                    </td>
-                                                    <td class="text-danger">
-                                                        53.64%
-                                                        <i class="mdi mdi-arrow-down"></i>
-                                                    </td>
-                                                    <td>
-                                                        May 15, 2015
+                                                        @orderList[i].Date
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="font-weight-medium">
-                                                        2
-                                                    </td>
-                                                    <td>
-                                                        Messsy Adam
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        $245.30
-                                                    </td>
-                                                    <td class="text-success">
-                                                        24.56%
-                                                        <i class="mdi mdi-arrow-up"></i>
-                                                    </td>
-                                                    <td>
-                                                        July 1, 2015
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="font-weight-medium">
-                                                        3
-                                                    </td>
-                                                    <td>
-                                                        John Richards
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        $138.00
-                                                    </td>
-                                                    <td class="text-danger">
-                                                        28.76%
-                                                        <i class="mdi mdi-arrow-down"></i>
-                                                    </td>
-                                                    <td>
-                                                        Apr 12, 2015
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="font-weight-medium">
-                                                        4
-                                                    </td>
-                                                    <td>
-                                                        Peter Meggik
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        $ 77.99
-                                                    </td>
-                                                    <td class="text-danger">
-                                                        53.45%
-                                                        <i class="mdi mdi-arrow-down"></i>
-                                                    </td>
-                                                    <td>
-                                                        May 15, 2015
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="font-weight-medium">
-                                                        5
-                                                    </td>
-                                                    <td>
-                                                        Edward
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        $ 160.25
-                                                    </td>
-                                                    <td class="text-success">
-                                                        18.32%
-                                                        <i class="mdi mdi-arrow-up"></i>
-                                                    </td>
-                                                    <td>
-                                                        May 03, 2015
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="font-weight-medium">
-                                                        6
-                                                    </td>
-                                                    <td>
-                                                        Henry Tom
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        $ 150.00
-                                                    </td>
-                                                    <td class="text-danger">
-                                                        24.67%
-                                                        <i class="mdi mdi-arrow-down"></i>
-                                                    </td>
-                                                    <td>
-                                                        June 16, 2015
-                                                    </td>
-                                                </tr>
+                                                    }
+                                                }
+                                              
+                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -697,7 +576,7 @@
 
                     <table>
                         <tr>
-                           <td colspan="2">First Name: </td>
+                            <td colspan="2">First Name: </td>
                             <td id="firstName"></td>
 
                         </tr>
@@ -712,7 +591,7 @@
                             <td id="email"></td>
 
                         </tr>
-                        
+
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -740,7 +619,7 @@
     <!-- End custom js for this page-->
 
     <script>
-       
+
         $(document).ready(function () {
             $("#dashboard").click(function () {
                  document.location = '@Url.Action("AdminPage", "Admin")';

@@ -19,6 +19,9 @@ namespace Biponee.Controllers
         AdminManager adminManager = new AdminManager();
         SectionManager sectionManager = new SectionManager();
         ProductManager productManager = new ProductManager();
+        OrderManager orderManager = new OrderManager();
+        CartItemManager cartManager = new CartItemManager();
+        UserManager userManager = new UserManager();
 
       
 
@@ -32,6 +35,11 @@ namespace Biponee.Controllers
         {
 
             int id = Convert.ToInt32(Session["adminId"]);
+            List<OrderC> allOrders = orderManager.getAllOrder();
+            ViewBag.orders = allOrders;
+
+            List<UserC> userList = userManager.getAllUser();
+            ViewBag.users = userList;
             return View();
         }
         public ActionResult AddProduct()
@@ -134,16 +142,29 @@ namespace Biponee.Controllers
 
 
        
-        public ActionResult Orders(int id)
+        public ActionResult Orders()
         {
-            AdminC admin = adminManager.getAdminInfo(id);
-            return View(admin);
+
+            List<OrderC> allOrders = orderManager.getAllOrder();
+
+            ViewBag.orders = allOrders;
+          
+            return View();
         }
         public ActionResult Charts(int id)
         {
             AdminC admin = adminManager.getAdminInfo(id);
             return View(admin);
            
+        }
+
+        public ActionResult ViewOrderDetails(int OrderId)
+        {
+            OrderC aOrder = orderManager.GetOrder(OrderId);
+            List<CartItemC> cartItems = cartManager.getAllCartItems(OrderId);
+
+            OrderDetails aOrderDetails = new OrderDetails(aOrder, cartItems);
+            return View(aOrderDetails);
         }
 
         public JsonResult getAdmin(String Email,String Password)
@@ -246,16 +267,14 @@ namespace Biponee.Controllers
         }
 
 
-        /* public JsonResult updateDailyNeedsProduct(DailyNeedProduct product)
-         {
-             productManager.Up(product);
-             return Json("true", JsonRequestBehavior.AllowGet);
-         }*/
-        /*public JsonResult updateDailyNeedsProducts(DailyNeedProduct product)
+       public JsonResult GetOrderDetails(int OrderId)
         {
-            productManager.upda(product);
-            return Json("true", JsonRequestBehavior.AllowGet);
-        }*/
+            OrderC aOrder = orderManager.GetOrder(OrderId);
+            List<CartItemC> cartItems = cartManager.getAllCartItems(OrderId);
+
+            OrderDetails aOrderDetails = new OrderDetails(aOrder, cartItems);
+            return Json(aOrderDetails, JsonRequestBehavior.AllowGet);
+        }
 
 
 

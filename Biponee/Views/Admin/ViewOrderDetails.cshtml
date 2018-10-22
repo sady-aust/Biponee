@@ -1,0 +1,140 @@
+﻿@using System.Collections.Generic;
+@using Biponee.Models
+@model Biponee.Models.OrderDetails
+
+@{
+    ViewBag.Title = "ViewOrderDetails";
+}
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Free Bootstrap Admin Dashboard Template</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Style/admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.addons.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Style/admin/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Style/admin/images/favicon.png" />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+<body class="container">
+    <div>
+        <h4 style="text-align:center">Order Detils</h4>
+        <table style="margin-top:10px;margin-bottom:20px">
+            <tr>
+                <td><b>OrderId</b></td>
+                <td>@Model.Order.OrderId</td>
+            </tr>
+            <tr>
+                <td><b>First Name</b></td>
+                <td>@Model.Order.FirstName</td>
+            </tr>
+            <tr>
+                <td><b>Last Name</b></td>
+                <td>@Model.Order.LastName</td>
+            </tr>
+            <tr>
+                <td><b>Phone</b></td>
+                <td>@Model.Order.Phone</td>
+            </tr>
+            <tr>
+                <td><b>Address</b></td>
+                <td>@Model.Order.Address</td>
+            </tr>
+            <tr>
+                <td><b>State</b></td>
+                <td>@Model.Order.State</td>
+            </tr>
+            <tr>
+                <td><b>City</b></td>
+                <td>@Model.Order.City</td>
+            </tr>
+
+            <tr>
+                <td><b>Date</b></td>
+
+                <td>@Model.Order.Date</td>
+            </tr>
+
+        </table>
+        <h4 style="text-align:center">Cart Items</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><b>Cart Item Id</b></td>
+                    <td><b>Order Id</b></td>
+                    <td><b>Product Id</b></td>
+                    <td><b>Product Name</b></td>
+                    <td><b>Product Size</b></td>
+                    <td><b>Unit Price</b></td>
+                    <td><b>Quanitity</b></td>
+                    <td><b>Subtotal</b></td>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (CartItemC item in Model.Carts)
+            {
+                <tr>
+                    <td>@item.CartItemId</td>
+                    <td>@item.OrderId</td>
+                    <td>@item.ProductId</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductSize</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Qty</td>
+                    <td>@item.Subtotal</td>
+                </tr>
+        }
+            </tbody>
+        </table>
+        <h4 style="text-align:center">Payment Information</h4>
+        <table>
+            <tr>
+                <td><b>Payment Method</b></td>
+                <td>@Model.Order.PaymentMethod</td>
+            </tr>
+            <tr>
+                <td><b>Total</b></td>
+                <td>@Model.Order.Total</td>
+            </tr>
+        </table>
+    </div>
+    <!-- jQuery Plugins -->
+    <script src="~/Style/user/js/viewcart.js"></script>
+    <!-- jQuery Plugins -->
+    <script src="~/Style/user/js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="~/Style/user/js/slick.min.js"></script>
+    <script src="~/Style/user/js/nouislider.min.js"></script>
+    <script src="~/Style/user/js/jquery.zoom.min.js"></script>
+    <script src="~/Style/user/js/main.js"></script>
+
+</body>
+</html>
+
+
+

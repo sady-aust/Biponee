@@ -97,17 +97,7 @@
                     </div>
                     <!-- /Logo -->
                     <!-- Search -->
-                    <div class="header-search">
-                        <form>
-                            <input class="input search-input" type="text" placeholder="Enter your keyword">
-                            <select class="input search-categories">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
-                            </select>
-                            <button class="search-btn"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
+                   
                     <!-- /Search -->
                 </div>
                 <div class="pull-right">
@@ -134,7 +124,7 @@
                                 </tr>
                             </table>
                             <ul class="custom-menu">
-
+                                <li><a href="#" onclick="viewOrders()" id="viewOrdersLink" style="display:none">MY Orders</a></li>
                                 <li><a href="#" id="myProfileLink" style="display:none">My Profile</a></li>
                                 <li><a href="#" id="signOutLink" style="display:none">Sign Out</a></li>
 
@@ -398,167 +388,8 @@
                 <div class="menu-nav">
                     <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                     <ul class="menu-list">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="dropdown mega-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                        <hr class="hidden-md hidden-lg">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row hidden-sm hidden-xs">
-                                    <div class="col-md-12">
-                                        <hr>
-                                        <a class="banner banner-1" href="#">
-                                            <img src="./img/banner05.jpg" alt="">
-                                            <div class="banner-caption text-center">
-                                                <h2 class="white-color">NEW COLLECTION</h2>
-                                                <h3 class="white-color font-weak">HOT DEAL</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown mega-dropdown full-width">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Men <i class="fa fa-caret-down"></i></a>
-                            <div class="custom-menu">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner06.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Women’s</h3>
-                                                </div>
-                                            </a>
-                                            <hr>
-                                        </div>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner07.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Men’s</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner08.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Accessories</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="hidden-sm hidden-xs">
-                                            <a class="banner banner-1" href="#">
-                                                <img src="./img/banner09.jpg" alt="">
-                                                <div class="banner-caption text-center">
-                                                    <h3 class="white-color text-uppercase">Bags</h3>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <hr>
-                                        <ul class="list-links">
-                                            <li>
-                                                <h3 class="list-links-title">Categories</h3>
-                                            </li>
-                                            <li><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Phones & Accessories</a></li>
-                                            <li><a href="#">Jewelry & Watches</a></li>
-                                            <li><a href="#">Bags & Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Sales</a></li>
-                        <li class="dropdown default-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
-                            <ul class="custom-menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="products.html">Products</a></li>
-                                <li><a href="product-page.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                        <li><a href="#" onclick="gotoHome()">Home</a></li>
+                       </ul>
                 </div>
                 <!-- menu nav -->
             </div>
@@ -595,19 +426,19 @@
                 </thead>
                 <tbody>
                     @{
-        List<OrderC> orders = ViewBag.userOrders;
-        for (int i = 0; i < orders.Count; i++)
-        {
-                    <tr>
-                        <td>@orders[i].OrderId</td>
-                        <td>@orders[i].PaymentMethod</td>
-                        <td>@orders[i].Total</td>
-                        <td>@orders[i].Date</td>
-                        <td>"dsdsdf"</td>
+                        List<OrderC> orders = ViewBag.userOrders;
+                        for (int i = 0; i < orders.Count; i++)
+                        {
+                            <tr>
+                                <td>@orders[i].OrderId</td>
+                                <td>@orders[i].PaymentMethod</td>
+                                <td>@orders[i].Total</td>
+                                <td>@orders[i].Date</td>
+                                <td>"dsdsdf"</td>
 
-                    </tr>
+                            </tr>
 
-}
+                        }
                     }
                 </tbody>
             </table>
@@ -797,6 +628,363 @@
     <script src="~/Style/user/js/nouislider.min.js"></script>
     <script src="~/Style/user/js/jquery.zoom.min.js"></script>
     <script src="~/Style/user/js/main.js"></script>
+    <script>
+    var cart = {};
+cart.products = [];
+
+if (localStorage.getItem('cart') == null) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+function loadProduct() {
+    var nameArray = [];
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("allProduct", "User")',
+        contentType: "application/json;charset=utf-8",
+
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+                console.log(data);
+                var nameArray = [];
+                for (var i = 0; i < data.length; i++) {
+                    nameArray.push(data[i].ProductName);
+                }
+
+            }
+
+        }
+    });
+
+
+    return nameArray;
+}
+
+function getProductWidget(productName, price, imgLink) {
+    var productWidgetDiv = document.createElement("div");
+    productWidgetDiv.setAttribute("class", "product product-widget");
+
+    var productThumb = document.createElement("div");
+    productThumb.setAttribute("class", "product-thumb");
+
+    var img = document.createElement("img");
+    img.setAttribute("src", imgLink);
+
+    productThumb.appendChild(img);
+
+
+    var bodyDiv = document.createElement("div");
+    bodyDiv.setAttribute("class", "product-body");
+
+    var h5 = document.createElement("h5");
+    h5.innerHTML = "Price " + price + " Tk"
+
+    var Qh5 = document.createElement("h5");
+    Qh5.innerHTML = "Quanity " + "1";
+    var nmaeh5 = document.createElement("h5");
+    nmaeh5.innerHTML = productName;
+
+    bodyDiv.appendChild(h5);
+    bodyDiv.appendChild(Qh5);
+    bodyDiv.appendChild(nmaeh5);
+
+    productWidgetDiv.appendChild(productThumb);
+    productWidgetDiv.appendChild(bodyDiv);
+    return productWidgetDiv;
+
+}
+
+
+
+$(window).on('load', function () {
+    if (localStorage.getItem('status') == 'loggedIn') {
+        console.log("Loggedin");
+        document.getElementById("loginLink").setAttribute("style", "display: none;");
+        document.getElementById("joinLink").setAttribute("style", "display: none;");
+        document.getElementById("signOutLink").setAttribute("style", "display: block");
+        document.getElementById("myProfileLink").setAttribute("style", "display: block");
+        document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+        document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
+
+    }
+    var input = document.getElementById("myInputext");
+    var awsomecomplete = new Awesomplete(input);
+
+
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("allProduct", "User")',
+        contentType: "application/json;charset=utf-8",
+
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+
+                var nameArray = [];
+                for (var i = 0; i < data.length; i++) {
+                    nameArray.push(data[i].ProductName);
+                }
+            }
+            awsomecomplete.list = nameArray;
+        }
+
+    });
+
+
+    var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
+
+
+    showCartItem(JSON.parse(localStorage.getItem('cart')).products);
+    console.log(JSON.parse(localStorage.getItem('cart')).products);
+
+});
+
+$('#signOutLink').click(function () {
+    document.getElementById("loginLink").setAttribute("style", "display: block;");
+    document.getElementById("joinLink").setAttribute("style", "display: block;");
+    document.getElementById("signOutLink").setAttribute("style", "display: none");
+    document.getElementById("myProfileLink").setAttribute("style", "display: none");
+    document.getElementById("viewOrdersLink").setAttribute("style", "display: none");
+    document.getElementById("myAccount").innerHTML = "My Account";
+    localStorage.setItem('status', 'signout');
+    localStorage.setItem('userID', null);
+    localStorage.setItem('FirstName', null);
+
+    localStorage.clear();
+    clearCartItem();
+    $(".qty").empty();
+    document.location = '@Url.Action("Index", "User")'
+
+});
+$("#loginBtn").click(function () {
+
+
+    var email = $("#loginEmail").val();
+    var password = $("#loginPassword").val();
+
+
+    var jsonData = { Email: email, Password: password };
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("userLogIn", "User")',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(jsonData),
+        dataType: "json",
+        success: function (data) {
+
+            if (data != null) {
+
+                localStorage.setItem('status', 'loggedIn');
+                localStorage.setItem('userID', data.Id);
+                localStorage.setItem('FirstName', data.FirstName);
+
+
+                if (localStorage.getItem('status') == 'loggedIn') {
+                    document.getElementById("loginLink").setAttribute("style", "display: none;");
+                    document.getElementById("joinLink").setAttribute("style", "display: none;");
+                    document.getElementById("signOutLink").setAttribute("style", "display: block");
+                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                }
+                $("#loginModal").modal('hide');
+
+                var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
+
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("getAllCartItem", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(JsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data != null) {
+                            console.log(data);
+                            var shoppingCart = document.getElementById("userShoppingcart");
+                            console.log(shoppingCart);
+
+                            clearCartItem();
+                            showCartItem(data);
+                            $(".qty").text(data.length);
+
+                        }
+
+                    }
+                });
+            }
+            else {
+                alert("Email and password doesnot match");
+            }
+        }
+    });
+    // alert(name + " " + email);
+    return false;
+});
+
+
+$("#signUpbtn").click(function () {
+
+    console.log("Clicked");
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+
+
+    var jsonData = { FirstName: firstName, LastName: lastName, Email: email, Password: password };
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("userSignUp", "User")',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(jsonData),
+        dataType: "json",
+        success: function (data) {
+
+
+
+            if (data != 'false') {
+
+                localStorage.setItem('status', 'loggedIn');
+                localStorage.setItem('userID', data.Id);
+                localStorage.setItem('FirstName', data.FirstName);
+
+
+                if (localStorage.getItem('status') == 'loggedIn') {
+                    document.getElementById("loginLink").setAttribute("style", "display: none;");
+                    document.getElementById("joinLink").setAttribute("style", "display: none;");
+                    document.getElementById("signOutLink").setAttribute("style", "display: block");
+                    document.getElementById("myProfileLink").setAttribute("style", "display: block");
+                    document.getElementById("viewOrdersLink").setAttribute("style", "display: block");
+                    console.log(document.getElementById("viewOrdersLink"));
+
+                    document.getElementById("myAccount").innerHTML = data.FirstName + '<i class="fa fa - caret - down">';
+
+                }
+                $("#signupmodal").modal('hide');
+
+            }
+            else {
+                alert("Please Try again");
+            }
+        }
+    });
+    // alert(name + " " + email);
+    return false;
+});
+
+
+function showItems() {
+   document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(document.getElementById("sectionId").value);
+        }
+
+
+
+function goToProductPage(code, sectionId) {
+    document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + code + '&sectionId=' + parseInt(sectionId);
+}
+function serachResult() {
+    var productName = document.getElementById("myInputext").value;
+    if (productName == "" || productName == null) {
+        alert("Please enter a product name");
+    }
+    else {
+        document.location = '@Url.Action("ProductPage", "User")' + '?' + 'code=' + null + '&sectionId=-1&name=' + productName;
+    }
+
+}
+
+function gotoSection(id) {
+    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+}
+
+function searchByCategory(sectionid, category) {
+    // alert("Clicked");
+
+    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
+}
+
+function addToCart(id, code, name, img, price, sectionId) {
+    if ((localStorage.getItem('status') != 'loggedIn')) {
+        alert("Please Log in First");
+    }
+    else {
+        var productId = parseInt(id);
+        var quantity = 1;
+        var userId = localStorage.getItem('userID');
+        var status = 0;
+        var size = null;
+
+
+        var JsonData = { ProductId: productId, ProductName: name, Image: img, Price: price, Qunaity: quantity, UserID: userId, Status: status, Size: size }
+
+        if (localStorage && localStorage.getItem('cart')) {
+            var cart = JSON.parse(localStorage.getItem('cart'));
+            cart.products.push(JsonData);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            console.log(localStorage.getItem('cart'));
+            showCartItem(JSON.parse(localStorage.getItem('cart')).products);
+        }
+        else {
+            console.log("Not define");
+        }
+
+    }
+
+    return false;
+}
+
+
+function clearCartItem() {
+    $("#userShoppingcart").empty();
+}
+
+function showCartItem(data) {
+
+    console.log(data)
+    var shoppingCart = document.getElementById("userShoppingcart");
+    console.log(shoppingCart);
+    clearCartItem();
+    $(".qty").text(data.length);
+
+
+    for (var i = 0; i < data.length; i++) {
+
+        var cartWid = getProductWidget(data[i].ProductName, data[i].Price, data[i].Image);
+        shoppingCart.appendChild(cartWid);
+    }
+    $(".qty").text(data.length);
+}
+function goToCart() {
+    document.location = '@Url.Action("ViewCart", "User")';
+        }
+
+        function goToCheckout() {
+            document.location = '@Url.Action("Checkout", "User")';
+        }
+
+        function viewOrders() {
+            document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
+        }
+        function gotoSection(id) {
+            document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+        }
+
+        
+        function gotoHome() {
+             document.location = '@Url.Action("Index", "User")';
+        }
+
+    </script>
+
 
 
 </body>
