@@ -662,7 +662,7 @@
                                 <h2 class="product-name"><a href="#">@Model.DailyNeedProducts[i].ProductName</a></h2>
                                 <div class="product-btns">
 
-                                    <button onclick="addToCart('@Model.DailyNeedProducts[i].ProductId','@Model.ClothingProducts[i].ProductCode','@Model.DailyNeedProducts[i].SectionId','@imgLink','@Model.DailyNeedProducts[i].Price','3')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                    <button onclick="addToCart('@Model.DailyNeedProducts[i].ProductId','@Model.ClothingProducts[i].ProductCode','@Model.DailyNeedProducts[i].ProductName','@imgLink','@Model.DailyNeedProducts[i].Price','3')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -1102,6 +1102,7 @@ $("#loginBtn").click(function () {
                 localStorage.setItem('status', 'loggedIn');
                 localStorage.setItem('userID', data.Id);
                 localStorage.setItem('FirstName', data.FirstName);
+                localStorage.setItem('UserEmail', email);
 
 
                 if (localStorage.getItem('status') == 'loggedIn') {

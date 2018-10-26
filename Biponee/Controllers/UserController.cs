@@ -17,6 +17,7 @@ namespace Biponee.Controllers
         UserManager userManager = new UserManager();
         OrderManager orderManager = new OrderManager();
         CartItemManager cartItemManager = new CartItemManager();
+        PromoCodeManager promoCodeManager = new PromoCodeManager();
        
         // GET: User
         public ActionResult Index()
@@ -193,7 +194,29 @@ namespace Biponee.Controllers
             return Json(res, JsonRequestBehavior.AllowGet);
 
         }
-   
+
+        public JsonResult CheckPromoCode(String PromoCode,String Email)
+        {
+            if (promoCodeManager.isValid(PromoCode, Email)){
+                PromoCode myPromoCode = promoCodeManager.getPromocode(PromoCode, Email);
+
+                if (promoCodeManager.ApplyPromoCode(PromoCode, Email))
+                {
+                     return Json(myPromoCode, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json("Not Valid", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Not Valid", JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+
         public JsonResult PlaceOrder(OrderC order)
         {
             if (orderManager.InsertOrder(order)){

@@ -527,14 +527,23 @@
                 <div>
                     <table>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                             <td>
-                                <button onclick="placeOrder()" class="btn btn-info">Place Order</button>
+                                <strong>
+                                    Have Promo Code?
+                                </strong>
+                            </td>
+                            <td>
+                                <input  type="text" id="userpromocode" class="form-control" name="promocode" placeholder="Apply Here"/>
+                            </td>
+                            <td>
+                                <button onclick="applyPromoCode()" style="margin-left:25px" class="btn btn-info">Apply</button>
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td >
+                                <button onclick="placeOrder()"style="margin-left:25px" class="btn btn-success">Place Order</button>
                             </td>
                         </tr>
                     </table>
@@ -1014,6 +1023,7 @@ $("#loginBtn").click(function () {
                 localStorage.setItem('status', 'loggedIn');
                 localStorage.setItem('userID', data.Id);
                 localStorage.setItem('FirstName', data.FirstName);
+                localStorage.setItem('UserEmail', email);
 
 
                 if (localStorage.getItem('status') == 'loggedIn') {
@@ -1210,6 +1220,50 @@ function goToCart() {
         function viewOrders() {
             document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
         }
+
+        function applyPromoCode() {
+            var code = $("#userpromocode").val().trim();
+            var email = localStorage.getItem("UserEmail");
+            var promocodejsonData = {
+                PromoCode: code,
+                Email: email
+            }
+
+           
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("CheckPromoCode", "User")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(promocodejsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data === "Not Valid") {
+                            alert("Invalid PromoCode");
+                        }
+                        else {
+                            var total = parseInt(document.getElementById("totalPrice").innerText);
+
+                            console.log(data);
+                            var discountRate = parseInt(data.Discount);
+                            var discount = parseInt((discountRate * total) / 100.0);
+                            var netTotal = total - discount;
+                            if (netTotal <= 0) {
+                                document.getElementById("totalPrice").innerText = 0
+                            }
+                            else {
+                                document.getElementById("totalPrice").innerText = netTotal
+                            }
+                           
+                            alert("Promo Code Applied");
+
+                        }
+
+                    }
+                });
+        }
+
+       
 
 
     </script>

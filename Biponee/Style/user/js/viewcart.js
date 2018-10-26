@@ -86,7 +86,7 @@ $("#loginBtn").click(function () {
                 localStorage.setItem('status', 'loggedIn');
                 localStorage.setItem('userID', data.Id);
                 localStorage.setItem('FirstName', data.FirstName);
-
+                localStorage.setItem('UserEmail', email);
 
                 if (localStorage.getItem('status') == 'loggedIn') {
                     document.getElementById("loginLink").setAttribute("style", "display: none;");
