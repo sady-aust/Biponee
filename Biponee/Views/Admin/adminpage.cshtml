@@ -1,5 +1,6 @@
 ﻿ing System.Collections.Generic;
 @using Biponee.Models
+
 @model Biponee.Models.OrderC
 <!DOCTYPE html>
 <html lang="en">
@@ -322,7 +323,7 @@
                                         <div class="float-left">
                                             <i class="mdi mdi-account-location text-info icon-lg"></i>
                                         </div>
-                                        @{ 
+                                        @{
                                             List<UserC> userList = ViewBag.users;
                                         }
                                         <div class="float-right">
@@ -436,45 +437,21 @@
                         <div class="col-lg-5 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h2 class="card-title text-primary mb-5">Performance History</h2>
+                                    <h2 class="card-title text-primary mb-5">Star Customer</h2>
                                     <div class="wrapper d-flex justify-content-between">
+                                       
                                         <div class="side-left">
-                                            <p class="mb-2">Best Section</p>
-                                            <p class="display-3 mb-4 font-weight-light">Mens</p>
+                                            @{ 
+                                                UserC aCustomer = ViewBag.starCustomer;
+                                            }
+                                            <p class="display-3 mb-4 font-weight-light">@aCustomer.FirstName</p>
+                                            <p class="mb-2">@aCustomer.Email</p>
                                         </div>
                                         <div class="side-right">
                                             <small class="text-muted">2017</small>
                                         </div>
                                     </div>
-                                    <div class="wrapper d-flex justify-content-between">
-                                        <div class="side-left">
-                                            <p class="mb-2">Worst Section</p>
-                                            <p class="display-3 mb-5 font-weight-light">Sports</p>
-                                        </div>
-                                        <div class="side-right">
-                                            <small class="text-muted">2015</small>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Sales</p>
-                                            <p class="mb-2 text-primary">88%</p>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 88%" aria-valuenow="88"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper mt-4">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Visits</p>
-                                            <p class="mb-2 text-success">56%</p>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 56%" aria-valuenow="56"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -495,40 +472,40 @@
                                                     <th>
                                                         First name
                                                     </th>
-                                                   
+
                                                     <th>
                                                         Amount
                                                     </th>
-                                                    
+
                                                     <th>
                                                         Order Date
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @{ 
-                                                    for(int i= orderList.Count - 1, j = 0; i >= 0 && j <= 5; i--, j++)
+                                                @{
+                                                                                            for (int i = orderList.Count - 1, j = 0; i >= 0 && j <= 5; i--, j++)
                                                     {
-                                                          <tr>
-                                                    <td class="font-weight-medium">
-                                                       @orderList[i].OrderId
-                                                    </td>
-                                                    <td>
-                                                        @orderList[i].FirstName
-                                                    </td>
-                                                   
-                                                    <td>
-                                                        @orderList[i].Total
-                                                    </td>
-                                                  
-                                                    <td>
-                                                        @orderList[i].Date
-                                                    </td>
-                                                </tr>
+                                                        <tr>
+                                                            <td class="font-weight-medium">
+                                                                @orderList[i].OrderId
+                                                            </td>
+                                                            <td>
+                                                                @orderList[i].FirstName
+                                                            </td>
+
+                                                            <td>
+                                                                @orderList[i].Total
+                                                            </td>
+
+                                                            <td>
+                                                                @orderList[i].Date
+                                                            </td>
+                                                        </tr>
                                                     }
                                                 }
-                                              
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>

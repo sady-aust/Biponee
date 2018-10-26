@@ -38,8 +38,14 @@ namespace Biponee.Controllers
             List<OrderC> allOrders = orderManager.getAllOrder();
             ViewBag.orders = allOrders;
 
+            List<OrderC> sortedOrder = allOrders.OrderBy(o => o.Total).ToList();
+            OrderC maximumTotalOrder = sortedOrder[sortedOrder.Count - 1];
+
+           UserC starcustomer = userManager.getAUser(maximumTotalOrder.UserId);
+
             List<UserC> userList = userManager.getAllUser();
             ViewBag.users = userList;
+            ViewBag.starCustomer = starcustomer;
             return View();
         }
         public ActionResult AddProduct()

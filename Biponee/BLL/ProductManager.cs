@@ -115,10 +115,10 @@ namespace Biponee.BLL
             return list[0];
         }
 
-        public List<ProductC> GetProducts(int secId,String CategoryName)
+        public List<Product> getCategoryProducts(String CategoryName)
         {
-            //  return productGetway.getAllProductOfthisCategory(secId, CategoryName);
-            return null;
+              return productGetway.getAllProductOfThisCategory(CategoryName);
+           
         }
 
      

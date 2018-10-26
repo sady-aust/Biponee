@@ -52,6 +52,32 @@ namespace Biponee.DLL
             return list;
         }
 
+        public List<UserC> getUser(int uId)
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            String Query = "SELECT * FROM users WHERE UserId = " + uId;
+
+            SqlCommand command = new SqlCommand(Query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<UserC> list = new List<UserC>();
+
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["UserId"]);
+                String firstName = reader["FirstName"].ToString();
+                String lastName = reader["LastName"].ToString();
+                String Email = reader["Email"].ToString();
+                String Password = reader["Password"].ToString();
+
+                list.Add(new UserC(id, firstName, lastName, Email, Password));
+            }
+
+            return list;
+        }
+
         public List<UserC> getUser(String email)
         {
 

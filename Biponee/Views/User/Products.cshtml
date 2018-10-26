@@ -1,4 +1,5 @@
 ﻿@using Biponee.Models
+@using Biponee.Models.Products;
 @model Biponee.Models.UserSectionC
 
 <!DOCTYPE html>
@@ -200,23 +201,23 @@
         <!-- container -->
         <div class="container">
             <div id="responsive-nav">
-           
+
                 <!-- menu nav -->
                 <div class="menu-nav">
                     <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                     <ul class="menu-list">
                         <ul class="menu-list">
-                        <li><a href="#" onclick="gotoHome()">Home</a></li>
-                        @foreach (SectionC sec in sections)
+                            <li><a href="#" onclick="gotoHome()">Home</a></li>
+                            @foreach (SectionC sec in sections)
                             {
-                             
+
                                 <li><a href="#" onclick="gotoSection('@sec.SectionID')">@sec.SectionName</a></li>
                             }
-                     
-             
 
 
-                </ul>
+
+
+                        </ul>
                     </ul>
                 </div>
                 <!-- menu nav -->
@@ -450,6 +451,38 @@
                                                 <div class="product-btns">
 
                                                     <button onclick="addToCart('@Model.MobileProduct[i].ProductId','@Model.MobileProduct[i].ProductCode','@Model.MobileProduct[i].ProductName','@imgLink','@Model.MobileProduct[i].Price','2')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            List<Product> products = ViewBag.products;
+
+                            if (products != null)
+                            {
+                                 for (int i = products.Count - 1; i >= 0; i--)
+                                {
+                                   
+
+                                    String imgLink = "/" + products[i].ImageLink + ".jpeg";
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div class="product product-single">
+                                            <div class="product-thumb">
+                                                <div class="product-label">
+
+                                                </div>
+                                                <button onclick="goToProductPage('@products[i].ProductCode','@products[i].SectionId')" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                                <img src="@imgLink" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">TK @products[i].Price </h3>
+
+                                                <h2 class="product-name"><a href="#">@products[i].ProductName</a></h2>
+                                                <div class="product-btns">
+
+                                                    <button onclick="addToCart('@products[i].ProductId','@products[i].ProductCode','@products[i].ProductName','@imgLink','@products[i].Price','@products[i].SectionId')" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1400,6 +1433,11 @@ function goToCart() {
 
         function viewOrders() {
             document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
+        }
+
+
+          function gotoHome() {
+             document.location = '@Url.Action("Index", "User")';
         }
 
 

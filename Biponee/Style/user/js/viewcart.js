@@ -12,11 +12,11 @@ $(window).on('load', function () {
         document.getElementById("myAccount").innerHTML = localStorage.getItem("FirstName");
 
     }
-   
 
 
-    showCartItem(JSON.parse(localStorage.getItem('cart')).products);
-    showSelectedItem();
+
+     showCartItem(JSON.parse(localStorage.getItem('cart')).products);
+     showSelectedItem();
 
 
     var JsonData = { UserID: parseInt(localStorage.getItem("userID")) }
@@ -35,7 +35,7 @@ $(window).on('load', function () {
                 var shoppingCart = document.getElementById("userShoppingcart");
                 console.log(shoppingCart);
                 clearCartItem();
-                showCartItem(data);
+                //   showCartItem(data);
                 $(".qty").text(data.length);
 
 
@@ -249,6 +249,7 @@ function clearCartItem() {
 
 function showCartItem(data) {
 
+
     console.log(data)
     var shoppingCart = document.getElementById("userShoppingcart");
     console.log(shoppingCart);
@@ -256,14 +257,16 @@ function showCartItem(data) {
     $(".qty").text(data.length);
 
 
-   
+
     $(".qty").text(data.length);
 }
 
 function showSelectedItem() {
-    var tableBody = document.getElementById("tableBody");
+
+
+    //var tableBody = document.getElementById("tableBody");
     var cartItem = JSON.parse(localStorage.getItem('cart')).products;
-   
+
     for (var i = 0; i < cartItem.length; i++) {
 
         if (cartItem[i].Size == null) {
@@ -277,7 +280,11 @@ function showSelectedItem() {
                                     <td>
                                    <input type = "number" onchange="updateInput(this.value,`+ i + `)" min= "1" value =` + cartItem[i].Qunaity + `>
                                 </td>
-                                 <td>`+ cartItem[i].Price + `</td></tr>`
+                                 <td>`+ cartItem[i].Price + `</td>
+                                   <td><a href ="#" class = "btn" onclick = "removeCartItem(`+ i +`)">Remove</a></td>
+
+
+</tr>`
         }
         else {
             tableBody.innerHTML += `<tr>
@@ -290,7 +297,11 @@ function showSelectedItem() {
                                     <td>
                                     <input type = "number" onchange="updateInput(this.value,`+ i + `)" min= "1" value =` + cartItem[i].Qunaity + `>
                                 </td>
-                                    <td>`+ cartItem[i].Price + `</td></tr>`
+                                   <td>`+ cartItem[i].Price + `</td>
+                                <td><a href ="#" class = "btn" onclick = "removeCartItem(`+i+`)">Remove</a></td>
+
+
+                        </tr>`
         }
     }
 
@@ -300,12 +311,16 @@ function showSelectedItem() {
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td><button class="primary-btn" onclick="proceedCheckout()">Proceed to checkout</button></td>
                             </tr>`;
 
-    
+
 
 }
+
+
+
 
 function updateInput(value, index) {
     var cart = JSON.parse(localStorage.getItem('cart'));
@@ -314,5 +329,18 @@ function updateInput(value, index) {
 
 }
 
+function removeCartItem(index) {
+    var cart = JSON.parse(localStorage.getItem('cart'));
+    console.log(cart.products[index]);
+    var products = cart.products;
+    products.splice(index, 1);
+    cart.products = products;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(JSON.parse(localStorage.getItem('cart')));
+    location.reload();
+
+
+
+}
 
 

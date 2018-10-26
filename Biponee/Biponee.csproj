@@ -2312,6 +2312,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\ViewCart.cshtml" />
     <Content Include="Views\User\ViewOrders.cshtml" />
+    <Content Include="Views\User\ViewOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

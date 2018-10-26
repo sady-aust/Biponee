@@ -429,14 +429,16 @@
                         List<OrderC> orders = ViewBag.userOrders;
                         for (int i = 0; i < orders.Count; i++)
                         {
-                            <tr>
-                                <td>@orders[i].OrderId</td>
-                                <td>@orders[i].PaymentMethod</td>
-                                <td>@orders[i].Total</td>
-                                <td>@orders[i].Date</td>
-                                <td>"dsdsdf"</td>
+                    <tr>
+                        <td>@orders[i].OrderId</td>
+                        <td>@orders[i].PaymentMethod</td>
+                        <td>@orders[i].Total</td>
+                        <td>@orders[i].Date</td>
+                        <td>
+                            <a onclick="viewOrderDetails('@orders[i].OrderId')" class="btn btn-info">Details</a>
+                        </td>
 
-                            </tr>
+                    </tr>
 
                         }
                     }
@@ -981,6 +983,13 @@ function goToCart() {
         
         function gotoHome() {
              document.location = '@Url.Action("Index", "User")';
+        }
+
+
+
+         function viewOrderDetails(orderId) {
+            document.location = '@Url.Action("ViewOrderDetails", "User")' + '?' + 'OrderId=' + orderId;;
+
         }
 
     </script>

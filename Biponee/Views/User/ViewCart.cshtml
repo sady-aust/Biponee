@@ -395,11 +395,7 @@
                     <ul class="menu-list">
                        <ul class="menu-list">
                         <li><a href="#" onclick="gotoHome()">Home</a></li>
-                        @foreach (SectionC sec in sections)
-                            {
-                             
-                                <li><a href="#" onclick="gotoSection('@sec.SectionID')">@sec.SectionName</a></li>
-                            }
+                      
                      
              
 
@@ -440,6 +436,7 @@
                             <td>Size</td>
                             <td>Quantity</td>
                             <td>Price(Unit)</td>
+                            <td>Action</td>
                         </tr>
 
                     </thead>
@@ -996,6 +993,10 @@ function goToCart() {
         }
         function gotoSection(id) {
     document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
+        }
+
+               function gotoHome() {
+    document.location = '@Url.Action("Index", "User")';
 }
 
     </script>

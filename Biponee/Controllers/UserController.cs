@@ -110,17 +110,7 @@ namespace Biponee.Controllers
         }
         public ActionResult Products(int id, String ProductName, String category, Boolean searchInCategory = false)
         {
-            if (ProductName != null && id==-1)
-            {
-               /* List<SectionC> sections = sectionManager.getAllSections();
-                ViewBag.sections = sections;
-
-                List<Product> productList = productManager.GetProduct(ProductName);
-                return View(productList);*/
-            }
-
-            else
-            {
+           
                 if (!searchInCategory)
                 {
                     List<SectionC> sections = sectionManager.getAllSections();
@@ -157,14 +147,16 @@ namespace Biponee.Controllers
                 }
                 else
                 {
-                    List<ProductC> productList = productManager.GetProducts(id, category);
+                    List<Product> productList = productManager.getCategoryProducts(category);
                     List<SectionC> sections = sectionManager.getAllSections();
                     ViewBag.sections = sections;
-                    return View();
-                }
-            }
+                    ViewBag.products = productList;
 
-            return View();
+                    return View(new UserSectionC(null, null, null, null, null));
+                }
+            
+
+         
         }
 
         public ActionResult ViewOrders(int UID)
@@ -223,6 +215,17 @@ namespace Biponee.Controllers
 
 
         }
+
+        public ActionResult ViewOrderDetails(int OrderId)
+        {
+            OrderC aOrder = orderManager.GetOrder(OrderId);
+            List<CartItemC> cartItems = cartItemManager.getAllCartItems(OrderId);
+
+            OrderDetails aOrderDetails = new OrderDetails(aOrder, cartItems);
+            return View(aOrderDetails);
+        }
+
+
         public JsonResult allProduct()
         {
             List<Product> productList = productManager.GetAllProduct();

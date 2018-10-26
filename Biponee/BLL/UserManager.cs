@@ -31,6 +31,17 @@ namespace Biponee.BLL
             return null;
         }
 
+        public UserC getAUser(int Uid)
+        {
+            List<UserC> list = userGetway.getUser(Uid);
+
+            if (list.Count > 0)
+            {
+                return list[0];
+            }
+            return null;
+        }
+
         public List<UserC> getAllUser()
         {
             return userGetway.getAllUser();

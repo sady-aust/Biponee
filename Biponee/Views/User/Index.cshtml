@@ -234,7 +234,7 @@
                                                 foreach (String p in set)
                                                 {
 
-                                                    <li><a href="#"> @p</a></li>
+                                                    <li><a href="#" onclick="searchByCategory('@p')"> @p</a></li>
                                                 }
 
                                             }
@@ -283,7 +283,7 @@
                                                 foreach (String p in set)
                                                 {
 
-                                                    <li><a href="#" onclick="searchByCategory(1,'@p')"> @p</a></li>
+                                                    <li><a href="#" onclick="searchByCategory('@p')"> @p</a></li>
                                                 }
 
                                             }
@@ -333,7 +333,7 @@
                                                 foreach (String p in set)
                                                 {
 
-                                                    <li><a href="#" onclick="searchByCategory(3,'@p')"> @p</a></li>
+                                                    <li><a href="#" onclick="searchByCategory('@p')"> @p</a></li>
                                                 }
 
                                             }
@@ -378,7 +378,7 @@
                                                 foreach (String p in set)
                                                 {
 
-                                                    <li><a href="#" onclick="searchByCategory(4,'@p')"> @p</a></li>
+                                                    <li><a href="#" onclick="searchByCategory('@p')"> @p</a></li>
                                                 }
 
                                             }
@@ -1225,11 +1225,7 @@ function gotoSection(id) {
     document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(id);
 }
 
-function searchByCategory(sectionid, category) {
-    // alert("Clicked");
-
-    document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(sectionid) + "&category=" + category + "&searchInCategory=true";
-}
+    
 
 function addToCart(id, code, name, img, price, sectionId) {
     if ((localStorage.getItem('status') != 'loggedIn')) {
@@ -1295,6 +1291,12 @@ function goToCart() {
         function viewOrders() {
             document.location =  '/User/ViewOrders' + '?' + 'UID=' + parseInt(localStorage.getItem("userID"));
         }
+
+
+            function searchByCategory(category) {
+   
+                document.location = '@Url.Action("Products", "User")' + '?' + 'id=' + parseInt(- 1) + '&ProductName=null' + '&category=' + category + '&searchInCategory=' + true;
+            }
 
 
     </script>  

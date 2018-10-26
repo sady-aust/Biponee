@@ -578,8 +578,43 @@ namespace Biponee.DLL
             return list;
         }
 
-       
+        public List<Product> getAllProductOfThisCategory(String categoryName)
+        {
 
-       
+            SqlConnection connection = new SqlConnection(connectionString);
+            String QUERY = "SELECT * FROM products WHERE Category = '" + categoryName + "'";
+
+            SqlCommand command = new SqlCommand(QUERY, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            List<Product> list = new List<Product>();
+
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["ProductId"]);
+                String name = reader["ProductName"].ToString();
+                String code = reader["ProductCode"].ToString();
+                int secId = (int)reader["SectionId"];
+                double price = Convert.ToDouble(reader["Price"].ToString());
+                String category = reader["Category"].ToString();
+                String description = reader["Description"].ToString();
+                String imgLink = reader["ImageLink"].ToString();
+                String lCount = reader["LCount"].ToString();
+                String mCount = reader["MCount"].ToString();
+                String xlCount = reader["XLCount"].ToString();
+                String xxlCount = reader["XXLCount"].ToString();
+                String quantiy = reader["Quantity"].ToString();
+                String brandName = reader["BrandName"].ToString();
+                list.Add(new Product(id, name, code, secId, price, category, description, imgLink, brandName));
+            }
+
+            return list;
+        }
+
+
+
+
+
     }
 }
