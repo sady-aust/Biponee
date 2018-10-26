@@ -1,7 +1,4 @@
-﻿@using System.Collections.Generic;
-@using Biponee.Models
-@model Biponee.Models.OrderC
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +6,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin</title>
+    <title>Star Admin Free Bootstrap Admin Dashboard Template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="~/Style/admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/Style/admin/vendors/css/vendor.bundle.addons.css">
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -40,21 +39,24 @@
 </head>
 
 <body>
-    <script>
+    <div class="container-scroller">
+        <script>
             $(document).ready(function () {
                 $(window).on('load', function () {
                     $('body').hide();
                     if (localStorage['status'] == 'loggedin') {
 
                         $("#profileName1").text(localStorage['FirstName']);
-
-                        console.log(localStorage['FirstName']);
                         $("#profileName2").text(localStorage['FirstName']);
                         $("#firstName").text(localStorage['FirstName']);
                         $('#lastName').text(localStorage['Email']);
                         $('#email').text(localStorage['Email']);
                         $('body').show();
 
+                        /*document.getElementById('firstName').innerHTML = localStorage['FirstName'];
+                        document.getElementById('lastName').innerHTML = localStorage['LastName'];
+                        document.getElementById('email').innerHTML = localStorage['Email'];
+                        console.log(document.getElementById("profileName"));*/
                     }
                     else {
                           document.location = '@Url.Action("Index", "Admin")';
@@ -63,8 +65,7 @@
                 });
             });
 
-    </script>
-    <div class="container-scroller">
+        </script>
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
@@ -221,7 +222,7 @@
                                 Profile
                             </a>
 
-                            <a href="#" id="signOutLink" class="dropdown-item">
+                            <a class="dropdown-item" href="#" id="signOutLink">
                                 Sign Out
                             </a>
                         </div>
@@ -289,38 +290,37 @@
 
                 <!-- content-wrapper ends -->
                 <!-- partial:../../partials/_footer.html -->
-                <table class="table">
-                    <thead class="thead-dark">
+                    
+                <form method="post">
+                    <table style="margin-top:10px">
                         <tr>
-                            <th scope="col">OrderId</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Action</th>
+                            <td>Email:</td>
+                            <td>
+                                <input class="form-control" type="text" name="Email" id="email" />
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @{
-            List<OrderC> orders = ViewBag.orders;
-            for (int i = 0; i < orders.Count; i++)
-            {
-                <tr>
-                    <td>@orders[i].OrderId</td>
-                    <td>@orders[i].FirstName</td>
-                    <td>@orders[i].Phone</td>
-                    <td>@orders[i].Date</td>
-                    <td>
-                        <a onclick="viewOrderDetails('@orders[i].OrderId')" class="btn btn-info" >Details</a>
-                    </td>
+                        <tr>
+                            <td>Promo Code:</td>
+                            <td>
+                                <input  class="form-control" type="text" name="Code" id="promocode" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td>
+                                <input  class="form-control"  type="number" name="Discount" id="discount" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="btn badge-info" type="submit" value="Add" name="Save" id="Save"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+         
 
-                </tr>
-
-             }
-           }
-                    </tbody>
-
-                </table>
-
+           
 
                 <!-- partial -->
             </div>
@@ -372,7 +372,6 @@
                         <img src='~/Style/img/loading.gif' width="44" height="44" />
                         <br>Loading..
                     </div>
-
                     <table>
                         <tr>
                             <td colspan="2">First Name: </td>
@@ -400,21 +399,18 @@
             </div>
         </div>
     </div>
-    <script>
-              $(document).ready(function () {
-            $("#dashboard").click(function () {
-                 document.location = '@Url.Action("AdminPage", "Admin")';
-            });
+   
 
-            $("#addproducts").click(function () {
-                 document.location = '@Url.Action("AddProduct", "Admin")';
-            });
-            $("#promocode").click(function () {
-                 document.location = '@Url.Action("AddPromoCode", "Admin")';
-            });
-            $("#orders").click(function () {
-                 document.location = '@Url.Action("Orders", "Admin")';
-            });
+ 
+    
+    
+
+
+
+
+
+
+    <script>
 
             $("#signOutLink").click(function () {
                 localStorage.setItem("adminId", null);
@@ -425,13 +421,363 @@
                 document.location = '@Url.Action("Index", "Admin")';
             });
 
+            $("#dashboard").click(function () {
+                document.location = '@Url.Action("AdminPage", "Admin")';
+            });
+
+            $("#addproducts").click(function () {
+                document.location = '@Url.Action("AddProduct", "Admin")';
+            });
+            $("#promocode").click(function () {
+                 document.location = '@Url.Action("AddPromoCode", "Admin")';
+            });
+            $("#orders").click(function () {
+                document.location = '@Url.Action("Orders", "Admin")';
+            });
+
+
+            $("#searchbtn").click(function () {
+
+                var secid = $("#searchSecId").val();
+                var productCode = $("#productCode").val();
+
+
+                if (productCode == "") {
+                    var jsonData = { SectionId: secid };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getAllProduct", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+
+                            $('#searchResBody').empty();
+
+
+                            for (var i = 0; i < data.length; i++) {
+                                var temp = '<tr><td>' + data[i].ProductId + '</td>';
+                                temp += '<td>' + data[i].ProductName + '</td>';
+                                temp += '<td>' + data[i].ProductCode + '</td>';
+                                temp += '<td>' + data[i].SectionId + '</td>';
+                                temp += '<td>' + data[i].Price + '</td>';
+                                temp += '<td>' + data[i].Category + '</td>';
+
+                                temp += '<td>' + data[i].ImageLink + '</td>';
+                                temp += '<td>' + data[i].LCount + '</td>';
+                                temp += '<td>' + data[i].MCount + '</td>';
+                                temp += '<td>' + data[i].XLCount + '</td>';
+                                temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td>' + data[i].Quantity + '</td><';
+                                temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
+
+                                $('#searchResBody').append(temp);
+
+                            }
+                        }
+                    });
+                }
+                else {
+                    var jsonData = { SectionId: secid, Code: productCode };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getProductOfThisCode", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+
+                            $('#searchResBody').empty();
+
+
+                            for (var i = 0; i < data.length; i++) {
+                                var temp = '<tr><td>' + data[i].ProductId + '</td>';
+                                temp += '<td>' + data[i].ProductName + '</td>';
+                                temp += '<td>' + data[i].ProductCode + '</td>';
+                                temp += '<td>' + data[i].SectionId + '</td>';
+                                temp += '<td>' + data[i].Price + '</td>';
+                                temp += '<td>' + data[i].Category + '</td>';
+
+                                temp += '<td>' + data[i].ImageLink + '</td>';
+                                temp += '<td>' + data[i].LCount + '</td>';
+                                temp += '<td>' + data[i].MCount + '</td>';
+                                temp += '<td>' + data[i].XLCount + '</td>';
+                                temp += '<td>' + data[i].XXLCount + '</td><';
+                                temp += '<td>' + data[i].Quantity + '</td><';
+                                temp += '<td><a href="#">Update</a><a href="#"> Delete</a></td></tr>';
+
+                                $('#searchResBody').append(temp);
+
+                            }
+                        }
+                    });
+                }
+
+
+                 return false;
+
+                });
+
+          function viewData(secid, productCode) {
+
+            var jsonData = { SectionId: secid, Code: productCode };
+            $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("getProductOfThisCode", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    if (secid == 1) {
+
+                        $("#VclothingProductName").val(data[0].ProductName);
+                        $("#VclothingProductCode").val(data[0].ProductCode);
+                        $("#VclothingProductId").val(data[0].ProductId);
+                        $("#VclothingSectionId").val(data[0].SectionId);
+                        $("#VclothingProductcategory").val(data[0].Category);
+                        $("#VclothingProductPrice").val(data[0].Price);
+                        $("#VclothingProductDescription").val(data[0].Description);
+                        $("#vLCount").val(data[0].LCount);
+                        $("#vMCount").val(data[0].MCount);
+                        $("#vXLCount").val(data[0].XLCount);
+                        $("#vXXLCount").val(data[0].XXLCount);
+                        $("#vBrandName").val(data[0].BrandName);
+                        $("#VclothingProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#my").modal("show");
+                    }
+                    else if (secid == 2) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                    else if (secid == 3) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                    else if (secid == 3) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+                    else if (secid == 4) {
+
+                        $("#gProductName").val(data[0].ProductName);
+                        $("#gProductCode").val(data[0].ProductCode);
+                        $("#gProductId").val(data[0].ProductId);
+                        $("#gSectionId").val(data[0].SectionId);
+                        $("#gProductcategory").val(data[0].Category);
+                        $("#gProductPrice").val(data[0].Price);
+                        $("#gProductDescription").val(data[0].Description);
+                        $("#gQuantity").val(data[0].Quantity);
+
+                        $("#gBrandName").val(data[0].BrandName);
+                        $("#gProductImg").attr("src", "/" + data[0].ImageLink + ".jpeg");
+                        $("#generalModal").modal("show");
+                    }
+
+                }
+           });
+        }
+
+        $("#clothUpdate").click(function () {
+           var productName =  $("#VclothingProductName").val().trim();
+            var produtId = $("#VclothingProductId").val().trim();
+           var productCode = $("#VclothingProductCode").val().trim();
+           var productSectionId =  $("#VclothingSectionId").val().trim();
+            var productCategory = $("#VclothingProductcategory").val().trim();
+            var productPrice=  $("#VclothingProductPrice").val().trim();
+            var productDescriptipon = $("#VclothingProductDescription").val().trim();
+            var productLCount = $("#vLCount").val().trim();
+            var productMCount = $("#vMCount").val().trim();
+            var productXLCount = $("#vXLCount").val().trim();
+            var productXXLCount = $("#vXXLCount").val().trim();
+            var brandName = $("#vBrandName").val().trim();
+
+            var jsonData = {
+                ProductId: produtId,
+                ProductName: productName,
+                ProductCode: productCode,
+                SectionId: productSectionId,
+                Price: productPrice,
+                Category: productCategory,
+                Description: productDescriptipon,
+                BrandName: brandName,
+                LCount: productLCount,
+                MCount: productMCount,
+                XLCount: productXLCount,
+                XXLCount: productXXLCount
+            };
+
+              $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("updateClothingProductInfo", "Admin")',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                        if (data === "true") {
+                            $("#my").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                        alert("Not Updated");
+                        }
+
+                        }
+                    });
+
         });
 
 
-        function viewOrderDetails(orderId) {
-            document.location = '@Url.Action("ViewOrderDetails", "Admin")' + '?' + 'OrderId=' + orderId;;
 
+        $("#gUpdate").click(function () {
+           var productName =  $("#gProductName").val().trim();
+            var produtId = $("#gProductId").val().trim();
+           var productCode = $("#gProductCode").val().trim();
+           var productSectionId =  $("#gSectionId").val().trim();
+            var productCategory = $("#gProductcategory").val().trim();
+            var productPrice=  $("#gProductPrice").val().trim();
+            var productDescriptipon = $("#gProductDescription").val().trim();
+            var quantity = $("#gQuantity").val().trim();
+            var brandName = $("#gBrandName").val().trim();
+            console.log(productName);
+
+            var jsonData = {
+                ProductId: produtId,
+                ProductName: productName,
+                ProductCode: productCode,
+                SectionId: productSectionId,
+                Price: productPrice,
+                Category: productCategory,
+                Description: productDescriptipon,
+                BrandName: brandName,
+                Quantity: quantity
+            };
+
+            if (productSectionId == 2) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateElectronicsProductInfo", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+            else  if (productSectionId == 3) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateDailyNeedProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+             else  if (productSectionId == 4) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("updateMobileProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+                            $("#generalModal").modal("hide");
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Not Updated");
+                        }
+
+                    }
+                });
+            }
+
+
+        });
+
+        function deleteProduct(id,imagePath) {
+            var status = confirm("Are you sure?");
+            if (status == true) {
+                var jsonData = {
+                    ProductId: id,
+                    ImageLink: imagePath
+            };
+
+
+             $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteProduct", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data === "true") {
+
+                             document.location = '@Url.Action("AddProduct", "Admin")';
+                        }
+                        else {
+                            alert("Error!!");
+                        }
+
+                    }
+                });
+            }
         }
+
     </script>
 </body>
 

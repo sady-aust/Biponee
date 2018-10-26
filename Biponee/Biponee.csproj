@@ -148,6 +148,7 @@
     <Compile Include="BLL\CartItemManager.cs" />
     <Compile Include="BLL\OrderManager.cs" />
     <Compile Include="BLL\ProductManager.cs" />
+    <Compile Include="BLL\PromoCodeManager.cs" />
     <Compile Include="BLL\SectionManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="DAL\CartItemGetway.cs" />
     <Compile Include="DAL\OrderGetway.cs" />
     <Compile Include="DAL\ProductGetway.cs" />
+    <Compile Include="DAL\PromoCodeGetway.cs" />
     <Compile Include="DAL\SectionGetway.cs" />
     <Compile Include="DAL\UserGetway.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,6 +174,7 @@
     <Compile Include="Models\Products\ElectronicsProduct.cs" />
     <Compile Include="Models\Products\MobileProduct.cs" />
     <Compile Include="Models\Products\Product.cs" />
+    <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\SectionC.cs" />
     <Compile Include="Models\UserC.cs" />
     <Compile Include="Models\UserSectionC.cs" />
@@ -2099,6 +2102,7 @@
     <Content Include="Style\user\js\viewcart.js" />
     <Content Include="Style\user\logo\logo.png" />
     <Content Include="Views\Admin\ViewOrderDetails.cshtml" />
+    <Content Include="Views\Admin\AddPromoCode.cshtml" />
     <None Include="Views\User\index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

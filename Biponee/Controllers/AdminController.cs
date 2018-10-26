@@ -22,6 +22,7 @@ namespace Biponee.Controllers
         OrderManager orderManager = new OrderManager();
         CartItemManager cartManager = new CartItemManager();
         UserManager userManager = new UserManager();
+        PromoCodeManager promoCodeManager = new PromoCodeManager();
 
       
 
@@ -162,6 +163,21 @@ namespace Biponee.Controllers
             AdminC admin = adminManager.getAdminInfo(id);
             return View(admin);
            
+        }
+
+        public ActionResult AddPromoCode()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPromoCode(PromoCode promoCode)
+        {
+            if (promoCodeManager.InsertPromoCode(promoCode))
+            {
+                return View();
+            }
+            return null;
         }
 
         public ActionResult ViewOrderDetails(int OrderId)
